@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "416958424421",
+    "firebase_url": "https://distrada-7d516.firebaseio.com",
+    "project_id": "distrada-7d516",
+    "storage_bucket": "distrada-7d516.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416958424421:android:235ad34fe0db1094",
+        "android_client_info": {
+          "package_name": "com.michal_stasinski.distrada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "416958424421-32ndpq5nfke7jb4jpi8or66hj0a5r8qq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.michal_stasinski.distrada",
+            "certificate_hash": "1EAC8CF4F0E34492D0428B66DAD91A06747A8BD5"
+          }
+        },
+        {
+          "client_id": "416958424421-pbt01puno7njbslm7fl1s06bm0r34m05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsiNiCN7cFN3ARj3QHbkMbAAzowhdgmh0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "416958424421-c6b61m08u79nenv3k98ieman92u1n7ei.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.monimaxprojekt.diStradaTrattoria"
+              }
+            },
+            {
+              "client_id": "416958424421-pbt01puno7njbslm7fl1s06bm0r34m05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
