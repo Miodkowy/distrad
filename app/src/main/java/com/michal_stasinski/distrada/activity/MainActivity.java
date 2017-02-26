@@ -1,5 +1,6 @@
 package com.michal_stasinski.distrada.activity;
 
+import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -7,15 +8,24 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.michal_stasinski.distrada.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.app.Config;
+import com.michal_stasinski.distrada.menu.MenuFragment;
 import com.michal_stasinski.distrada.utils.NotificationUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +33,35 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private TextView txtRegId, txtMessage;
+    private ListView mListView;
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private Toolbar mToolBar;
 
+    private String[]  itemname = {
+            "head",
+            "AKTUALNOŚCI",
+            "PIZZA",
+            "STARTERY",
+            "SAŁATKI",
+            "ZUPY",
+            "MAKARONY",
+            "MAKARONY ZAPIEKANE",
+            "DRUGIE DANIA",
+            "NAPOJE i DESERY"
+    };
+    private int[]  colorToolBar = {
+            R.color.color_PIZZA,
+            R.color.color_AKTUALNOSCI,
+            R.color.color_PIZZA,
+            R.color.color_STARTERY,
+            R.color.color_SALATKI,
+            R.color.color_ZUPY,
+            R.color.color_MAKARONY,
+            R.color.color_ALFORNO,
+            R.color.color_DRUGIE_DANIE,
+            R.color.color_DESERY
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +95,66 @@ public class MainActivity extends AppCompatActivity {
         };
 
         displayFirebaseRegId();
+
+        mDrawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open,R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+
+        mDrawerLayout.openDrawer(GravityCompat.START,true);
+
+        mToolBar = (Toolbar) findViewById(R.id.nav_action);
+        setSupportActionBar(mToolBar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true); // show or hide the default home button
+        getSupportActionBar().setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        mListView = (ListView) findViewById(R.id.left_drawer);
+        Integer[] imgid={
+                R.mipmap.news_icon,
+                R.mipmap.news_icon,
+                R.mipmap.pizza_icon,
+                R.mipmap.starter_icon,
+                R.mipmap.salatka_icon,
+                R.mipmap.zupa_icon,
+                R.mipmap.makarony_icon,
+                R.mipmap.alforno_icon,
+                R.mipmap.drugie_danie_icon,
+                R.mipmap.drink_icon
+
+        };
+
+        CustomDrawerAdapter adapter = new CustomDrawerAdapter(this, itemname, imgid);
+
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick (AdapterView < ? > adapter, View view, int position, long arg){
+                FragmentManager fragmentManager = getFragmentManager();
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("position",position);
+                bundle.putInt("colorFragement",colorToolBar[position]);
+
+                MenuFragment fragobj =  new MenuFragment();
+                fragobj.setArguments(bundle);
+                mToolBar.setBackgroundResource(colorToolBar[position]);
+                TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
+                TextView colorShape = (TextView)findViewById(R.id.positionInList);
+
+                toolBarTitle.setText((itemname[position]).toString());
+
+                fragmentManager.beginTransaction().replace(R.id.content_frame , fragobj).commit();
+
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START,true);
+            }
+        });
+
     }
 
     // Fetches reg id from shared preferences

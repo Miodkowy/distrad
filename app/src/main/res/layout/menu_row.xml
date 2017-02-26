@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/customshape"
+    android:weightSum="1">
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.michal_stasinski.distrada.menu.CustomTextView
+
+        android:id="@+id/positionInList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/cardview_light_background"
+        android:text="9"
+        android:background="@drawable/list_row_position_shape"
+        />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.michal_stasinski.distrada.menu.CustomTextView
+                android:id="@+id/titleItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:layout_marginLeft="70dp"
+                android:textColor="@color/cardview_light_background"
+                android:text="Product name"
+                />
+
+            <com.michal_stasinski.distrada.menu.CustomTextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textColor="@color/cardview_light_background"
+                android:text="Price"
+                android:layout_marginLeft="70dp"
+                tools:textColor="@color/cardview_light_background" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

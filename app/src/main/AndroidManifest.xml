@@ -7,6 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Distrada"
         android:supportsRtl="true"
+        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
