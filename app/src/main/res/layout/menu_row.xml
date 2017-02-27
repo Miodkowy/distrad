@@ -20,7 +20,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
         android:textColor="@color/cardview_light_background"
-        android:text="9"
         android:background="@drawable/list_row_position_shape"
         />
 

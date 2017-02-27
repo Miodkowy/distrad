@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         txtRegId = (TextView) findViewById(R.id.txt_reg_id);
         txtMessage = (TextView) findViewById(R.id.txt_push_message);
 
@@ -103,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         mToggle.syncState();
 
         mDrawerLayout.openDrawer(GravityCompat.START,true);
-
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolBar);
 
@@ -119,10 +121,10 @@ public class MainActivity extends AppCompatActivity {
                 R.mipmap.news_icon,
                 R.mipmap.pizza_icon,
                 R.mipmap.starter_icon,
-                R.mipmap.salatka_icon,
-                R.mipmap.zupa_icon,
-                R.mipmap.makarony_icon,
-                R.mipmap.alforno_icon,
+                R.mipmap.salad_icon,
+                R.mipmap.zupy_icon,
+                R.mipmap.pasta_icon,
+                R.mipmap.zapiekane_icon,
                 R.mipmap.drugie_danie_icon,
                 R.mipmap.drink_icon
 
@@ -134,27 +136,40 @@ public class MainActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick (AdapterView < ? > adapter, View view, int position, long arg){
-                FragmentManager fragmentManager = getFragmentManager();
 
-                Bundle bundle = new Bundle();
-                bundle.putInt("position",position);
-                bundle.putInt("colorFragement",colorToolBar[position]);
+               if (position !=0) {
+                   FragmentManager fragmentManager = getFragmentManager();
 
-                MenuFragment fragobj =  new MenuFragment();
-                fragobj.setArguments(bundle);
-                mToolBar.setBackgroundResource(colorToolBar[position]);
-                TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
-                TextView colorShape = (TextView)findViewById(R.id.positionInList);
+                   Bundle bundle = new Bundle();
+                   bundle.putInt("position", position);
+                   bundle.putInt("colorFragement", colorToolBar[position]);
 
-                toolBarTitle.setText((itemname[position]).toString());
+                   MenuFragment fragobj = new MenuFragment();
+                   fragobj.setArguments(bundle);
 
-                fragmentManager.beginTransaction().replace(R.id.content_frame , fragobj).commit();
+                   mToolBar.setBackgroundResource(colorToolBar[position]);
+                   TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
+                   TextView colorShape = (TextView) findViewById(R.id.positionInList);
 
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START,true);
+                   toolBarTitle.setText((itemname[position]).toString());
+
+                   fragmentManager.beginTransaction().replace(R.id.content_frame, fragobj).commit();
+
+                   DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                   drawer.closeDrawer(GravityCompat.START, true);
+               }
             }
         });
 
+    }
+
+    // to przycisk powrotu do głownego menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     // Fetches reg id from shared preferences

@@ -3,6 +3,7 @@ package com.michal_stasinski.distrada.menu;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.percent.PercentRelativeLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,7 @@ public class MenuFragment extends Fragment {
     private DatabaseReference myRef;
     private int fragementColor;
     private ArrayList<MenuItemProduct> pizzzaItem;
+    private  PercentRelativeLayout mListView_Menu;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,48 +53,45 @@ public class MenuFragment extends Fragment {
         Log.d("MyApp","fragementColor____________________________________________________________ "+fragementColor );
         //TextView toolBarTitle = (TextView) getActivity().findViewById(R.id.toolBarTitle);
 
+        mListView = (ListView) myView.findViewById(R.id.mListView_FirstLayout);
+        mListView_Menu = (PercentRelativeLayout) myView.findViewById(R.id.mListView_Menu);
+
         if (strtext == 1) {
             myRef = database.getReference("pizzas");
-
 
         }
         if (strtext == 2) {
             myRef = database.getReference("pizzas");
-            //myView.setBackgroundColor(Color.YELLOW);
+            mListView_Menu.setBackgroundResource(R.mipmap.pizza_view);
         }
         if (strtext == 3) {
             myRef = database.getReference("starters");
-            //myView.setBackgroundColor(Color.RED);
+            mListView_Menu.setBackgroundResource(R.mipmap.starters_view);
         }
         if (strtext == 4) {
             myRef = database.getReference("insalates");
-            //toolBarTitle.setText("SALATKI");
+            mListView_Menu.setBackgroundResource(R.mipmap.salad_view);
         }
         if (strtext == 5) {
             myRef = database.getReference("zuppas");
-           // toolBarTitle.setText("ZUPY");
+            mListView_Menu.setBackgroundResource(R.mipmap.zupa_view);
         }
         if (strtext == 6) {
             myRef = database.getReference("pasta");
-           // toolBarTitle.setText("MAKARONY");
+            mListView_Menu.setBackgroundResource(R.mipmap.pasta_view);
         }
         if (strtext == 7) {
             myRef = database.getReference("alfornos");
-            //toolBarTitle.setText("MAKARONY ZAPIEKANE");
+            mListView_Menu.setBackgroundResource(R.mipmap.alforno_view);
         }
         if (strtext == 8) {
             myRef = database.getReference("secondis");
-            //toolBarTitle.setText("MAKARONY ZAPIEKANE");
+            mListView_Menu.setBackgroundResource(R.mipmap.drugie_view);
         }
         if (strtext == 9) {
             myRef = database.getReference("drinks");
-            //toolBarTitle.setText("NAPOJE I DESERY");
+            mListView_Menu.setBackgroundResource(R.mipmap.deser_view);
         }
-        mListView = (ListView) myView.findViewById(R.id.mListView_FirstLayout);
-
-
-
-
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

@@ -34,8 +34,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     </LinearLayout>
 
-
-
         <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
@@ -43,17 +41,14 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
         <ListView
             android:id="@+id/left_drawer"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:choiceMode="singleChoice"
-            android:background="#000000"
+            android:background="#94000000"
             android:dividerHeight="1dp"
             android:divider="@drawable/custom_divaider"
-            >
+            android:scrollbarSize="16dp">
         </ListView>
-
-
-
 
 </android.support.v4.widget.DrawerLayout>

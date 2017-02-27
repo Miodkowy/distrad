@@ -8,7 +8,6 @@
         android:choiceMode="singleChoice"
         android:background="#1112"
         android:dividerHeight="1dp"
-        android:divider="@drawable/custom_divaider"
-        >
+        android:divider="@drawable/custom_divaider">
     </ListView>
 </menu>
