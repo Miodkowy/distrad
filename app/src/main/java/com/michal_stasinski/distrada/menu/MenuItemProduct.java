@@ -12,18 +12,22 @@ public class MenuItemProduct {
     private Number price;
 
     public Number getPrice() {
+
         return price;
     }
 
     public void setPrice(Number price) {
+
         this.price = price;
     }
 
     public String getDesc() {
+
         return desc;
     }
 
     public void setDesc(String desc) {
+
         this.desc = desc;
     }
 

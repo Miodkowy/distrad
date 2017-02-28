@@ -12,12 +12,15 @@ public class MenuItemData {
         // empty default constructor, necessary for Firebase to be able to deserialize blog posts
     }
     public String getPrice() {
+
         return cena;
     }
     public String getTitle() {
+
         return name;
     }
     public String getText() {
+
         return text;
     }
 }

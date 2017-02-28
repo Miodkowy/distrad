@@ -27,9 +27,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Log.e(TAG, "From: " + remoteMessage.getFrom());
 
-       // Log.d(TAG, "Notification Message Body: " + remoteMessage.getNotification().getBody());
+        //PRzyjście wiadomości
+        Log.e(TAG, "From: " + remoteMessage.getFrom());
         if (remoteMessage == null)
             return;
 
@@ -80,12 +80,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String timestamp = data.getString("timestamp");
             JSONObject payload = data.getJSONObject("payload");
 
-            Log.e(TAG, "title: " + title);
-            Log.e(TAG, "message: " + message);
-            Log.e(TAG, "isBackground: " + isBackground);
-            Log.e(TAG, "payload: " + payload.toString());
-            Log.e(TAG, "imageUrl: " + imageUrl);
-            Log.e(TAG, "timestamp: " + timestamp);
+            Log.e(TAG, "MD title: " + title);
+            Log.e(TAG, "MS message: " + message);
+            Log.e(TAG, "Ms isBackground: " + isBackground);
+            Log.e(TAG, "MS payload: " + payload.toString());
+            Log.e(TAG, "MS imageUrl: " + imageUrl);
+            Log.e(TAG, "MS timestamp: " + timestamp);
 
 
             if (!NotificationUtils.isAppIsInBackground(getApplicationContext())) {

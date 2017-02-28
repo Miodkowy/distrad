@@ -51,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
             "MAKARONY",
             "MAKARONY ZAPIEKANE",
             "DRUGIE DANIA",
-            "NAPOJE i DESERY"
+            "NAPOJE i DESERY",
+            "POWIADOMIENIA"
     };
 
     private String[] smallTextArr = {
@@ -64,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
             "PASTE",
             "PASTE AL FORNO",
             "SECONDI PIATTI",
-            "DOLCE E BEVANDE"
+            "DOLCE E BEVANDE",
+            "POWIADOMIENIA"
     };
     private int[]  colorToolBar = {
             R.color.color_PIZZA,
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             R.color.color_MAKARONY,
             R.color.color_ALFORNO,
             R.color.color_DRUGIE_DANIE,
+            R.color.color_DESERY,
             R.color.color_DESERY
     };
     @Override
@@ -87,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         // orientacia w pione
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+/*
         txtRegId = (TextView) findViewById(R.id.txt_reg_id);
         txtMessage = (TextView) findViewById(R.id.txt_push_message);
 
@@ -95,13 +98,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
 
+                Log.e(TAG, "onReceive________________________________________ ");
                 // checking for type intent filter
                 if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
                     // gcm successfully registered
                     // now subscribe to `global` topic to receive app wide notifications
                     FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
 
-                    displayFirebaseRegId();
+                    //displayFirebaseRegId();
 
                 } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
                     // new push notification is received
@@ -114,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-
-        displayFirebaseRegId();
+*/
+        //displayFirebaseRegId();
 
         mDrawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open,R.string.close);
@@ -147,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 R.mipmap.pasta_icon,
                 R.mipmap.zapiekane_icon,
                 R.mipmap.drugie_danie_icon,
+                R.mipmap.drink_icon,
                 R.mipmap.drink_icon
 
         };
@@ -157,27 +162,36 @@ public class MainActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick (AdapterView < ? > adapter, View view, int position, long arg){
+                FragmentManager fragmentManager = getFragmentManager();
+                Log.d("MyApp","positionr____________________________________________________________ "+position );
+                if (position !=0) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("position", position);
+                    bundle.putInt("colorFragement", colorToolBar[position]);
+                    mToolBar.setBackgroundResource(colorToolBar[position]);
+                    TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
+                    TextView colorShape = (TextView) findViewById(R.id.positionInList);
 
-               if (position !=0) {
-                   FragmentManager fragmentManager = getFragmentManager();
+                    toolBarTitle.setText((largeTextArr[position]).toString());
 
-                   Bundle bundle = new Bundle();
-                   bundle.putInt("position", position);
-                   bundle.putInt("colorFragement", colorToolBar[position]);
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START, true);
 
-                   MenuFragment fragobj = new MenuFragment();
-                   fragobj.setArguments(bundle);
+                    if(position<10) {
 
-                   mToolBar.setBackgroundResource(colorToolBar[position]);
-                   TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
-                   TextView colorShape = (TextView) findViewById(R.id.positionInList);
+                        MenuFragment fragobj = new MenuFragment();
+                        fragobj.setArguments(bundle);
+                        fragmentManager.beginTransaction().replace(R.id.content_frame, fragobj).commit();
 
-                   toolBarTitle.setText((largeTextArr[position]).toString());
 
-                   fragmentManager.beginTransaction().replace(R.id.content_frame, fragobj).commit();
 
-                   DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                   drawer.closeDrawer(GravityCompat.START, true);
+                    } else {
+
+                        NotificationFragment notiObj = new NotificationFragment();
+                        notiObj.setArguments(bundle);
+                        fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+
+                    }
                }
             }
         });
@@ -195,7 +209,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Fetches reg id from shared preferences
     // and displays on the screen
-    private void displayFirebaseRegId() {
+
+    /*private void displayFirebaseRegId() {
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
         String regId = pref.getString("regId", null);
@@ -229,5 +244,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
-    }
+    }*/
 }

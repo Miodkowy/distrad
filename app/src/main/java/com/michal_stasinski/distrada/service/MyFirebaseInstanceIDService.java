@@ -9,10 +9,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.michal_stasinski.distrada.app.Config;
 
-/**
- * Created by Ravi Tamada on 08/08/16.
- * www.androidhive.info
- */
+
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     private static final String TAG = MyFirebaseInstanceIDService.class.getSimpleName();
 
@@ -20,7 +17,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         super.onTokenRefresh();
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Log.e(TAG, " String refeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeshedToken " + refreshedToken);
+        Log.e(TAG, "MS_________________________ onTokenRefresh ID SERVICE" + refreshedToken);
         // Saving reg id to shared preferences
         storeRegIdInPref(refreshedToken);
 
@@ -36,12 +33,12 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     private void sendRegistrationToServer(final String token) {
         // sending gcm token to server
 
-        Log.e(TAG, "sendRegistrationToServerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr: " + token);
+        Log.e(TAG, "__________________________________________________________sendRegistrationToServer(: " + token);
     }
 
     private void storeRegIdInPref(String token) {
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
-        Log.e(TAG, "sendRegistrationToServerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr: " + token);
+        Log.e(TAG, "__________________________________________________________storeRegIdInPref: " + token);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("regId", token);
         editor.commit();
