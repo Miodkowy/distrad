@@ -20,12 +20,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp"
-
-        android:layout_marginLeft="90dp"
-        >
+        android:layout_marginLeft="90dp">
 
         <com.michal_stasinski.distrada.CustomTextView
-            android:id="@+id/titleItem"
+            android:id="@+id/txtTitleDrawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -34,10 +32,10 @@
              />
 
         <com.michal_stasinski.distrada.CustomTextView
-            android:id="@+id/txtPrice"
+            android:id="@+id/txtDescDrawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="18dp"
             android:textColor="@color/colorWhite"
             android:text="Price"
            />

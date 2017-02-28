@@ -100,16 +100,21 @@ public class MenuFragment extends Fragment {
                  pizzzaItem = new ArrayList<MenuItemProduct>();
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
 
-                    DataSnapshot desc = item;
+                    DataSnapshot dataitem = item;
 
-                    Map<String, Object> map = (Map<String, Object>) desc.getValue();
-                    String descrip = (String) map.get("name");
+                    Map<String, Object> map = (Map<String, Object>) dataitem.getValue();
+                    String name = (String) map.get("name");
                     Number rank = (Number) map.get("rank");
+                    String desc = (String) map.get("desc");
+                    Number price = (Number) map.get("price");
+
                     MenuItemProduct pizza = new MenuItemProduct();
 
-                    pizza.setNameProduct(descrip);
+                    pizza.setNameProduct(name);
                     pizza.setRank(rank);
-
+                    pizza.setDesc(desc);
+                    pizza.setDesc(desc);
+                    pizza.setPrice(price);
                     pizzzaItem.add(pizza);
                 }
 

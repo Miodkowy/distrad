@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolBar;
 
-    private String[]  itemname = {
+    private String[] largeTextArr = {
             "head",
             "AKTUALNOŚCI",
             "PIZZA",
@@ -52,6 +52,19 @@ public class MainActivity extends AppCompatActivity {
             "MAKARONY ZAPIEKANE",
             "DRUGIE DANIA",
             "NAPOJE i DESERY"
+    };
+
+    private String[] smallTextArr = {
+            "head",
+            "NOTIZIE",
+            "PIZZA",
+            "ANTIPASTI",
+            "SALATE",
+            "ZUPPE",
+            "PASTE",
+            "PASTE AL FORNO",
+            "SECONDI PIATTI",
+            "DOLCE E BEVANDE"
     };
     private int[]  colorToolBar = {
             R.color.color_PIZZA,
@@ -67,9 +80,14 @@ public class MainActivity extends AppCompatActivity {
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+        // orientacia w pione
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         txtRegId = (TextView) findViewById(R.id.txt_reg_id);
         txtMessage = (TextView) findViewById(R.id.txt_push_message);
 
@@ -105,7 +123,10 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        mDrawerLayout.openDrawer(GravityCompat.START,true);
+       // mDrawerLayout.openDrawer(GravityCompat.START,true);
+        mDrawerLayout.setBackgroundResource(R.mipmap.pizza_view);
+        //wyłaczenie shadow
+        mDrawerLayout.setScrimColor(getResources().getColor(R.color.color_DRAWER_SHADOW));
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolBar);
 
@@ -130,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
         };
 
-        CustomDrawerAdapter adapter = new CustomDrawerAdapter(this, itemname, imgid);
+        CustomDrawerAdapter adapter = new CustomDrawerAdapter(this, largeTextArr, smallTextArr, imgid);
 
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -151,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                    TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
                    TextView colorShape = (TextView) findViewById(R.id.positionInList);
 
-                   toolBarTitle.setText((itemname[position]).toString());
+                   toolBarTitle.setText((largeTextArr[position]).toString());
 
                    fragmentManager.beginTransaction().replace(R.id.content_frame, fragobj).commit();
 
@@ -163,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // to przycisk powrotu do głownego menu
+    // to przycisk powrotu  actionbar do głownego menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(mToggle.onOptionsItemSelected(item)){
@@ -175,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
     // Fetches reg id from shared preferences
     // and displays on the screen
     private void displayFirebaseRegId() {
+
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
         String regId = pref.getString("regId", null);
 

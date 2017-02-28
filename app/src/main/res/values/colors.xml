@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="color_DRAWER_SHADOW">#3f000000</color>
 
     <color name="color_AKTUALNOSCI">#CC0000</color>
     <color name="color_PIZZA">#F58600</color>

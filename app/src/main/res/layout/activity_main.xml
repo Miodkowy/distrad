@@ -41,13 +41,13 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
         <ListView
             android:id="@+id/left_drawer"
-            android:layout_width="300dp"
+            style="@style/NavDrawer"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:choiceMode="singleChoice"
-            android:background="#94000000"
             android:dividerHeight="1dp"
             android:divider="@drawable/custom_divaider"
+            android:background="#222222"
             android:scrollbarSize="16dp">
         </ListView>
 

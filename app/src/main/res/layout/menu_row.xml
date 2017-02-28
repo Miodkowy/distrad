@@ -18,12 +18,12 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/cardview_light_background"
         android:background="@drawable/list_row_position_shape"
         />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -35,20 +35,33 @@
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
                 android:layout_marginLeft="70dp"
+                android:layout_marginRight="60dp"
                 android:textColor="@color/cardview_light_background"
-                android:text="Product name"
-                />
-
+                android:text="Product name" />
             <com.michal_stasinski.distrada.menu.CustomTextView
                 android:id="@+id/txtPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="24dp"
                 android:textColor="@color/cardview_light_background"
                 android:text="Price"
-                android:layout_marginLeft="70dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
                 tools:textColor="@color/cardview_light_background" />
 
-        </LinearLayout>
+            <com.michal_stasinski.distrada.menu.CustomTextView
+                android:id="@+id/txtDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="@color/cardview_light_background"
+                android:text="Price"
+                android:layout_below="@+id/titleItem"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="70dp"
+                tools:textColor="@color/cardview_light_background"
+                android:layout_alignParentTop="false" />
+
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

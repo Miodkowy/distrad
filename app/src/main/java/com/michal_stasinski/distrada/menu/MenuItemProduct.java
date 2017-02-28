@@ -8,9 +8,27 @@ public class MenuItemProduct {
 
     private Number rank;
     private String name;
+    private String desc;
+    private Number price;
 
+    public Number getPrice() {
+        return price;
+    }
+
+    public void setPrice(Number price) {
+        this.price = price;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
     public String getNameProduct() {
+
         return name;
     }
 
@@ -20,12 +38,12 @@ public class MenuItemProduct {
     }
 
     public Number getRank() {
+
         return rank;
     }
 
     public void setRank(Number rank) {
+
         this.rank = rank;
     }
-
-
 }

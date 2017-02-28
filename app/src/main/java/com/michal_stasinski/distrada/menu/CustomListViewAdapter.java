@@ -42,7 +42,6 @@ public class CustomListViewAdapter extends BaseAdapter {
                 int  id1 = Integer.parseInt(((MenuItemProduct) o1).getRank().toString());
                 int  id2 = Integer.parseInt(((MenuItemProduct) o2).getRank().toString());
 
-
                 if(id1 > id2){
                     return 1;
                 }  if(id1 < id2){
@@ -80,20 +79,16 @@ public class CustomListViewAdapter extends BaseAdapter {
         view = View.inflate(mContext, R.layout.menu_row,null);
 
         TextView title =(TextView) view.findViewById(R.id.titleItem);
-        //TextView textPrice =(TextView) view.findViewById(R.id.txtPrice);
+        TextView textDesc =(TextView) view.findViewById(R.id.txtDesc);
+        TextView textPrice =(TextView) view.findViewById(R.id.txtPrice);
         TextView colorShape = (TextView) view.findViewById(R.id.positionInList);
 
         colorShape.setText(String.valueOf(position+1));
 
         ((GradientDrawable)colorShape.getBackground()).setColor(mContext.getResources().getColor(this.color));
         title.setText(arr.get(position).getNameProduct().toUpperCase());
-        //String smallTxt =  arr.get(position).getPrice_small_name()+ " " + arr.get(position).getPrice_small_value();
-       // String mediumTxt =  arr.get(position).getPrice_medium_name()+ " " + arr.get(position).getPrice_medium_value();
-        //String largeTxt =  arr.get(position).getPrice_large_name()+ " " + arr.get(position).getPrice_large_value();
-        //textPrice.setText(smallTxt + " " + mediumTxt + " " + largeTxt);
-
-            //System.out.println(arr.get(position));
-       // }
+        textDesc.setText(arr.get(position).getDesc().toUpperCase());
+        textPrice.setText(arr.get(position).getPrice().toString().toUpperCase() + " ZŁ");
         return view;
     }
 }
