@@ -58,7 +58,7 @@ public class MenuFragment extends Fragment {
 
         if (strtext == 1) {
             myRef = database.getReference("pizzas");
-
+            mListView_Menu.setBackgroundResource(R.mipmap.pizza_view);
         }
         if (strtext == 2) {
             myRef = database.getReference("pizzas");
