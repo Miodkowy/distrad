@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+import com.michal_stasinski.distrada.menu.CustomTextView;
+
 public class CustomDrawerAdapter extends ArrayAdapter<String> {
 
     private final Activity context;

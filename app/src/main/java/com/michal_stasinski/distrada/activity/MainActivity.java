@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.michal_stasinski.distrada.Blog.BlogFragment;
 import com.michal_stasinski.distrada.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.app.Config;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] largeTextArr = {
             "head",
             "AKTUALNOŚCI",
+            "KONTAKT",
             "PIZZA",
             "STARTERY",
             "SAŁATKI",
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] smallTextArr = {
             "head",
             "NOTIZIE",
+            "CONTATTO",
             "PIZZA",
             "ANTIPASTI",
             "SALATE",
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     };
     private int[]  colorToolBar = {
             R.color.color_PIZZA,
+            R.color.color_AKTUALNOSCI,
             R.color.color_AKTUALNOSCI,
             R.color.color_PIZZA,
             R.color.color_STARTERY,
@@ -90,6 +94,23 @@ public class MainActivity extends AppCompatActivity {
 
         // orientacia w pione
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                Log.e(TAG, "onReceive  maina________________________________________ ");
+                // checking for type intent filter
+                if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
+
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+
+
+
+                }
+            }
+        };
 /*
         txtRegId = (TextView) findViewById(R.id.txt_reg_id);
         txtMessage = (TextView) findViewById(R.id.txt_push_message);
@@ -144,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
         Integer[] imgid={
                 R.mipmap.news_icon,
                 R.mipmap.news_icon,
+                R.mipmap.news_icon,
                 R.mipmap.pizza_icon,
                 R.mipmap.starter_icon,
                 R.mipmap.salad_icon,
@@ -164,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick (AdapterView < ? > adapter, View view, int position, long arg){
                 FragmentManager fragmentManager = getFragmentManager();
                 Log.d("MyApp","positionr____________________________________________________________ "+position );
-                if (position !=0) {
+                if (position >0) {
                     Bundle bundle = new Bundle();
                     bundle.putInt("position", position);
                     bundle.putInt("colorFragement", colorToolBar[position]);
@@ -177,19 +199,28 @@ public class MainActivity extends AppCompatActivity {
                     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                     drawer.closeDrawer(GravityCompat.START, true);
 
-                    if(position<10) {
+                    if(position!=1 && position !=11) {
 
                         MenuFragment fragobj = new MenuFragment();
                         fragobj.setArguments(bundle);
                         fragmentManager.beginTransaction().replace(R.id.content_frame, fragobj).commit();
 
+                    }
 
+                    if(position==1) {
 
-                    } else {
+                       // NotificationFragment notiObj = new NotificationFragment();
+                       // notiObj.setArguments(bundle);
+                        fragmentManager.beginTransaction().replace(R.id.content_frame , new BlogFragment()).commit();
+                       // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
 
-                        NotificationFragment notiObj = new NotificationFragment();
-                        notiObj.setArguments(bundle);
-                        fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+                    }
+                    if(position==11) {
+
+                        // NotificationFragment notiObj = new NotificationFragment();
+                        // notiObj.setArguments(bundle);
+                        fragmentManager.beginTransaction().replace(R.id.content_frame , new NotificationFragment()).commit();
+                        // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
 
                     }
                }

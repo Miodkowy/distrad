@@ -31,10 +31,10 @@ public class CustomListViewAdapter extends BaseAdapter {
         //inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
-       // Log.d("MyApp","creeeeeeeeee"+mContext );
+       Log.d("MyApp","creeeeeeeeee"+mContext );
       //  System.out.println("creeeeeeeee"+mListArray);
 
-
+/*
         Collections.sort(mListArray, new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {
@@ -50,9 +50,22 @@ public class CustomListViewAdapter extends BaseAdapter {
                     return 0;
                 }
             }
+        });*/
+
+        Collections.sort(mListArray, new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+
+                String s1 = (((MenuItemProduct) o2).getRank());
+                String   s2 = (((MenuItemProduct) o2).getRank());
+                return s1.compareToIgnoreCase(s2);
+                //return Integer.valueOf(id1).compareTo(Integer.valueOf(id2));
+            }
         });
+
+
+
         this.arr = mListArray;
-        Log.d("MyApp","cos__________________________________________ "+mListArray );
         this.mContext = context;
         this.color = color;
     }
@@ -68,7 +81,8 @@ public class CustomListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int position)
+    {
         return position;
     }
 
@@ -83,7 +97,7 @@ public class CustomListViewAdapter extends BaseAdapter {
         TextView textPrice =(TextView) view.findViewById(R.id.txtPrice);
         TextView colorShape = (TextView) view.findViewById(R.id.positionInList);
 
-        colorShape.setText(String.valueOf(position+1));
+        colorShape.setText(arr.get(position).getRank());
 
         ((GradientDrawable)colorShape.getBackground()).setColor(mContext.getResources().getColor(this.color));
         title.setText(arr.get(position).getNameProduct().toUpperCase());

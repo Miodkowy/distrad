@@ -6,7 +6,7 @@ package com.michal_stasinski.distrada.menu;
 
 public class MenuItemProduct {
 
-    private Number rank;
+    private String rank;
     private String name;
     private String desc;
     private Number price;
@@ -41,12 +41,12 @@ public class MenuItemProduct {
         this.name = nameProduct;
     }
 
-    public Number getRank() {
+    public String getRank() {
 
         return rank;
     }
 
-    public void setRank(Number rank) {
+    public void setRank(String rank) {
 
         this.rank = rank;
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4db53f</color>
+    <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#FFFFFF</color>
@@ -16,6 +16,7 @@
     <color name="color_DRUGIE_DANIE">#00D0CA</color>
     <color name="color_DESERY">#4F095B</color>
 
-
+    <color name="colorPostBackground">#87a1ae</color>
+    <color name="coloriInputOutline">#848484</color>
 
 </resources>

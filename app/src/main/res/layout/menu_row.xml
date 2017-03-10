@@ -8,21 +8,20 @@
     android:weightSum="1">
 
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.michal_stasinski.distrada.menu.CustomTextView
+        <com.michal_stasinski.distrada.menu.CustomTextView
 
-        android:id="@+id/positionInList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/cardview_light_background"
-        android:background="@drawable/list_row_position_shape"
-        />
+            android:id="@+id/positionInList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/list_row_position_shape"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="20dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,34 +33,35 @@
                 android:id="@+id/titleItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24dp"
                 android:layout_marginLeft="70dp"
                 android:layout_marginRight="60dp"
+                android:text="Product name"
                 android:textColor="@color/cardview_light_background"
-                android:text="Product name" />
+                android:textSize="24dp" />
+
             <com.michal_stasinski.distrada.menu.CustomTextView
                 android:id="@+id/txtPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24dp"
-                android:textColor="@color/cardview_light_background"
-                android:text="Price"
-                android:layout_marginRight="10dp"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:text="Price"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="24dp"
                 tools:textColor="@color/cardview_light_background" />
 
             <com.michal_stasinski.distrada.menu.CustomTextView
                 android:id="@+id/txtDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="@color/cardview_light_background"
-                android:text="Price"
+                android:layout_alignParentTop="false"
                 android:layout_below="@+id/titleItem"
-                android:layout_marginRight="60dp"
                 android:layout_marginLeft="70dp"
-                tools:textColor="@color/cardview_light_background"
-                android:layout_alignParentTop="false" />
+                android:layout_marginRight="60dp"
+                android:text="Price"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="16dp"
+                tools:textColor="@color/cardview_light_background" />
 
         </RelativeLayout>
     </RelativeLayout>

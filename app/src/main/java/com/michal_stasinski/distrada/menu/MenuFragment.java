@@ -60,38 +60,47 @@ public class MenuFragment extends Fragment {
             myRef = database.getReference("pizzas");
             mListView_Menu.setBackgroundResource(R.mipmap.pizza_view);
         }
-        if (strtext == 2) {
+        if (strtext == 2 ) {
             myRef = database.getReference("pizzas");
             mListView_Menu.setBackgroundResource(R.mipmap.pizza_view);
         }
         if (strtext == 3) {
+            myRef = database.getReference("pizzas");
+            mListView_Menu.setBackgroundResource(R.mipmap.pizza_view);
+        }
+        if (strtext == 4) {
             myRef = database.getReference("starters");
             mListView_Menu.setBackgroundResource(R.mipmap.starters_view);
         }
-        if (strtext == 4) {
+        if (strtext == 5) {
             myRef = database.getReference("insalates");
             mListView_Menu.setBackgroundResource(R.mipmap.salad_view);
         }
-        if (strtext == 5) {
+        if (strtext == 6) {
             myRef = database.getReference("zuppas");
             mListView_Menu.setBackgroundResource(R.mipmap.zupa_view);
         }
-        if (strtext == 6) {
+        if (strtext == 7) {
             myRef = database.getReference("pasta");
             mListView_Menu.setBackgroundResource(R.mipmap.pasta_view);
         }
-        if (strtext == 7) {
+        if (strtext == 8) {
             myRef = database.getReference("alfornos");
             mListView_Menu.setBackgroundResource(R.mipmap.alforno_view);
         }
-        if (strtext == 8) {
+        if (strtext == 9) {
             myRef = database.getReference("secondis");
             mListView_Menu.setBackgroundResource(R.mipmap.drugie_view);
         }
-        if (strtext == 9) {
+        if (strtext == 10) {
             myRef = database.getReference("drinks");
             mListView_Menu.setBackgroundResource(R.mipmap.deser_view);
         }
+        if (strtext == 11) {
+            myRef = database.getReference("drinks");
+            mListView_Menu.setBackgroundResource(R.mipmap.deser_view);
+        }
+
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,7 +113,7 @@ public class MenuFragment extends Fragment {
 
                     Map<String, Object> map = (Map<String, Object>) dataitem.getValue();
                     String name = (String) map.get("name");
-                    Number rank = (Number) map.get("rank");
+                    String rank = (String) map.get("rank").toString();
                     String desc = (String) map.get("desc");
                     Number price = (Number) map.get("price");
 

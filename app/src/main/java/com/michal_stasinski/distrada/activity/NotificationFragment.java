@@ -30,6 +30,7 @@ public class NotificationFragment extends Fragment {
     View myView;
     private TextView txtRegId, txtMessage;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+
     public NotificationFragment() {
 
         Log.e(TAG, "constructor _______________________________________ ");
@@ -65,10 +66,11 @@ public class NotificationFragment extends Fragment {
         Log.e(TAG, "oncreate _______________________________________ ");
 
     }
+
     private void displayFirebaseRegId() {
         Log.e(TAG, "displayFirebaseRegId_______________________________________ " + myView);
-       SharedPreferences pref = myView.getContext().getSharedPreferences(Config.SHARED_PREF, 0);
-       String regId = pref.getString("regId", null);
+        SharedPreferences pref = myView.getContext().getSharedPreferences(Config.SHARED_PREF, 0);
+        String regId = pref.getString("regId", null);
         txtRegId = (TextView) myView.findViewById(R.id.txt_reg_id1);
         txtMessage = (TextView) myView.findViewById(R.id.txt_push_message1);
         Log.e(TAG, "Firebase reg id: " + regId);
@@ -76,7 +78,7 @@ public class NotificationFragment extends Fragment {
         if (!TextUtils.isEmpty(regId)) {
             Log.e(TAG, "Firebase reg id: " + regId);
             txtRegId.setText("Firebase Reg Id: " + regId);
-        }else {
+        } else {
             txtRegId.setText("Firebase Reg Id is not received yet!");
         }
     }
@@ -86,7 +88,7 @@ public class NotificationFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // checking for type intent filter
-         myView = inflater.inflate(R.layout.fragment_notification, container, false);
+        myView = inflater.inflate(R.layout.fragment_notification, container, false);
 
         Log.e(TAG, "create view_______________________________________ " + myView);
         displayFirebaseRegId();

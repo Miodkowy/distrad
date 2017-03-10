@@ -22,7 +22,7 @@
         android:padding="10dp"
         android:layout_marginLeft="90dp">
 
-        <com.michal_stasinski.distrada.CustomTextView
+        <com.michal_stasinski.distrada.menu.CustomTextView
             android:id="@+id/txtTitleDrawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:textColor="@color/colorWhite"
              />
 
-        <com.michal_stasinski.distrada.CustomTextView
+        <com.michal_stasinski.distrada.menu.CustomTextView
             android:id="@+id/txtDescDrawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
