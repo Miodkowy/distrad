@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.michal_stasinski.distrada.Blog.BlogFragment;
+import com.michal_stasinski.distrada.Contact.ContactFragment;
 import com.michal_stasinski.distrada.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.app.Config;
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             "DOLCE E BEVANDE",
             "POWIADOMIENIA"
     };
-    private int[]  colorToolBar = {
+    private int[] colorToolBar = {
             R.color.color_PIZZA,
             R.color.color_AKTUALNOSCI,
             R.color.color_AKTUALNOSCI,
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             R.color.color_DESERY,
             R.color.color_DESERY
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -105,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
 
                     FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
-
 
 
                 }
@@ -142,13 +143,13 @@ public class MainActivity extends AppCompatActivity {
 */
         //displayFirebaseRegId();
 
-        mDrawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open,R.string.close);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
-       // mDrawerLayout.openDrawer(GravityCompat.START,true);
+        // mDrawerLayout.openDrawer(GravityCompat.START,true);
         mDrawerLayout.setBackgroundResource(R.mipmap.pizza_view);
         //wyłaczenie shadow
         mDrawerLayout.setScrimColor(getResources().getColor(R.color.color_DRAWER_SHADOW));
@@ -162,16 +163,16 @@ public class MainActivity extends AppCompatActivity {
 
 
         mListView = (ListView) findViewById(R.id.left_drawer);
-        Integer[] imgid={
+        Integer[] imgid = {
                 R.mipmap.news_icon,
                 R.mipmap.news_icon,
-                R.mipmap.news_icon,
+                R.mipmap.contact_icon,
                 R.mipmap.pizza_icon,
                 R.mipmap.starter_icon,
-                R.mipmap.salad_icon,
-                R.mipmap.zupy_icon,
+                R.mipmap.salatka_icon,
+                R.mipmap.zupa_icon,
                 R.mipmap.pasta_icon,
-                R.mipmap.zapiekane_icon,
+                R.mipmap.alforno_icon,
                 R.mipmap.drugie_danie_icon,
                 R.mipmap.drink_icon,
                 R.mipmap.drink_icon
@@ -183,10 +184,10 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick (AdapterView < ? > adapter, View view, int position, long arg){
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
                 FragmentManager fragmentManager = getFragmentManager();
-                Log.d("MyApp","positionr____________________________________________________________ "+position );
-                if (position >0) {
+                Log.d("MyApp", "positionr____________________________________________________________ " + position);
+                if (position > 0) {
                     Bundle bundle = new Bundle();
                     bundle.putInt("position", position);
                     bundle.putInt("colorFragement", colorToolBar[position]);
@@ -199,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
                     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                     drawer.closeDrawer(GravityCompat.START, true);
 
-                    if(position!=1 && position !=11) {
+                    if (position != 1 && position != 2 && position != 11) {
 
                         MenuFragment fragobj = new MenuFragment();
                         fragobj.setArguments(bundle);
@@ -207,23 +208,33 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-                    if(position==1) {
-
-                       // NotificationFragment notiObj = new NotificationFragment();
-                       // notiObj.setArguments(bundle);
-                        fragmentManager.beginTransaction().replace(R.id.content_frame , new BlogFragment()).commit();
-                       // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
-
-                    }
-                    if(position==11) {
+                    if (position == 2) {
 
                         // NotificationFragment notiObj = new NotificationFragment();
                         // notiObj.setArguments(bundle);
-                        fragmentManager.beginTransaction().replace(R.id.content_frame , new NotificationFragment()).commit();
+                        fragmentManager.beginTransaction().replace(R.id.content_frame, new ContactFragment()).commit();
                         // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
 
                     }
-               }
+
+                    if (position == 1) {
+
+                        // NotificationFragment notiObj = new NotificationFragment();
+                        // notiObj.setArguments(bundle);
+                        fragmentManager.beginTransaction().replace(R.id.content_frame, new BlogFragment()).commit();
+                        // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+
+                    }
+
+                    if (position == 11) {
+
+                        // NotificationFragment notiObj = new NotificationFragment();
+                        // notiObj.setArguments(bundle);
+                        fragmentManager.beginTransaction().replace(R.id.content_frame, new NotificationFragment()).commit();
+                        // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+
+                    }
+                }
             }
         });
 
@@ -232,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
     // to przycisk powrotu  actionbar do głownego menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);

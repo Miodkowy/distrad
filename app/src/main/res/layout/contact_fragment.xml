@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contact_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="60dp"
+    tools:context="com.michal_stasinski.distrada.Contact.ContactFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/customshape"
+        app:layout_marginBottomPercent="10%">
+
+    </LinearLayout>
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_marginBottomPercent="50%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginRightPercent="5%"
+            app:layout_marginTopPercent="5%" />
+
+        <com.michal_stasinski.distrada.menu.CustomTextView
+            android:id="@+id/textContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pizzeria Trattoria 'Di Strada'\n ul. Morska 42, Gdynia\n
+tel 48 58 660 33 95\n Poniedziałek -  Niedziela 12.00 - 22.00"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="20dp"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginRightPercent="5%"
+            app:layout_marginBottomPercent="10%"
+            tools:textColor="@color/cardview_light_background"
+            android:layout_alignBottom="@+id/call_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="49dp" />
+
+
+
+    <ImageButton
+        android:id="@+id/call_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/custom_button"
+        android:src="@mipmap/call_icon"
+        android:text="Button"
+        app:layout_marginRightPercent="15%"
+        app:layout_marginTopPercent="75%" />
+
+    <ImageButton
+        android:id="@+id/route_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:src="@mipmap/route_icon"
+        android:text="Button"
+        app:layout_marginBottomPercent="50%"
+        app:layout_marginLeftPercent="15%"
+        app:layout_marginRightPercent="5%"
+        app:layout_marginTopPercent="75%" />
+    android:text="Button" />
+
+
+</android.support.percent.PercentRelativeLayout>
