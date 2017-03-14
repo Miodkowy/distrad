@@ -22,7 +22,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <ListView
+        <com.michal_stasinski.distrada.utils.BounceListView
             android:id="@+id/left_drawer"
             style="@style/NavDrawer"
             android:layout_height="match_parent"
@@ -32,6 +32,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:divider="@drawable/custom_divaider"
             android:background="#222222"
             android:scrollbarSize="16dp">
-        </ListView>
+        </com.michal_stasinski.distrada.utils.BounceListView>
 
 </android.support.v4.widget.DrawerLayout>

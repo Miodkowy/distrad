@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michal_stasinski.distrada.R;
+import com.michal_stasinski.distrada.utils.BounceListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,7 +54,14 @@ public class MenuFragment extends Fragment {
         Log.d("MyApp","fragementColor____________________________________________________________ "+fragementColor );
         //TextView toolBarTitle = (TextView) getActivity().findViewById(R.id.toolBarTitle);
 
-        mListView = (ListView) myView.findViewById(R.id.mListView_FirstLayout);
+        mListView = (BounceListView) myView.findViewById(R.id.mListView_FirstLayout);
+        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.list_view_header,mListView, false);
+
+        mListView.addHeaderView(header, null, false);
+
+
+
+
         mListView_Menu = (PercentRelativeLayout) myView.findViewById(R.id.mListView_Menu);
 
         if (strtext == 1) {

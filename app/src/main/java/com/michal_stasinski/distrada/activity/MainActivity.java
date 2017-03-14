@@ -31,6 +31,7 @@ import com.michal_stasinski.distrada.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.app.Config;
 import com.michal_stasinski.distrada.menu.MenuFragment;
+import com.michal_stasinski.distrada.utils.BounceListView;
 import com.michal_stasinski.distrada.utils.NotificationUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private TextView txtRegId, txtMessage;
-    private ListView mListView;
+    private BounceListView mListView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private Toolbar mToolBar;
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
-        mListView = (ListView) findViewById(R.id.left_drawer);
+        mListView = (BounceListView) findViewById(R.id.left_drawer);
         Integer[] imgid = {
                 R.mipmap.news_icon,
                 R.mipmap.news_icon,
