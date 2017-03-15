@@ -38,7 +38,11 @@ public class ContactFragment extends Fragment implements OnMapReadyCallback {
         ImageButton button_route = (ImageButton) myView.findViewById(R.id.route_button);
         button_route.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Do something in response to button click
+
+                Uri gmmIntentUri = Uri.parse("geo:54.5258318,18.5149058?q=diStrada");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
             }
         });
 
@@ -75,8 +79,8 @@ public class ContactFragment extends Fragment implements OnMapReadyCallback {
         MapsInitializer.initialize(mMapView.getContext());
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(54.47021219, 18.48639607)).title("DEMO PIZZA RESTAURACJA").snippet("zapraszamy na pyszną pizze"));
-        CameraPosition Liberty = CameraPosition.builder().target(new LatLng(54.47021219, 18.48639607)).zoom(14).bearing(0).tilt(45).build();
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(54.5258318,18.5149058)).title("Di Strada").snippet("zapraszamy na pyszną pizzę"));
+        CameraPosition Liberty = CameraPosition.builder().target(new LatLng(54.5258318,18.5149058)).zoom(14).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
 
 
