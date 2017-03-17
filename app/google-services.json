@@ -19,7 +19,7 @@
           "client_type": 1,
           "android_info": {
             "package_name": "com.michal_stasinski.distrada",
-            "certificate_hash": "1EAC8CF4F0E34492D0428B66DAD91A06747A8BD5"
+            "certificate_hash": "1eac8cf4f0e34492d0428b66dad91a06747a8bd5"
           }
         },
         {
@@ -40,15 +40,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
+              "client_id": "416958424421-pbt01puno7njbslm7fl1s06bm0r34m05.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
               "client_id": "416958424421-c6b61m08u79nenv3k98ieman92u1n7ei.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.monimaxprojekt.diStradaTrattoria"
               }
-            },
-            {
-              "client_id": "416958424421-pbt01puno7njbslm7fl1s06bm0r34m05.apps.googleusercontent.com",
-              "client_type": 3
             }
           ]
         },

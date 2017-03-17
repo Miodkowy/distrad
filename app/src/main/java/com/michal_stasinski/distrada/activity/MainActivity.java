@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -92,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         // orientacia w pione
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
         mDrawerLayout.addDrawerListener(mToggle);
-        mToggle.syncState();
+
 
         // mDrawerLayout.openDrawer(GravityCompat.START,true);
         mDrawerLayout.setBackgroundResource(R.mipmap.pizza_view);
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true); // show or hide the default home button
         getSupportActionBar().setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
+        mToggle.syncState();
 
         mListView = (BounceListView) findViewById(R.id.left_drawer);
         Integer[] imgid = {
@@ -288,4 +288,11 @@ public class MainActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
     }*/
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 }
