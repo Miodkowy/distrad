@@ -37,43 +37,43 @@ public class MenuFragment extends Fragment {
     private Button mSendData;
     private TextView message;
     private ListView mListView;
-    private HashMap<String , String> pizzaMap;
+    private HashMap<String, String> pizzaMap;
     private DatabaseReference myRef;
     private int fragementColor;
     private ArrayList<MenuItemProduct> pizzzaItem;
-    private  PercentRelativeLayout mListView_Menu;
+    private PercentRelativeLayout mListView_Menu;
+    private Boolean sortByInt = true;
+
     @Nullable
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        myView = inflater.inflate(R.layout.menu_layout, container ,false);
+        myView = inflater.inflate(R.layout.menu_layout, container, false);
 
         //referencja do bazy w firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         int strtext = getArguments().getInt("position");
         fragementColor = getArguments().getInt("colorFragement");
-        Log.d("MyApp","fragementColor____________________________________________________________ "+fragementColor );
+        Log.d("MyApp", "fragementColor____________________________________________________________ " + fragementColor);
         //TextView toolBarTitle = (TextView) getActivity().findViewById(R.id.toolBarTitle);
 
         mListView = (BounceListView) myView.findViewById(R.id.mListView_FirstLayout);
-        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.list_view_header,mListView, false);
+        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.list_view_header, mListView, false);
 
         mListView.addHeaderView(header, null, false);
-
-
 
 
         mListView_Menu = (PercentRelativeLayout) myView.findViewById(R.id.mListView_Menu);
 
         if (strtext == 1) {
-            myRef = database.getReference("pizzas");
-            mListView_Menu.setBackgroundResource(R.mipmap.pizza_view);
+            //  myRef = database.getReference("pizzas");
+            // mListView_Menu.setBackgroundResource(R.mipmap.pizza_view);
         }
-        if (strtext == 2 ) {
-            myRef = database.getReference("pizzas");
-            mListView_Menu.setBackgroundResource(R.mipmap.pizza_view);
+        if (strtext == 2) {
+            //  myRef = database.getReference("pizzas");
+            /// mListView_Menu.setBackgroundResource(R.mipmap.pizza_view);
         }
         if (strtext == 3) {
             myRef = database.getReference("pizzas");
@@ -81,7 +81,7 @@ public class MenuFragment extends Fragment {
         }
         if (strtext == 4) {
             myRef = database.getReference("starters");
-            mListView_Menu.setBackgroundResource(R.mipmap.starters_view);
+            //  mListView_Menu.setBackgroundResource(R.mipmap.starters_view);
         }
         if (strtext == 5) {
             myRef = database.getReference("insalates");
@@ -92,8 +92,9 @@ public class MenuFragment extends Fragment {
             mListView_Menu.setBackgroundResource(R.mipmap.zupa_view);
         }
         if (strtext == 7) {
+            sortByInt = false;
             myRef = database.getReference("pasta");
-            mListView_Menu.setBackgroundResource(R.mipmap.pasta_view);
+            //  mListView_Menu.setBackgroundResource(R.mipmap.pasta_view);
         }
         if (strtext == 8) {
             myRef = database.getReference("alfornos");
@@ -117,7 +118,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                 pizzzaItem = new ArrayList<MenuItemProduct>();
+                pizzzaItem = new ArrayList<MenuItemProduct>();
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
 
                     DataSnapshot dataitem = item;
@@ -138,9 +139,9 @@ public class MenuFragment extends Fragment {
                     pizzzaItem.add(pizza);
                 }
 
-                CustomListViewAdapter carrayAdapter = new CustomListViewAdapter(myView.getContext(), pizzzaItem, fragementColor);
+                CustomListViewAdapter carrayAdapter = new CustomListViewAdapter(myView.getContext(), pizzzaItem, fragementColor, sortByInt);
                 mListView.setAdapter(carrayAdapter);
-
+                mListView.setScrollingCacheEnabled(false);
 
             }
 
@@ -153,7 +154,6 @@ public class MenuFragment extends Fragment {
         return myView;
         //return super.onCreateView(inflater, container, savedInstanceState);
     }
-
 
 
 }

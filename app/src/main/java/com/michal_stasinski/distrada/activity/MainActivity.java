@@ -15,7 +15,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +31,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.michal_stasinski.distrada.Blog.BlogFragment;
 import com.michal_stasinski.distrada.Contact.ContactFragment;
 import com.michal_stasinski.distrada.CustomDrawerAdapter;
+import com.michal_stasinski.distrada.InfoPanel.InfoActivity;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.app.Config;
 import com.michal_stasinski.distrada.menu.MenuFragment;
@@ -151,11 +154,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         // mDrawerLayout.openDrawer(GravityCompat.START,true);
-        mDrawerLayout.setBackgroundResource(R.mipmap.pizza_view);
+        //mDrawerLayout.setBackgroundResource(R.mipmap.pizza_view);
         //wyłaczenie shadow
         mDrawerLayout.setScrimColor(getResources().getColor(R.color.color_DRAWER_SHADOW));
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolBar);
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true); // show or hide the default home button
@@ -164,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
         mToggle.syncState();
 
         mListView = (BounceListView) findViewById(R.id.left_drawer);
+        mListView.setScrollingCacheEnabled(false);
         Integer[] imgid = {
                 R.mipmap.news_icon,
                 R.mipmap.news_icon,
@@ -189,50 +194,57 @@ public class MainActivity extends AppCompatActivity {
                 FragmentManager fragmentManager = getFragmentManager();
                 Log.d("MyApp", "positionr____________________________________________________________ " + position);
                 if (position > 0) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("position", position);
-                    bundle.putInt("colorFragement", colorToolBar[position]);
-                    mToolBar.setBackgroundResource(colorToolBar[position]);
-                    TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
-                    TextView colorShape = (TextView) findViewById(R.id.positionInList);
+                    if (position != 11) {
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("position", position);
+                        bundle.putInt("colorFragement", colorToolBar[position]);
+                        mToolBar.setBackgroundResource(colorToolBar[position]);
+                        TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
+                        TextView colorShape = (TextView) findViewById(R.id.positionInList);
 
-                    toolBarTitle.setText((largeTextArr[position]).toString());
+                        toolBarTitle.setText((largeTextArr[position]).toString());
 
-                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                    drawer.closeDrawer(GravityCompat.START, true);
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                        drawer.closeDrawer(GravityCompat.START, true);
 
-                    if (position != 1 && position != 2 && position != 11) {
+                        if (position != 1 && position != 2 && position != 11) {
 
-                        MenuFragment fragobj = new MenuFragment();
-                        fragobj.setArguments(bundle);
-                        fragmentManager.beginTransaction().replace(R.id.content_frame, fragobj).commit();
+                            MenuFragment fragobj = new MenuFragment();
+                            fragobj.setArguments(bundle);
+                            fragmentManager.beginTransaction().replace(R.id.content_frame, fragobj).commit();
 
-                    }
+                        }
 
-                    if (position == 2) {
+                        if (position == 2) {
 
-                        // NotificationFragment notiObj = new NotificationFragment();
-                        // notiObj.setArguments(bundle);
-                        fragmentManager.beginTransaction().replace(R.id.content_frame, new ContactFragment()).commit();
-                        // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+                            // NotificationFragment notiObj = new NotificationFragment();
+                            // notiObj.setArguments(bundle);
+                            fragmentManager.beginTransaction().replace(R.id.content_frame, new ContactFragment()).commit();
+                            // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
 
-                    }
+                        }
 
-                    if (position == 1) {
+                        if (position == 1) {
 
-                        // NotificationFragment notiObj = new NotificationFragment();
-                        // notiObj.setArguments(bundle);
-                        fragmentManager.beginTransaction().replace(R.id.content_frame, new BlogFragment()).commit();
-                        // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+                            // NotificationFragment notiObj = new NotificationFragment();
+                            // notiObj.setArguments(bundle);
+                            fragmentManager.beginTransaction().replace(R.id.content_frame, new BlogFragment()).commit();
+                            // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
 
+                        }
                     }
 
                     if (position == 11) {
 
                         // NotificationFragment notiObj = new NotificationFragment();
                         // notiObj.setArguments(bundle);
-                        fragmentManager.beginTransaction().replace(R.id.content_frame, new NotificationFragment()).commit();
                         // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, InfoActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                        // fragmentManager.beginTransaction().replace(R.id.content_frame, new NotificationFragment()).commit();
 
                     }
                 }
@@ -293,6 +305,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+       /* for(int i = 0; i < menu.size(); i++) {
+            MenuItem item = menu.getItem(i);
+            SpannableString spanString = new SpannableString(menu.getItem(i).getTitle().toString());
+            spanString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, spanString.length(), 0); //fix the color to white
+            item.setTitle(spanString);
+        }*/
         return true;
     }
 }

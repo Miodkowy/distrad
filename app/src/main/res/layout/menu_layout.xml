@@ -12,6 +12,8 @@
         android:id="@+id/mListView_FirstLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:animationCache="false"
+        android:scrollingCache="false"
         app:layout_marginBottomPercent="10%"
         android:layout_centerVertical="true"
         android:layout_alignParentTop="true"

@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/customshape"
-    android:weightSum="1">
-
 
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/customshape"
+        android:weightSum="1">
 
         <com.michal_stasinski.distrada.menu.CustomTextView
 
@@ -23,46 +19,40 @@
             android:textColor="@color/cardview_light_background"
             android:textSize="20dp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+
+        <com.michal_stasinski.distrada.menu.CustomTextView
+            android:id="@+id/titleItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="60dp"
+            android:text="Product name"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="24dp" />
+
+        <com.michal_stasinski.distrada.menu.CustomTextView
+            android:id="@+id/txtPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="Price"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="24dp"
+            tools:textColor="@color/cardview_light_background" />
+
+        <com.michal_stasinski.distrada.menu.CustomTextView
+            android:id="@+id/txtDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="false"
+            android:layout_below="@+id/titleItem"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="60dp"
+            android:text="Price"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="16dp"
+            tools:textColor="@color/cardview_light_background" />
 
 
-            <com.michal_stasinski.distrada.menu.CustomTextView
-                android:id="@+id/titleItem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginRight="60dp"
-                android:text="Product name"
-                android:textColor="@color/cardview_light_background"
-                android:textSize="24dp" />
-
-            <com.michal_stasinski.distrada.menu.CustomTextView
-                android:id="@+id/txtPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:text="Price"
-                android:textColor="@color/cardview_light_background"
-                android:textSize="24dp"
-                tools:textColor="@color/cardview_light_background" />
-
-            <com.michal_stasinski.distrada.menu.CustomTextView
-                android:id="@+id/txtDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="false"
-                android:layout_below="@+id/titleItem"
-                android:layout_marginLeft="70dp"
-                android:layout_marginRight="60dp"
-                android:text="Price"
-                android:textColor="@color/cardview_light_background"
-                android:textSize="16dp"
-                tools:textColor="@color/cardview_light_background" />
-
-        </RelativeLayout>
     </RelativeLayout>
-</LinearLayout>

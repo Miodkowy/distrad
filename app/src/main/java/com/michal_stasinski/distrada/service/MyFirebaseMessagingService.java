@@ -17,7 +17,7 @@ import org.json.JSONObject;
 
 /**
  * Created by Ravi Tamada on 08/08/16.
- * www.androidhive.info
+ * www.androidhive.InfoActivity
  */
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
