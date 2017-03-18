@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // mDrawerLayout.openDrawer(GravityCompat.START,true);
-        //mDrawerLayout.setBackgroundResource(R.mipmap.pizza_view);
+        mDrawerLayout.setBackgroundResource(R.mipmap.piec_view);
         //wyłaczenie shadow
         mDrawerLayout.setScrimColor(getResources().getColor(R.color.color_DRAWER_SHADOW));
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
