@@ -240,11 +240,11 @@ public class MainActivity extends AppCompatActivity {
                         // notiObj.setArguments(bundle);
                         // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
 
-                        Intent intent = new Intent();
+                       Intent intent = new Intent();
                         intent.setClass(MainActivity.this, InfoActivity.class);
                         startActivity(intent);
                         overridePendingTransition(R.anim.right_in,R.anim.left_out);
-                        // fragmentManager.beginTransaction().replace(R.id.content_frame, new NotificationFragment()).commit();
+                        //fragmentManager.beginTransaction().replace(R.id.content_frame, new NotificationFragment()).commit();
 
                     }
                 }

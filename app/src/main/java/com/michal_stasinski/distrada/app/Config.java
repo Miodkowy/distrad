@@ -6,7 +6,7 @@ package com.michal_stasinski.distrada.app;
 
 public class Config {
     // global topic to receive app wide push notifications
-   //public  static final String TOPIC_GLOBAL = "global";
+  // public  static final String TOPIC_GLOBAL = "global";
     public static final String TOPIC_GLOBAL = "swift_fans_distrada64";
     // broadcast receiver intent filters
     public static final String REGISTRATION_COMPLETE = "registrationComplete";

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.michal_stasinski.distrada.activity.NotificationActivity"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/text_device_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wyślij powiadomienie"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="30dp"
+        android:layout_weight="0.14" />
+    <TextView
+        android:id="@+id/text_reciver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wyślij powiadomienie"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="30dp"
+        android:layout_weight="0.14" />
+
+
+    <EditText
+        android:id="@+id/editText_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Tytuł"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="162dp" />
+
+    <EditText
+        android:id="@+id/editText_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.31"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textAlignment="viewStart"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="107dp" />
+
+    <Button
+        android:id="@+id/send_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="230dp" />
+   </LinearLayout>

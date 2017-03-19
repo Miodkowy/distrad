@@ -23,18 +23,14 @@
         android:hint="napisz coś" />
 
     <Button
-        android:text="post"
+        android:text="Wyślij"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:id="@+id/submit_post_btn"
-        android:layout_alignRight="@+id/postDesc"
-        android:layout_alignEnd="@+id/postDesc"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:background="@color/colorPrimary"
 
-        />
+        android:layout_below="@+id/postDesc"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="match_parent"

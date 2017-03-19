@@ -5,17 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,78 +38,29 @@ import okhttp3.Response;
 
 import static com.google.android.gms.internal.zzs.TAG;
 
-
-public class NotificationFragment extends Fragment {
-
-    View myView;
-    private TextView txtRegId, txtMessage;
-    private BroadcastReceiver mRegistrationBroadcastReceiver;
+public class NotificationActivity extends AppCompatActivity {
+    private TextView txtRegId , txtMessage;
+    private EditText eTitle , eMessage;
     private OkHttpClient mClient;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
     public static final String FCM_MESSAGE_URL = "https://fcm.googleapis.com/fcm/send";
 
-    public NotificationFragment() {
-
-        Log.e(TAG, "constructor _______________________________________ ");
-        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-                Log.e(TAG, "onReceive________________________________________ ");
-                // checking for type intent filter
-                if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
-                    // gcm successfully registered
-                    // now subscribe to `global` topic to receive app wide notifications
-                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
-
-                    displayFirebaseRegId();
-
-                } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
-                    // new push notification is received
-
-                    String message = intent.getStringExtra("message");
-
-                    Toast.makeText(myView.getContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
-
-                    txtMessage.setText(message);
-                }
-            }
-        };
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        Log.e(TAG, "oncreate _______________________________________ ");
-
-    }
-
-    private void displayFirebaseRegId() {
-        Log.e(TAG, "displayFirebaseRegId_______________________________________ " + myView);
-        SharedPreferences pref = myView.getContext().getSharedPreferences(Config.SHARED_PREF, 0);
-        String regId = pref.getString("regId", null);
-        txtRegId = (TextView) myView.findViewById(R.id.txt_reg_id1);
-        txtMessage = (TextView) myView.findViewById(R.id.txt_push_message1);
-        Log.e(TAG, "Firebase reg id: " + regId);
-
-        if (!TextUtils.isEmpty(regId)) {
-            Log.e(TAG, "Firebase reg id: " + regId);
-            txtRegId.setText("Firebase Reg Id: " + regId);
-        } else {
-            txtRegId.setText("Firebase Reg Id is not received yet!");
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
+        FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+        setContentView(R.layout.activity_notification);
+        displayFirebaseRegId();
+        Log.i(TAG, "NotificationActivity  -  onCreate");
         // checking for type intent filter
-        myView = inflater.inflate(R.layout.fragment_notification, container, false);
 
+        Button  not = (Button) findViewById(R.id.send_notification);
+         eTitle = (EditText) findViewById(R.id.editText_title);
+         eMessage = (EditText) findViewById(R.id.editText_message);
 
-        Button sendNoty = (Button) myView.findViewById(R.id.sendNotification);
-
-        sendNoty.setOnClickListener(new View.OnClickListener() {
+        not.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String refreshedToken = FirebaseInstanceId.getInstance().getToken();//add your user refresh tokens who are logged in with firebase.
@@ -118,42 +68,67 @@ public class NotificationFragment extends Fragment {
                 JSONArray jsonArray = new JSONArray();
                 jsonArray.put(refreshedToken);
 
-                sendMessage(jsonArray, "Hello", "proba z fragmentu", "Http:\\google.com", "My Name is Vishal");
+                sendMessage(jsonArray, eTitle.getText().toString(),  eMessage.getText().toString(), "Http:\\google.com", "My Name is Vishal");
             }
         });
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
 
+                if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
+                    // gcm successfully registered
+                    // now subscribe to `global` topic to receive app wide notifications
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+                    displayFirebaseRegId();
 
-        Log.e(TAG, "create view_______________________________________ " + myView);
-        displayFirebaseRegId();
-        return myView;
+                } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
+                    // new push notification is received
+                    String message = intent.getStringExtra("message");
+                    Toast.makeText(NotificationActivity.this, "Push notification: " + message, Toast.LENGTH_LONG).show();
+                    txtMessage.setText(message);
+                }
+            }
+        };
     }
 
+    private void displayFirebaseRegId() {
+
+        SharedPreferences pref = getSharedPreferences(Config.SHARED_PREF, 0);
+        String regId = pref.getString("regId", null);
+        txtRegId = (TextView) findViewById(R.id.text_device_id);
+        txtMessage = (TextView) findViewById(R.id.text_reciver);
+        if (!TextUtils.isEmpty(regId)) {
+            txtRegId.setText("Firebase Reg Id: " + regId);
+        } else {
+            txtRegId.setText("Firebase Reg Id is not received yet!");
+        }
+    }
 
     @Override
     public void onResume() {
         super.onResume();
 
         // register GCM registration complete receiver
-        LocalBroadcastManager.getInstance(myView.getContext()).registerReceiver(mRegistrationBroadcastReceiver,
+        LocalBroadcastManager.getInstance(NotificationActivity.this).registerReceiver(mRegistrationBroadcastReceiver,
                 new IntentFilter(Config.REGISTRATION_COMPLETE));
 
         // register new push message receiver
         // by doing this, the activity will be notified each time a new message arrives
-        LocalBroadcastManager.getInstance(myView.getContext()).registerReceiver(mRegistrationBroadcastReceiver,
+        LocalBroadcastManager.getInstance(NotificationActivity.this).registerReceiver(mRegistrationBroadcastReceiver,
                 new IntentFilter(Config.PUSH_NOTIFICATION));
 
         // clear the notification area when the app is opened
-        NotificationUtils.clearNotifications(myView.getContext());
+        NotificationUtils.clearNotifications(NotificationActivity.this);
     }
 
     @Override
     public void onPause() {
-        LocalBroadcastManager.getInstance(myView.getContext()).unregisterReceiver(mRegistrationBroadcastReceiver);
+        LocalBroadcastManager.getInstance(NotificationActivity.this).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
     }
 
     public void sendMessage(final JSONArray recipients, final String title, final String body, final String icon, final String message) {
-        Log.d("MyApp", "fragementColor________________seeennnnnnnnnnnnnnnnnnnnn___________________________________________ ");
+
         new AsyncTask<String, String, String>() {
             @Override
             protected String doInBackground(String... params) {
@@ -162,21 +137,19 @@ public class NotificationFragment extends Fragment {
                     JSONObject notification = new JSONObject();
                     notification.put("body", body);
                     notification.put("title", title);
-                    notification.put("icon", icon);
+                    notification.put("icon",R.mipmap.app_icon);
 
                     JSONObject data = new JSONObject();
                     data.put("message", message);
                     root.put("notification", notification);
                     root.put("data", data);
-                    // root.put("registration_ids", recipients);
+
                     root.put("to", "/topics/swift_fans_distrada64");
                     String result = postToFCM(root.toString());
-                    Log.d("MyApp", "fragementColor________________poszlooooooooooooooooooooooo____________________________________________ ");
                     return result;
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-                Log.d("MyApp", "fragementColor________________dupa____________________________________________ ");
                 return null;
             }
 
@@ -187,17 +160,16 @@ public class NotificationFragment extends Fragment {
                     int success, failure;
                     success = resultJson.getInt("success");
                     failure = resultJson.getInt("failure");
-                    Toast.makeText(myView.getContext(), "Message Success: " + success + "Message Failed: " + failure, Toast.LENGTH_LONG).show();
+                    Toast.makeText(NotificationActivity.this, "Message Success: " + success + "Message Failed: " + failure, Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(myView.getContext(), "Message Failed, Unknown error occurred.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(NotificationActivity.this, "Message Failed, Unknown error occurred.", Toast.LENGTH_LONG).show();
                 }
             }
         }.execute();
     }
 
     String postToFCM(String bodyString) throws IOException {
-        Log.d("postToFCM", "fmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm: ");
         mClient = new OkHttpClient();
 
         final MediaType JSON
@@ -207,10 +179,11 @@ public class NotificationFragment extends Fragment {
         Request request = new Request.Builder()
                 .url("https://fcm.googleapis.com/fcm/send")
                 .post(body)
-                .addHeader("Authorization", "key=AIzaSyDYOkZ1lZLeLvOcproToZioVGHwQ5qgQjw")
+                .addHeader("Authorization", "key=AAAAYRSopWU:APA91bFCG1dR9l_JsJtN_ZQp2QA8Bnn2xqws4-lOwNrIW96yck2E9lz8psPT97IxHKdVcqBwB0tus_3bAqipDF35CcXuMn730mcCefIwxNdXMKTeNDny3B-jRt9aqb0-V7vEWdr6l-Bf")
                 .build();
         Response response = mClient.newCall(request).execute();
         return response.body().string();
     }
+
 
 }

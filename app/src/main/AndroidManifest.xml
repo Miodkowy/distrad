@@ -60,7 +60,9 @@
         <activity
             android:name=".InfoPanel.InfoActivity"
             android:label="@string/title_activity_info"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.RestaurantManager" />
+        <activity android:name=".activity.NotificationActivity"></activity>
     </application>
 
 </manifest>
