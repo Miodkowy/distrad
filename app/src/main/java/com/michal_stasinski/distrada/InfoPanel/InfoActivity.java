@@ -28,7 +28,7 @@ public class InfoActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(InfoActivity.this, RestaurantManager.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                overridePendingTransition(R.animator.right_in,R.animator.left_out);
             }
         });
     }

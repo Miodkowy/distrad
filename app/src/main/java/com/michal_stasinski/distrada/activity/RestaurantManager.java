@@ -28,7 +28,7 @@ public class RestaurantManager extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(RestaurantManager.this, NotificationActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                overridePendingTransition(R.animator.right_in,R.animator.left_out);
             }
         });
 
@@ -39,7 +39,7 @@ public class RestaurantManager extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(RestaurantManager.this, PostActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                overridePendingTransition(R.animator.right_in,R.animator.left_out);
             }
         });
     }

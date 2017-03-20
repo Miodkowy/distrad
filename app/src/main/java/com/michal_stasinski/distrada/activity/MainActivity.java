@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -224,7 +225,11 @@ public class MainActivity extends AppCompatActivity {
 
                                 MenuFragment fragobj = new MenuFragment();
                                 fragobj.setArguments(bundle);
-                                fragmentManager.beginTransaction().replace(R.id.content_frame, fragobj).commit();
+                                fragmentManager.beginTransaction().setCustomAnimations(
+                                        R.animator.card_flip_right_in,
+                                        R.animator.card_flip_right_out,
+                                        R.animator.card_flip_left_in,
+                                        R.animator.card_flip_left_out).replace(R.id.content_frame, fragobj).commit();
 
                             }
 
@@ -232,7 +237,12 @@ public class MainActivity extends AppCompatActivity {
 
                                 // NotificationFragment notiObj = new NotificationFragment();
                                 // notiObj.setArguments(bundle);
-                                fragmentManager.beginTransaction()
+
+                                fragmentManager.beginTransaction().setCustomAnimations(
+                                        R.animator.card_flip_right_in,
+                                        R.animator.card_flip_right_out,
+                                        R.animator.card_flip_left_in,
+                                        R.animator.card_flip_left_out)
                                 .replace(R.id.content_frame, new BlogFragment()).commit();
                                 // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
 
@@ -241,7 +251,12 @@ public class MainActivity extends AppCompatActivity {
 
                                 // NotificationFragment notiObj = new NotificationFragment();
                                 // notiObj.setArguments(bundle);
-                                fragmentManager.beginTransaction().replace(R.id.content_frame, new ContactFragment()).commit();
+                                fragmentManager.beginTransaction().setCustomAnimations(
+                                        R.animator.card_flip_right_in,
+                                        R.animator.card_flip_right_out,
+                                        R.animator.card_flip_left_in,
+                                        R.animator.card_flip_left_out)
+                                        .replace(R.id.content_frame, new ContactFragment()).commit();
 
 
                             }
