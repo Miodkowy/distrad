@@ -19,9 +19,11 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolBar;
 
     private String[] largeTextArr = {
-            "head",
+
             "AKTUALNOŚCI",
             "KONTAKT",
             "PIZZA",
@@ -64,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private String[] smallTextArr = {
-            "head",
             "NOTIZIE",
             "CONTATTO",
             "PIZZA",
@@ -78,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
             "POWIADOMIENIA"
     };
     private int[] colorToolBar = {
-            R.color.color_PIZZA,
             R.color.color_AKTUALNOSCI,
             R.color.color_AKTUALNOSCI,
+            R.color.color_KONTAKTY,
             R.color.color_PIZZA,
             R.color.color_STARTERY,
             R.color.color_SALATKI,
@@ -169,8 +170,14 @@ public class MainActivity extends AppCompatActivity {
 
         mListView = (BounceListView) findViewById(R.id.left_drawer);
         mListView.setScrollingCacheEnabled(false);
+
+
+        LayoutInflater inflaterHeader = getLayoutInflater();
+        ViewGroup header = (ViewGroup) inflaterHeader.inflate(
+                R.layout.drawer_header, mListView, false);
+        mListView.addHeaderView(header);
+
         Integer[] imgid = {
-                R.mipmap.news_icon,
                 R.mipmap.news_icon,
                 R.mipmap.contact_icon,
                 R.mipmap.pizza_icon,
@@ -190,64 +197,83 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-                FragmentManager fragmentManager = getFragmentManager();
-                Log.d("MyApp", "positionr____________________________________________________________ " + position);
-                if (position > 0) {
-                    if (position != 11) {
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("position", position);
-                        bundle.putInt("colorFragement", colorToolBar[position]);
-                        mToolBar.setBackgroundResource(colorToolBar[position]);
-                        TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
-                        TextView colorShape = (TextView) findViewById(R.id.positionInList);
+            public void onItemClick(AdapterView<?> adapter, View view, final int position, long arg) {
 
-                        toolBarTitle.setText((largeTextArr[position]).toString());
 
-                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                        drawer.closeDrawer(GravityCompat.START, true);
 
-                        if (position != 1 && position != 2 && position != 11) {
+                mToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, R.string.open, R.string.close) {
 
-                            MenuFragment fragobj = new MenuFragment();
-                            fragobj.setArguments(bundle);
-                            fragmentManager.beginTransaction().replace(R.id.content_frame, fragobj).commit();
+                    /** Called when a drawer has settled in a completely closed state. */
+                    public void onDrawerClosed(View view) {
+                        super.onDrawerClosed(view);
+                        FragmentManager fragmentManager = getFragmentManager();
+                        mDrawerLayout.removeDrawerListener(mToggle);
+                        Log.i("TAG","CLOSE"+position);
+                        if (position != 0) {
 
-                        }
+                            Log.i(TAG, "position" + position);
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("position", position-1);
+                            bundle.putInt("colorFragement", colorToolBar[position]);
+                            mToolBar.setBackgroundResource(colorToolBar[position]);
+                            TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
+                            TextView colorShape = (TextView) findViewById(R.id.positionInList);
 
-                        if (position == 2) {
+                            toolBarTitle.setText((largeTextArr[position-1]).toString());
+                            if (position != 1 && position != 2 && position != 11) {
 
-                            // NotificationFragment notiObj = new NotificationFragment();
-                            // notiObj.setArguments(bundle);
-                            fragmentManager.beginTransaction().replace(R.id.content_frame, new ContactFragment()).commit();
-                            // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+                                MenuFragment fragobj = new MenuFragment();
+                                fragobj.setArguments(bundle);
+                                fragmentManager.beginTransaction().replace(R.id.content_frame, fragobj).commit();
 
-                        }
+                            }
 
-                        if (position == 1) {
+                            if (position == 1) {
 
-                            // NotificationFragment notiObj = new NotificationFragment();
-                            // notiObj.setArguments(bundle);
-                            fragmentManager.beginTransaction().replace(R.id.content_frame, new BlogFragment()).commit();
-                            // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+                                // NotificationFragment notiObj = new NotificationFragment();
+                                // notiObj.setArguments(bundle);
+                                fragmentManager.beginTransaction()
+                                .replace(R.id.content_frame, new BlogFragment()).commit();
+                                // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+
+                            }
+                            if (position == 2) {
+
+                                // NotificationFragment notiObj = new NotificationFragment();
+                                // notiObj.setArguments(bundle);
+                                fragmentManager.beginTransaction().replace(R.id.content_frame, new ContactFragment()).commit();
+
+
+                            }
+
+                            if (position == 11) {
+
+                                // NotificationFragment notiObj = new NotificationFragment();
+                                // notiObj.setArguments(bundle);
+                                // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+
+                                Intent intent = new Intent();
+                                intent.setClass(MainActivity.this, InfoActivity.class);
+                                startActivity(intent);
+                                overridePendingTransition(R.anim.right_in,R.anim.left_out);
+                                //fragmentManager.beginTransaction().replace(R.id.content_frame, new NotificationFragment()).commit();
+
+                            }
 
                         }
                     }
 
-                    if (position == 11) {
-
-                        // NotificationFragment notiObj = new NotificationFragment();
-                        // notiObj.setArguments(bundle);
-                        // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
-
-                       Intent intent = new Intent();
-                        intent.setClass(MainActivity.this, InfoActivity.class);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.right_in,R.anim.left_out);
-                        //fragmentManager.beginTransaction().replace(R.id.content_frame, new NotificationFragment()).commit();
+                    /** Called when a drawer has settled in a completely open state. */
+                    public void onDrawerOpened(View drawerView) {
+                        super.onDrawerOpened(drawerView);
 
                     }
-                }
+                };
+
+                mDrawerLayout.addDrawerListener(mToggle);
+                mDrawerLayout.closeDrawer(GravityCompat.START, true);
+
+
             }
         });
 

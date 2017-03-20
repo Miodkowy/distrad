@@ -28,7 +28,7 @@
             android:layout_marginRight="60dp"
             android:text="Product name"
             android:textColor="@color/cardview_light_background"
-            android:textSize="24dp" />
+            android:textSize="18dp" />
 
         <com.michal_stasinski.distrada.menu.CustomTextView
             android:id="@+id/txtPrice"
@@ -38,7 +38,7 @@
             android:layout_marginRight="10dp"
             android:text="Price"
             android:textColor="@color/cardview_light_background"
-            android:textSize="24dp"
+            android:textSize="18dp"
             tools:textColor="@color/cardview_light_background" />
 
         <com.michal_stasinski.distrada.menu.CustomTextView
@@ -51,7 +51,7 @@
             android:layout_marginRight="60dp"
             android:text="Price"
             android:textColor="@color/cardview_light_background"
-            android:textSize="16dp"
+            android:textSize="14dp"
             tools:textColor="@color/cardview_light_background" />
 
 

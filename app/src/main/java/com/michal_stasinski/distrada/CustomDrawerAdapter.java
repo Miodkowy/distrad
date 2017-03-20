@@ -17,8 +17,8 @@ public class CustomDrawerAdapter extends ArrayAdapter<String> {
     private final String[] largeTxtArr;
     private final Integer[] imgid;
 
-    public  CustomDrawerAdapter(Activity context, String[] largeTextItem, String[] smallTextItem,Integer[] imgid) {
-       super(context, R.layout.custom_drawer_row, largeTextItem);
+    public CustomDrawerAdapter(Activity context, String[] largeTextItem, String[] smallTextItem, Integer[] imgid) {
+        super(context, R.layout.custom_drawer_row, largeTextItem);
 
         this.context = context;
         this.largeTxtArr = largeTextItem;
@@ -26,26 +26,36 @@ public class CustomDrawerAdapter extends ArrayAdapter<String> {
         this.imgid = imgid;
     }
 
-    public View getView(int position,  View convertView ,ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
+
         LayoutInflater inflater = context.getLayoutInflater();
 
         View view = convertView;
-        View rowView;
+        ViewHolderDrawer viewHolder;
 
-        if(position == 0){
-             rowView = inflater.inflate(R.layout.drawer_header, null, true);
-        }else {
+       if (convertView == null) {
 
-            rowView = inflater.inflate(R.layout.custom_drawer_row, null, true);
-            ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-            CustomTextView txtTitle = (CustomTextView) rowView.findViewById(R.id.txtTitleDrawer);
-            CustomTextView smallTxt = (CustomTextView) rowView.findViewById(R.id.txtDescDrawer);
-
-            txtTitle.setText(largeTxtArr[position]);
-            imageView.setImageResource(imgid[position]);
-            smallTxt.setText(smallTxtArr[position]);
+            view = View.inflate(context,R.layout.custom_drawer_row, null);
+            viewHolder = new ViewHolderDrawer();
+            viewHolder.imageView = (ImageView) view.findViewById(R.id.icon);
+            viewHolder.txtTitle = (CustomTextView) view.findViewById(R.id.txtTitleDrawer);
+            viewHolder.smallTxt = (CustomTextView) view.findViewById(R.id.txtDescDrawer);
+            view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolderDrawer) view.getTag();
         }
-        return rowView;
+       // largeTxtArr[position]
+        viewHolder.txtTitle.setText(largeTxtArr[position]);
+        viewHolder.imageView.setImageResource(imgid[position]);
+        viewHolder.smallTxt.setText(smallTxtArr[position]);
 
-    };
+        return view;
+
+    }
+
+    static class ViewHolderDrawer {
+        ImageView imageView;
+        CustomTextView txtTitle;
+        CustomTextView smallTxt;
+    }
 }

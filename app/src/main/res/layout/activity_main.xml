@@ -6,6 +6,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context="com.michal_stasinski.distrada.activity.MainActivity">
 
     <LinearLayout
@@ -20,18 +21,24 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <com.michal_stasinski.distrada.utils.BounceListView
-            android:id="@+id/left_drawer"
-            style="@style/NavDrawer"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:choiceMode="singleChoice"
-            android:dividerHeight="1dp"
-            android:divider="@drawable/custom_divaider"
-            android:background="#222222"
-            android:scrollbarSize="16dp">
-        </com.michal_stasinski.distrada.utils.BounceListView>
+
+            />
+
+    <com.michal_stasinski.distrada.utils.BounceListView
+
+        android:id="@+id/left_drawer"
+        style="@style/NavDrawer"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#222222"
+        android:choiceMode="singleChoice"
+        android:divider="@drawable/custom_divaider"
+        android:dividerHeight="1dp"
+        android:scrollbarSize="16dp"
+
+        >
+
+    </com.michal_stasinski.distrada.utils.BounceListView>
 
 </android.support.v4.widget.DrawerLayout>

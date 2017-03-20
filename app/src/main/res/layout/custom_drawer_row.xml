@@ -26,7 +26,7 @@
             android:id="@+id/txtTitleDrawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:text="Product name"
             android:textColor="@color/colorWhite"
              />
@@ -35,7 +35,7 @@
             android:id="@+id/txtDescDrawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="14dp"
             android:textColor="@color/colorWhite"
             android:text="Price"
            />

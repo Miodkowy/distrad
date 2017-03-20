@@ -20,11 +20,6 @@
 
     </LinearLayout>
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/map"
@@ -35,22 +30,21 @@
             app:layout_marginRightPercent="5%"
             app:layout_marginTopPercent="5%" />
 
-        <com.michal_stasinski.distrada.menu.CustomTextView
-            android:id="@+id/textContact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pizzeria Trattoria 'Di Strada'\n ul. Morska 42, Gdynia\n
-tel 48 58 660 33 95\n Poniedziałek -  Niedziela 12.00 - 22.00"
-            android:textAlignment="center"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="20dp"
-            app:layout_marginLeftPercent="5%"
-            app:layout_marginRightPercent="5%"
-            app:layout_marginBottomPercent="10%"
-            tools:textColor="@color/cardview_light_background"
-            android:layout_alignBottom="@+id/call_button"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="49dp" />
+    <com.michal_stasinski.distrada.menu.CustomTextView
+        android:id="@+id/textContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/call_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:text="Pizzeria Trattoria 'Di Strada'\nul. Morska 42, Gdynia\ntel 48 58 660 33 95\nPoniedziałek - Niedziela 12.00 - 22.00"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="16dp"
+        app:layout_marginTopPercent="5%"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginRightPercent="5%"
+        tools:textColor="@color/cardview_light_background" />
 
 
 
