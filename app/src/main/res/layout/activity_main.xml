@@ -24,21 +24,35 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_height="match_parent"
 
             />
-
-    <com.michal_stasinski.distrada.utils.BounceListView
-
-        android:id="@+id/left_drawer"
+    <RelativeLayout
         style="@style/NavDrawer"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#222222"
-        android:choiceMode="singleChoice"
-        android:divider="@drawable/custom_divaider"
-        android:dividerHeight="1dp"
-        android:scrollbarSize="16dp"
+        android:background="#111">
 
-        >
 
-    </com.michal_stasinski.distrada.utils.BounceListView>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/logo_distrada"
+            android:id="@+id/etHeader"
+            android:layout_weight="0.58" />
+
+        <com.michal_stasinski.distrada.utils.BounceListView
+
+            android:id="@+id/left_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#222222"
+            android:choiceMode="singleChoice"
+            android:divider="@drawable/custom_divaider"
+            android:dividerHeight="1dp"
+            android:scrollbarSize="16dp"
+            android:layout_below="@id/etHeader"
+            >
+        </com.michal_stasinski.distrada.utils.BounceListView>
+    </RelativeLayout>
+
 
 </android.support.v4.widget.DrawerLayout>

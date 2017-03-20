@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
     };
     private int[] colorToolBar = {
             R.color.color_AKTUALNOSCI,
-            R.color.color_AKTUALNOSCI,
             R.color.color_KONTAKTY,
             R.color.color_PIZZA,
             R.color.color_STARTERY,
@@ -173,10 +172,10 @@ public class MainActivity extends AppCompatActivity {
         mListView.setScrollingCacheEnabled(false);
 
 
-        LayoutInflater inflaterHeader = getLayoutInflater();
+        /*LayoutInflater inflaterHeader = getLayoutInflater();
         ViewGroup header = (ViewGroup) inflaterHeader.inflate(
                 R.layout.drawer_header, mListView, false);
-        mListView.addHeaderView(header);
+        mListView.addHeaderView(header);*/
 
         Integer[] imgid = {
                 R.mipmap.news_icon,
@@ -201,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapter, View view, final int position, long arg) {
 
 
-
                 mToggle = new ActionBarDrawerToggle(MainActivity.this, mDrawerLayout, R.string.open, R.string.close) {
 
                     /** Called when a drawer has settled in a completely closed state. */
@@ -209,73 +207,72 @@ public class MainActivity extends AppCompatActivity {
                         super.onDrawerClosed(view);
                         FragmentManager fragmentManager = getFragmentManager();
                         mDrawerLayout.removeDrawerListener(mToggle);
-                        Log.i("TAG","CLOSE"+position);
-                        if (position != 0) {
+                        Log.i("TAG", "CLOSE" + position);
 
-                            Log.i(TAG, "position" + position);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt("position", position-1);
-                            bundle.putInt("colorFragement", colorToolBar[position]);
-                            mToolBar.setBackgroundResource(colorToolBar[position]);
-                            TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
-                            TextView colorShape = (TextView) findViewById(R.id.positionInList);
+                        Log.i(TAG, "position" + position);
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("position", position);
+                        bundle.putInt("colorFragement", colorToolBar[position]);
+                        mToolBar.setBackgroundResource(colorToolBar[position]);
+                        TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
+                        TextView colorShape = (TextView) findViewById(R.id.positionInList);
 
-                            toolBarTitle.setText((largeTextArr[position-1]).toString());
-                            if (position != 1 && position != 2 && position != 11) {
+                        toolBarTitle.setText((largeTextArr[position]).toString());
+                        if (position != 0 && position != 1 && position != 10) {
 
-                                MenuFragment fragobj = new MenuFragment();
-                                fragobj.setArguments(bundle);
-                                fragmentManager.beginTransaction().setCustomAnimations(
-                                        R.animator.card_flip_right_in,
-                                        R.animator.card_flip_right_out,
-                                        R.animator.card_flip_left_in,
-                                        R.animator.card_flip_left_out).replace(R.id.content_frame, fragobj).commit();
-
-                            }
-
-                            if (position == 1) {
-
-                                // NotificationFragment notiObj = new NotificationFragment();
-                                // notiObj.setArguments(bundle);
-
-                                fragmentManager.beginTransaction().setCustomAnimations(
-                                        R.animator.card_flip_right_in,
-                                        R.animator.card_flip_right_out,
-                                        R.animator.card_flip_left_in,
-                                        R.animator.card_flip_left_out)
-                                .replace(R.id.content_frame, new BlogFragment()).commit();
-                                // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
-
-                            }
-                            if (position == 2) {
-
-                                // NotificationFragment notiObj = new NotificationFragment();
-                                // notiObj.setArguments(bundle);
-                                fragmentManager.beginTransaction().setCustomAnimations(
-                                        R.animator.card_flip_right_in,
-                                        R.animator.card_flip_right_out,
-                                        R.animator.card_flip_left_in,
-                                        R.animator.card_flip_left_out)
-                                        .replace(R.id.content_frame, new ContactFragment()).commit();
-
-
-                            }
-
-                            if (position == 11) {
-
-                                // NotificationFragment notiObj = new NotificationFragment();
-                                // notiObj.setArguments(bundle);
-                                // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
-
-                                Intent intent = new Intent();
-                                intent.setClass(MainActivity.this, InfoActivity.class);
-                                startActivity(intent);
-                                overridePendingTransition(R.anim.right_in,R.anim.left_out);
-                                //fragmentManager.beginTransaction().replace(R.id.content_frame, new NotificationFragment()).commit();
-
-                            }
+                            MenuFragment fragobj = new MenuFragment();
+                            fragobj.setArguments(bundle);
+                            fragmentManager.beginTransaction().setCustomAnimations(
+                                    R.animator.card_flip_right_in,
+                                    R.animator.card_flip_right_out,
+                                    R.animator.card_flip_left_in,
+                                    R.animator.card_flip_left_out).replace(R.id.content_frame, fragobj).commit();
 
                         }
+
+                        if (position == 0) {
+
+                            // NotificationFragment notiObj = new NotificationFragment();
+                            // notiObj.setArguments(bundle);
+
+                            fragmentManager.beginTransaction().setCustomAnimations(
+                                    R.animator.card_flip_right_in,
+                                    R.animator.card_flip_right_out,
+                                    R.animator.card_flip_left_in,
+                                    R.animator.card_flip_left_out)
+                                    .replace(R.id.content_frame, new BlogFragment()).commit();
+                            // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+
+                        }
+                        if (position == 1) {
+
+                            // NotificationFragment notiObj = new NotificationFragment();
+                            // notiObj.setArguments(bundle);
+                            fragmentManager.beginTransaction().setCustomAnimations(
+                                    R.animator.card_flip_right_in,
+                                    R.animator.card_flip_right_out,
+                                    R.animator.card_flip_left_in,
+                                    R.animator.card_flip_left_out)
+                                    .replace(R.id.content_frame, new ContactFragment()).commit();
+
+
+                        }
+
+                        if (position == 10) {
+
+                            // NotificationFragment notiObj = new NotificationFragment();
+                            // notiObj.setArguments(bundle);
+                            // fragmentManager.beginTransaction().replace(R.id.content_frame, notiObj).commit();
+
+                            Intent intent = new Intent();
+                            intent.setClass(MainActivity.this, InfoActivity.class);
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                            //fragmentManager.beginTransaction().replace(R.id.content_frame, new NotificationFragment()).commit();
+
+                        }
+
+
                     }
 
                     /** Called when a drawer has settled in a completely open state. */
