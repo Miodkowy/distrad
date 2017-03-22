@@ -3,18 +3,19 @@
     android:shape="rectangle"
     >
     <size
-        android:width="10dp"
-        android:height="10dp"/>
-    <padding android:left="10dp"
-        android:top="5dp"
-        android:right="10dp"
-        android:bottom="5dp" />
+        android:width="36dp"
+        android:height="36dp"/>
+    <padding
+        android:left="2dp"
+        android:top="6dp"
+        android:right="2dp"
+        android:bottom="6dp" />
 
     <corners
-        android:bottomLeftRadius="2dip"
-        android:bottomRightRadius="2dip"
-        android:topLeftRadius="2dip"
-        android:topRightRadius="2dip" />
+        android:bottomLeftRadius="5dip"
+        android:bottomRightRadius="5dip"
+        android:topLeftRadius="5dip"
+        android:topRightRadius="5dip" />
 
     <solid android:color="@color/color_MAKARONY"
 

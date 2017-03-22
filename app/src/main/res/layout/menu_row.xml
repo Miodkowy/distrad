@@ -11,13 +11,14 @@
         <com.michal_stasinski.distrada.menu.CustomTextView
 
             android:id="@+id/positionInList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/list_row_position_shape"
             android:textColor="@color/cardview_light_background"
-            android:textSize="20dp" />
+            android:textSize="18dp"
+            android:textAlignment="center" />
 
 
         <com.michal_stasinski.distrada.menu.CustomTextView

@@ -2,15 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/custom_drawer_shape"
-    >
+    android:layout_height="wrap_content">
+
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="18dp"
         android:layout_marginLeft="30dp"
         />
 
@@ -19,14 +18,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:layout_marginLeft="90dp">
+        android:padding="12dp"
+        android:layout_marginLeft="60dp">
 
         <com.michal_stasinski.distrada.menu.CustomTextView
             android:id="@+id/txtTitleDrawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:text="Product name"
             android:textColor="@color/colorWhite"
              />
@@ -35,7 +34,7 @@
             android:id="@+id/txtDescDrawer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:textColor="@color/colorWhite"
             android:text="Price"
            />

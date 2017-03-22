@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
@@ -20,6 +21,7 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -149,15 +151,31 @@ public class MainActivity extends AppCompatActivity {
         //displayFirebaseRegId();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+        mDrawerLayout.setDrawerShadow(R.drawable.custom_drawer_shape, Gravity.START);
+       // mDrawerLayout.setScrimColor(getResources().getColor(R.color.color_DRAWER_SHADOW));
+        //mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
+
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close){
+            @Override
+            public void onDrawerSlide(View view, float slideOffset) {
+             //  shadowDrawable.setAlpha((1/255)*slideoffset);
+               // mDrawerLayout.setDrawerShadow(shadowDrawable);
+                //view.setAlpha((1/255)*slideOffset);
+            }
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+            }
+
+
+        };
 
         mDrawerLayout.addDrawerListener(mToggle);
 
 
         // mDrawerLayout.openDrawer(GravityCompat.START,true);
-        mDrawerLayout.setBackgroundResource(R.mipmap.piec_view);
+        //mDrawerLayout.setBackgroundResource(R.mipmap.piec_view);
         //wyłaczenie shadow
-        mDrawerLayout.setScrimColor(getResources().getColor(R.color.color_DRAWER_SHADOW));
+
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolBar);
 
@@ -207,9 +225,6 @@ public class MainActivity extends AppCompatActivity {
                         super.onDrawerClosed(view);
                         FragmentManager fragmentManager = getFragmentManager();
                         mDrawerLayout.removeDrawerListener(mToggle);
-                        Log.i("TAG", "CLOSE" + position);
-
-                        Log.i(TAG, "position" + position);
                         Bundle bundle = new Bundle();
                         bundle.putInt("position", position);
                         bundle.putInt("colorFragement", colorToolBar[position]);

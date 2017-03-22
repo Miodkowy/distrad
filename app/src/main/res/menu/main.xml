@@ -8,9 +8,5 @@
         android:orderInCategory="100"
         android:title="Setting"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_settings1"
-        android:orderInCategory="100"
-        android:title="dupa"
-        app:showAsAction="never" />
+
 </menu>
