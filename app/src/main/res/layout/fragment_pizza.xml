@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.michal_stasinski.distrada.menu.MenuFragment">
+    tools:context="com.michal_stasinski.distrada.Menu.MenuFragment">
 
     <TextView
         android:layout_width="match_parent"

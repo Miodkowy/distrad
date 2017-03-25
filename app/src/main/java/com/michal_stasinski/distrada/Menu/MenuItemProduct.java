@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.menu;
+package com.michal_stasinski.distrada.Menu;
 
 /**
  * Created by win8 on 27.12.2016.

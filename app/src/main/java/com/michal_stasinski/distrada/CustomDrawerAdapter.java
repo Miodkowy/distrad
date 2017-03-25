@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
-import com.michal_stasinski.distrada.menu.CustomTextView;
+import com.michal_stasinski.distrada.Menu.CustomTextView;
 
 public class CustomDrawerAdapter extends ArrayAdapter<String> {
 

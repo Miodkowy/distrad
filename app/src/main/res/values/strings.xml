@@ -4,4 +4,16 @@
     <string name="close">Close</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_info">info</string>
+
+    <string name="AKTUALNOŚCI">AKTUALNOŚCI</string>
+    <string name="KONTAKT">KONTAKT</string>
+    <string name="PIZZA">DISTRADA</string>
+    <string name="STARTERY">DISTRADA</string>
+    <string name="SAŁATKI">DISTRADA</string>
+    <string name="ZUPY">DISTRADA</string>
+    <string name="MAKARONY">DISTRADA</string>
+    <string name="MAKARONY_ZAPIEKANE">DISTRADA</string>
+    <string name="DRUGIE_DANIA">DISTRADA</string>
+    <string name="NAPOJE_i_DESERY">DISTRADA</string>
+    <string name="POWIADOMIENIA">DISTRADA</string>
 </resources>

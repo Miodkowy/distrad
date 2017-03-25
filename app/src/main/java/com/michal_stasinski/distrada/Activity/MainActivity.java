@@ -1,36 +1,24 @@
-package com.michal_stasinski.distrada.activity;
+package com.michal_stasinski.distrada.Activity;
 
 import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.SpannableString;
-import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.michal_stasinski.distrada.Blog.BlogFragment;
@@ -38,10 +26,9 @@ import com.michal_stasinski.distrada.Contact.ContactFragment;
 import com.michal_stasinski.distrada.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.InfoPanel.InfoActivity;
 import com.michal_stasinski.distrada.R;
-import com.michal_stasinski.distrada.app.Config;
-import com.michal_stasinski.distrada.menu.MenuFragment;
-import com.michal_stasinski.distrada.utils.BounceListView;
-import com.michal_stasinski.distrada.utils.NotificationUtils;
+import com.michal_stasinski.distrada.App.Config;
+import com.michal_stasinski.distrada.Menu.MenuFragment;
+import com.michal_stasinski.distrada.Utils.BounceListView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -109,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
 
-                Log.e(TAG, "onReceive  maina________________________________________ ");
+                Log.e("TAG", "onReceive  maina________________________________________ ");
                 // checking for type intent filter
                 if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
 
@@ -119,41 +106,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-/*
-        txtRegId = (TextView) findViewById(R.id.txt_reg_id);
-        txtMessage = (TextView) findViewById(R.id.txt_push_message);
 
-        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
 
-                Log.e(TAG, "onReceive________________________________________ ");
-                // checking for type intent filter
-                if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
-                    // gcm successfully registered
-                    // now subscribe to `global` topic to receive app wide notifications
-                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
 
-                    //displayFirebaseRegId();
-
-                } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
-                    // new push notification is received
-
-                    String message = intent.getStringExtra("message");
-
-                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
-
-                    txtMessage.setText(message);
-                }
-            }
-        };
-*/
-        //displayFirebaseRegId();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerShadow(R.drawable.custom_drawer_shape, Gravity.START);
        // mDrawerLayout.setScrimColor(getResources().getColor(R.color.color_DRAWER_SHADOW));
-        //mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
+        mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
 
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close){
             @Override
@@ -315,55 +275,29 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Fetches reg id from shared preferences
-    // and displays on the screen
-
-    /*private void displayFirebaseRegId() {
-
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
-        String regId = pref.getString("regId", null);
-
-        Log.e(TAG, "Firebase reg id: " + regId);
-
-        if (!TextUtils.isEmpty(regId))
-            txtRegId.setText("Firebase Reg Id: " + regId);
-        else
-            txtRegId.setText("Firebase Reg Id is not received yet!");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // register GCM registration complete receiver
-        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(Config.REGISTRATION_COMPLETE));
-
-        // register new push message receiver
-        // by doing this, the activity will be notified each time a new message arrives
-        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
-                new IntentFilter(Config.PUSH_NOTIFICATION));
-
-        // clear the notification area when the app is opened
-        NotificationUtils.clearNotifications(getApplicationContext());
-    }
-
-    @Override
-    protected void onPause() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
-        super.onPause();
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-       /* for(int i = 0; i < menu.size(); i++) {
-            MenuItem item = menu.getItem(i);
-            SpannableString spanString = new SpannableString(menu.getItem(i).getTitle().toString());
-            spanString.setSpan(new ForegroundColorSpan(Color.WHITE), 0, spanString.length(), 0); //fix the color to white
-            item.setTitle(spanString);
-        }*/
+
         return true;
+    }
+
+    protected void onStart() {
+        super.onStart();
+        Button openManager = (Button) findViewById(R.id.button_to_pizza_menu);
+
+
+        openManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //On click function
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, PizzaMenuActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.animator.right_in, R.animator.left_out);
+            }
+        });
     }
 }

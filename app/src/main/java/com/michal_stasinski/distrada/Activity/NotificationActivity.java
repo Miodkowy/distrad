@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.activity;
+package com.michal_stasinski.distrada.Activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,7 +10,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +20,8 @@ import android.widget.Toast;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.michal_stasinski.distrada.R;
-import com.michal_stasinski.distrada.app.Config;
-import com.michal_stasinski.distrada.utils.NotificationUtils;
+import com.michal_stasinski.distrada.App.Config;
+import com.michal_stasinski.distrada.Utils.NotificationUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;

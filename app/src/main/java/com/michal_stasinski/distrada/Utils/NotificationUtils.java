@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.utils;
+package com.michal_stasinski.distrada.Utils;
 
 /**
  * Created by win8 on 02.01.2017.
@@ -22,7 +22,7 @@ import android.text.TextUtils;
 import android.util.Patterns;
 
 import com.michal_stasinski.distrada.R;
-import com.michal_stasinski.distrada.app.Config;
+import com.michal_stasinski.distrada.App.Config;
 
 import java.io.IOException;
 import java.io.InputStream;

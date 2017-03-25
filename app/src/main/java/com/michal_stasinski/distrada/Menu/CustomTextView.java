@@ -1,9 +1,8 @@
-package com.michal_stasinski.distrada.menu;
+package com.michal_stasinski.distrada.Menu;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 /**
  * Created by win8 on 04.01.2017.

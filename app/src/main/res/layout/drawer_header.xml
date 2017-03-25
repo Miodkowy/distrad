@@ -10,6 +10,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srcCompat="@mipmap/logo_distrada"
-        android:id="@+id/imageView"
-        android:layout_weight="0.58" />
+        android:id="@+id/imageView" />
 </LinearLayout>

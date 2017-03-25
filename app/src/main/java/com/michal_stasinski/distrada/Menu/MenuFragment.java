@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.menu;
+package com.michal_stasinski.distrada.Menu;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -6,8 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.percent.PercentRelativeLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,7 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michal_stasinski.distrada.R;
-import com.michal_stasinski.distrada.utils.BounceListView;
+import com.michal_stasinski.distrada.Utils.BounceListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +46,7 @@ public class MenuFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+Log.i("onCreateView","onCreateView fragment         ____________________________");
         myView = inflater.inflate(R.layout.menu_layout, container, false);
 
         //referencja do bazy w firebase

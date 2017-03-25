@@ -8,7 +8,7 @@
         android:layout_marginTop="60dp"
         android:id="@+id/mListView_Menu">
 
-    <com.michal_stasinski.distrada.utils.BounceListView
+    <com.michal_stasinski.distrada.Utils.BounceListView
         android:id="@+id/mListView_FirstLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

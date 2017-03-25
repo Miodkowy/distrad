@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".Activity.PizzaMenuActivity"
             android:label="Distrada"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -27,12 +27,12 @@
         </activity>
 
         <!-- Firebase Notifications -->
-        <service android:name=".service.MyFirebaseMessagingService">
+        <service android:name=".Service.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".service.MyFirebaseInstanceIDService">
+        <service android:name=".Service.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
@@ -61,8 +61,11 @@
             android:name=".InfoPanel.InfoActivity"
             android:label="@string/title_activity_info"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.RestaurantManager" />
-        <activity android:name=".activity.NotificationActivity"></activity>
+        <activity android:name=".Activity.RestaurantManager" />
+        <activity android:name=".Activity.NotificationActivity" />
+        <activity android:name=".Activity.BaseMenuActivity" />git
+        <activity android:name=".Activity.StartersMenuActivity" />
+        <activity android:name=".Activity.SaladMenuActivity"></activity>
     </application>
 
 </manifest>

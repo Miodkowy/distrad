@@ -1,11 +1,10 @@
-package com.michal_stasinski.distrada.activity;
+package com.michal_stasinski.distrada.Activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -22,8 +21,8 @@ import android.widget.Toast;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.michal_stasinski.distrada.R;
-import com.michal_stasinski.distrada.app.Config;
-import com.michal_stasinski.distrada.utils.NotificationUtils;
+import com.michal_stasinski.distrada.App.Config;
+import com.michal_stasinski.distrada.Utils.NotificationUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;

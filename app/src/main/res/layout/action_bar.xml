@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="50dp"
     android:id ="@+id/nav_action"
 
     app:contentInsetStart="0dp"
@@ -15,14 +15,13 @@
     >
 
     <com.michal_stasinski.distrada.Menu.CustomTextView
-        android:id ="@+id/toolBarTitle"
+        android:id="@+id/toolBarTitle"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
         android:text="DISTRADA"
-        android:textColor="@color/colorWhite"
-        android:textSize="18dp"
-        android:layout_marginTop="10dp"
         android:textAlignment="center"
-        android:layout_gravity="center">
-    </com.michal_stasinski.distrada.Menu.CustomTextView>
+        android:textColor="@color/colorWhite"
+        android:textSize="18dp"></com.michal_stasinski.distrada.Menu.CustomTextView>
 </android.support.v7.widget.Toolbar>

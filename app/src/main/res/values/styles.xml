@@ -12,7 +12,7 @@
 
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
-        <item name="color">@color/color_ZUPY</item>
+        <item name="color">@color/colorWhite</item>
     </style>
 
     <style name="NavDrawer">
@@ -29,13 +29,14 @@
         <!-- android:textColorPrimary is the  color of the title text
              in the Toolbar, in the Theme.AppCompat theme:  -->
         <item name="android:textColorPrimary">@color/color_PIZZA</item>
-
-        <item name="android:actionMenuTextColor">@color/color_ALFORNO</item>
+        <item name="android:actionMenuTextColor">@color/colorWhite</item>
         <!-- android:textColorSecondary is the color of the menu
              overflow icon (three vertical dots) -->
         <item name="colorControlNormal">@color/colorWhite</item>
         <item name="android:textColorSecondary">@color/colorWhite</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
 
     </style>
 

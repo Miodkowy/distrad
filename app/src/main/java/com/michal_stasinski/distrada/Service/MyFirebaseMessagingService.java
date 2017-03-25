@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.service;
+package com.michal_stasinski.distrada.Service;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +8,9 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.michal_stasinski.distrada.activity.MainActivity;
-import com.michal_stasinski.distrada.app.Config;
-import com.michal_stasinski.distrada.utils.NotificationUtils;
+import com.michal_stasinski.distrada.Activity.MainActivity;
+import com.michal_stasinski.distrada.App.Config;
+import com.michal_stasinski.distrada.Utils.NotificationUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

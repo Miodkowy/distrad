@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.menu;
+package com.michal_stasinski.distrada.Menu;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
@@ -29,7 +29,7 @@ public class CustomListViewAdapter extends BaseAdapter {
     private boolean sortOption;
 
     public CustomListViewAdapter(Context context, ArrayList<MenuItemProduct> mListArray, int color, Boolean sort) {
-
+        Log.i("TAG", "CustomListViewAdapter____________________________________st");
         sortOption = sort;
 
         Collections.sort(mListArray, new Comparator() {

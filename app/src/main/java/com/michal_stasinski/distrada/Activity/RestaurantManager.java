@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.activity;
+package com.michal_stasinski.distrada.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.michal_stasinski.distrada.Blog.BlogPost.PostActivity;
-import com.michal_stasinski.distrada.InfoPanel.InfoActivity;
 import com.michal_stasinski.distrada.R;
 
 public class RestaurantManager extends AppCompatActivity {

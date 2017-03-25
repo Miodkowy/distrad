@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.app;
+package com.michal_stasinski.distrada.App;
 
 /**
  * Created by win8 on 02.01.2017.
