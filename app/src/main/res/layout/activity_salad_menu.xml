@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.michal_stasinski.distrada.Activity.SaladMenuActivity">
+    tools:context="com.michal_stasinski.distrada.Menu.SaladMenu">
 
 </android.support.constraint.ConstraintLayout>

@@ -25,6 +25,7 @@ import com.michal_stasinski.distrada.Blog.BlogFragment;
 import com.michal_stasinski.distrada.Contact.ContactFragment;
 import com.michal_stasinski.distrada.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.InfoPanel.InfoActivity;
+import com.michal_stasinski.distrada.Menu.PizzaMenu;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.App.Config;
 import com.michal_stasinski.distrada.Menu.MenuFragment;
@@ -288,13 +289,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         Button openManager = (Button) findViewById(R.id.button_to_pizza_menu);
 
-
         openManager.setOnClickListener(new View.OnClickListener() {
             @Override
             //On click function
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, PizzaMenuActivity.class);
+                intent.setClass(MainActivity.this, PizzaMenu.class);
                 startActivity(intent);
                 overridePendingTransition(R.animator.right_in, R.animator.left_out);
             }

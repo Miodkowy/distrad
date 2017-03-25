@@ -1,6 +1,5 @@
-package com.michal_stasinski.distrada.Activity;
+package com.michal_stasinski.distrada.Menu;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,29 +8,35 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.michal_stasinski.distrada.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 
-public class BaseMenuActivity extends AppCompatActivity {
+public class BaseMenu extends AppCompatActivity {
 
     public BounceListView mListViewDrawer;
     public BounceListView mListViewMenu;
-    public  LinearLayout mtoolBarLayout;
+    public RelativeLayout mtoolBarLayout;
     public DrawerLayout mDrawerLayout;
+    private ImageView imageDrawer;
     public ActionBarDrawerToggle mToggle;
     public Toolbar mToolBar;
+
     private ImageView imgBackground;
     private LinearLayout content;
     private int color;
+    private Boolean choiceActivity;
+    public int currentActivity = 2;
+
     public String[] largeTextArr = {
             "AKTUALNOŚCI",
             "KONTAKT",
@@ -91,10 +96,20 @@ public class BaseMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_base_menu);
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("TAG", "START");
+        choiceActivity = false;
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
-        mtoolBarLayout =(LinearLayout) findViewById(R.id.main_frame);
+        mToolBar.setBackgroundResource(colorToolBar[currentActivity]);
+
+        imageDrawer = (ImageView) findViewById(R.id.pizza_element_back);
         setSupportActionBar(mToolBar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         // mDrawerLayout.setDrawerShadow(R.drawable.custom_drawer_shape, Gravity.START);
@@ -104,14 +119,15 @@ public class BaseMenuActivity extends AppCompatActivity {
         imgBackground = (ImageView) findViewById(R.id.pizza_element_back);
         imgBackground.setAlpha(0.f);
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
-
+        TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
+        toolBarTitle.setText((largeTextArr[currentActivity]).toString());
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close) {
             @Override
             public void onDrawerSlide(View view, float slideOffset) {
                 imgBackground.setAlpha(slideOffset);
-               mListViewMenu.setAlpha(1 - slideOffset);
-               // content.setAlpha(1-slideOffset);
-                mtoolBarLayout.setAlpha(1-slideOffset);
+                mListViewMenu.setAlpha(1 - slideOffset);
+                imageDrawer.setAlpha(slideOffset);
+               // mtoolBarLayout.setAlpha(1 - slideOffset);
             }
 
             @Override
@@ -137,24 +153,29 @@ public class BaseMenuActivity extends AppCompatActivity {
         mListViewDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, final int position, long arg) {
-                Log.i("TAG", "position" + position);
 
-
-                Intent intent = new Intent();
-
-             if (position == 2 ){
-                    intent.setClass(getBaseContext(),PizzaMenuActivity.class);
-                }
-                if (position == 3 ){
-                    intent.setClass(getBaseContext(),StartersMenuActivity.class);
-                }
-               startActivity(intent);
-                overridePendingTransition(R.animator.right_in, R.animator.left_out);
-               /* mToggle = new ActionBarDrawerToggle(BaseMenuActivity.this, mDrawerLayout, R.string.open, R.string.close) {
+                mToggle = new ActionBarDrawerToggle(BaseMenu.this, mDrawerLayout, R.string.open, R.string.close) {
 
                     public void onDrawerClosed(View view) {
                         super.onDrawerClosed(view);
 
+                        if (currentActivity != position) {
+
+                            Intent intent = new Intent();
+                            currentActivity = position;
+
+                            if (position == 2) {
+                                intent.setClass(getBaseContext(), PizzaMenu.class);
+                            }
+                            if (position == 3) {
+                                intent.setClass(getBaseContext(), StartersMenu.class);
+                            }
+                            if (position == 4) {
+                                intent.setClass(getBaseContext(), SaladMenu.class);
+                            }
+                            startActivity(intent);
+                            overridePendingTransition(R.animator.right_in, R.animator.left_out);
+                        }
 
                     }
 
@@ -163,14 +184,13 @@ public class BaseMenuActivity extends AppCompatActivity {
                         super.onDrawerOpened(drawerView);
 
                     }
-                };*/
+                };
 
                 mDrawerLayout.addDrawerListener(mToggle);
                 mDrawerLayout.closeDrawer(GravityCompat.START, true);
             }
 
         });
-
     }
 
     @Override
@@ -180,4 +200,5 @@ public class BaseMenuActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -4,41 +4,46 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.michal_stasinski.distrada.Activity.BaseMenuActivity">
+    tools:context="com.michal_stasinski.distrada.Menu.BaseMenu">
 
-    <LinearLayout
-        android:id="@+id/main_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include
-            layout="@layout/action_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/main_frame_pizza"
+        >
 
-        <ImageView
-            android:id="@+id/pizza_element_back"
+        <LinearLayout
+            android:id="@+id/actionbar_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
-            android:cropToPadding="false"
-            android:scaleType="fitXY"
-            app:srcCompat="@mipmap/pizza_view" />
+            android:layout_height="wrap_content">
+
+            <include
+                layout="@layout/action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/actionbar_frame"
+
             android:orientation="vertical">
 
+            <com.michal_stasinski.distrada.Menu.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customshape"
+                android:text="W skład każdej pizzy(32 cm) wchodzą:\n
+ser Mozzarella i sos pomidorowy"
+                android:textAlignment="textEnd"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp" />
 
             <com.michal_stasinski.distrada.Utils.BounceListView
                 android:id="@+id/mListView_BaseMenu"
@@ -49,7 +54,6 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="50dp"
-                android:layout_marginTop="100dp"
                 android:animationCache="false"
                 android:divider="@android:color/darker_gray"
                 android:dividerHeight="0.05sp"
@@ -57,6 +61,15 @@
 
 
         </LinearLayout>
+        <ImageView
+            android:id="@+id/pizza_element_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@mipmap/pizza_view" />
     </RelativeLayout>
 
     <RelativeLayout

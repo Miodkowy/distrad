@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity.PizzaMenuActivity"
+            android:name=".Menu.PizzaMenu"
             android:label="Distrada"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -63,9 +63,9 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.RestaurantManager" />
         <activity android:name=".Activity.NotificationActivity" />
-        <activity android:name=".Activity.BaseMenuActivity" />git
-        <activity android:name=".Activity.StartersMenuActivity" />
-        <activity android:name=".Activity.SaladMenuActivity"></activity>
+        <activity android:name=".Menu.BaseMenu" />git
+        <activity android:name=".Menu.StartersMenu" />
+        <activity android:name=".Menu.SaladMenu"></activity>
     </application>
 
 </manifest>
