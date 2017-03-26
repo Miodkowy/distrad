@@ -3,6 +3,7 @@ package com.michal_stasinski.distrada.Menu;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,24 +15,27 @@ import com.michal_stasinski.distrada.R;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class SoupMenu extends BaseMenu {
+public class MainCourseMenu extends BaseMenu {
     private DatabaseReference myRef;
     private ArrayList<MenuItemProduct> menuItem;
     private int colorActivity;
     private boolean sortByInt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_pasta_menu);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("zuppas");
-        currentActivity = 5;
+        myRef = database.getReference("secondis");
+        currentActivity = 8;
         colorActivity = currentActivity;
-        sortByInt = true;
+        sortByInt = false;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
-        background.setBackgroundResource(R.mipmap.zupa_view);
+        background.setBackgroundResource(R.mipmap.drugie_view);
+        TextView addonText = (TextView) findViewById(R.id.addonText);
+        addonText.setText("Dania podajemy z dodatkami według\n Państwa upodobań:\n-frytki, ryż ziemniaki z wody lub opiekane\n-warzywa blanszowane(brokuły, kalafior,\nmarchew) lub sałatka mieszana.");
 
-        //mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
+        // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
 
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -58,7 +62,7 @@ public class SoupMenu extends BaseMenu {
 
                 }
 
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
+                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt, false);
                 mListViewMenu.setAdapter(arrayAdapter);
                 mListViewMenu.setScrollingCacheEnabled(false);
             }

@@ -14,24 +14,23 @@ import com.michal_stasinski.distrada.R;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class SoupMenu extends BaseMenu {
+public class AlfornoMenu extends BaseMenu {
     private DatabaseReference myRef;
     private ArrayList<MenuItemProduct> menuItem;
     private int colorActivity;
     private boolean sortByInt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("zuppas");
-        currentActivity = 5;
+        myRef = database.getReference("alfornos");
+        currentActivity = 6;
         colorActivity = currentActivity;
         sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
-        background.setBackgroundResource(R.mipmap.zupa_view);
-
-        //mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
+        background.setBackgroundResource(R.mipmap.alforno_view);
 
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -58,7 +57,7 @@ public class SoupMenu extends BaseMenu {
 
                 }
 
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
+                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt, false);
                 mListViewMenu.setAdapter(arrayAdapter);
                 mListViewMenu.setScrollingCacheEnabled(false);
             }

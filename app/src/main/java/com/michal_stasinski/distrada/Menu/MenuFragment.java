@@ -132,7 +132,7 @@ Log.i("onCreateView","onCreateView fragment         ____________________________
                     pizzzaItem.add(pizza);
                 }
 
-                CustomListViewAdapter carrayAdapter = new CustomListViewAdapter(myView.getContext(), pizzzaItem, fragementColor, sortByInt);
+                CustomListViewAdapter carrayAdapter = new CustomListViewAdapter(myView.getContext(), pizzzaItem, fragementColor, sortByInt,false);
                 mListView.setAdapter(carrayAdapter);
                 mListView.setScrollingCacheEnabled(false);
 

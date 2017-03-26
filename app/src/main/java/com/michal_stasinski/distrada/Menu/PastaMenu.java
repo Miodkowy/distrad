@@ -24,16 +24,16 @@ public class PastaMenu extends BaseMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_salad_menu);
+        setContentView(R.layout.activity_pasta_menu);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("insalates");
-        currentActivity = 4;
+        myRef = database.getReference("pasta");
+        currentActivity = 7;
         colorActivity = currentActivity;
-        sortByInt = true;
+        sortByInt = false;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
-        background.setBackgroundResource(R.mipmap.salad_view);
+        background.setBackgroundResource(R.mipmap.pasta_view);
         TextView addonText = (TextView) findViewById(R.id.addonText);
-        addonText.setText("Sałatki komponowane na bazie sałaty lodowej\ni różnego rodzaju sałat włoskich(rucola insalatina,roszponka lub inne) podawane z sosem vinegrette lub jogurtowo - czosnkowym.");
+        addonText.setText("Makarony podajemy z parmezanem.");
 
         // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
 
@@ -62,7 +62,7 @@ public class PastaMenu extends BaseMenu {
 
                 }
 
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt);
+                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
                 mListViewMenu.setAdapter(arrayAdapter);
                 mListViewMenu.setScrollingCacheEnabled(false);
             }

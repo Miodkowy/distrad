@@ -68,7 +68,10 @@
         <activity android:name=".Menu.StartersMenu" />
         <activity android:name=".Menu.SaladMenu" />
         <activity android:name=".Menu.SoupMenu" />
-        <activity android:name=".Menu.PastaMenu"></activity>
+        <activity android:name=".Menu.PastaMenu" />
+        <activity android:name=".Menu.AlfornoMenu" />
+        <activity android:name=".Menu.MainCourseMenu" />
+        <activity android:name=".Menu.DrinksMenu"></activity>
     </application>
 
 </manifest>

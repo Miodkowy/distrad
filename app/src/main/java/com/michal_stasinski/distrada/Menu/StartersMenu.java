@@ -1,18 +1,18 @@
 package com.michal_stasinski.distrada.Menu;
 
-import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+        import android.os.Bundle;
+        import android.widget.LinearLayout;
+        import android.widget.RelativeLayout;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.michal_stasinski.distrada.R;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.DatabaseReference;
+        import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
+        import com.michal_stasinski.distrada.R;
 
-import java.util.ArrayList;
-import java.util.Map;
+        import java.util.ArrayList;
+        import java.util.Map;
 
 public class StartersMenu extends BaseMenu {
     private DatabaseReference myRef;
@@ -30,8 +30,6 @@ public class StartersMenu extends BaseMenu {
         sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.starters_view);
-
-        //mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
 
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -58,7 +56,7 @@ public class StartersMenu extends BaseMenu {
 
                 }
 
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt);
+                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
                 mListViewMenu.setAdapter(arrayAdapter);
                 mListViewMenu.setScrollingCacheEnabled(false);
             }

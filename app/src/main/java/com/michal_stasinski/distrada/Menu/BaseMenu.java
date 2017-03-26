@@ -37,6 +37,8 @@ public class BaseMenu extends AppCompatActivity {
     private Boolean choiceActivity;
     public int currentActivity = 2;
 
+    private Boolean loadActivity;
+
     public String[] largeTextArr = {
             "AKTUALNOŚCI",
             "KONTAKT",
@@ -44,8 +46,8 @@ public class BaseMenu extends AppCompatActivity {
             "STARTERY",
             "SAŁATKI",
             "ZUPY",
-            "MAKARONY",
             "MAKARONY ZAPIEKANE",
+            "MAKARONY",
             "DRUGIE DANIA",
             "NAPOJE i DESERY",
             "POWIADOMIENIA"
@@ -58,8 +60,8 @@ public class BaseMenu extends AppCompatActivity {
             "ANTIPASTI",
             "SALATE",
             "ZUPPE",
-            "PASTE",
             "PASTE AL FORNO",
+            "PASTE",
             "SECONDI PIATTI",
             "DOLCE E BEVANDE",
             "POWIADOMIENIA"
@@ -71,8 +73,8 @@ public class BaseMenu extends AppCompatActivity {
             R.color.color_STARTERY,
             R.color.color_SALATKI,
             R.color.color_ZUPY,
-            R.color.color_MAKARONY,
             R.color.color_ALFORNO,
+            R.color.color_MAKARONY,
             R.color.color_DRUGIE_DANIE,
             R.color.color_DESERY,
             R.color.color_DESERY
@@ -85,8 +87,8 @@ public class BaseMenu extends AppCompatActivity {
             R.mipmap.starter_icon,
             R.mipmap.salatka_icon,
             R.mipmap.zupa_icon,
-            R.mipmap.pasta_icon,
             R.mipmap.alforno_icon,
+            R.mipmap.pasta_icon,
             R.mipmap.drugie_danie_icon,
             R.mipmap.drink_icon,
             R.mipmap.drink_icon
@@ -104,7 +106,7 @@ public class BaseMenu extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        loadActivity = false;
         choiceActivity = false;
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
         mToolBar.setBackgroundResource(colorToolBar[currentActivity]);
@@ -127,7 +129,7 @@ public class BaseMenu extends AppCompatActivity {
                 imgBackground.setAlpha(slideOffset);
                 mListViewMenu.setAlpha(1 - slideOffset);
                 imageDrawer.setAlpha(slideOffset);
-               // mtoolBarLayout.setAlpha(1 - slideOffset);
+                // mtoolBarLayout.setAlpha(1 - slideOffset);
             }
 
             @Override
@@ -159,40 +161,6 @@ public class BaseMenu extends AppCompatActivity {
                     public void onDrawerClosed(View view) {
                         super.onDrawerClosed(view);
 
-                        if (currentActivity != position) {
-
-                            Intent intent = new Intent();
-                            currentActivity = position;
-
-                            if (position == 2) {
-                                intent.setClass(getBaseContext(), PizzaMenu.class);
-                            }
-                            if (position == 3) {
-                                intent.setClass(getBaseContext(), StartersMenu.class);
-                            }
-                            if (position == 4) {
-                                intent.setClass(getBaseContext(), SaladMenu.class);
-                            }
-                            if (position == 5) {
-                                intent.setClass(getBaseContext(), SoupMenu.class);
-                            }
-                            if (position == 6) {
-                                intent.setClass(getBaseContext(), PastaMenu.class);
-                            }
-                            if (position == 7) {
-                                intent.setClass(getBaseContext(), SoupMenu.class);
-                            }
-                            if (position == 9) {
-                                intent.setClass(getBaseContext(), SoupMenu.class);
-                            }
-                            if (position == 10) {
-                                intent.setClass(getBaseContext(), SoupMenu.class);
-                            }
-
-                            startActivity(intent);
-                            overridePendingTransition(R.animator.right_in, R.animator.left_out);
-                        }
-
                     }
 
 
@@ -200,13 +168,51 @@ public class BaseMenu extends AppCompatActivity {
                         super.onDrawerOpened(drawerView);
 
                     }
-                };
 
-                mDrawerLayout.addDrawerListener(mToggle);
+                };
                 mDrawerLayout.closeDrawer(GravityCompat.START, true);
+                if (currentActivity != position) {
+                        Log.i("TAG", "on END              " + position);
+                        Intent intent = new Intent();
+                        BounceListView v = (BounceListView) findViewById(R.id.left_drawer);
+                        v.setEnabled(false);
+
+                    if (position == 2) {
+                        intent.setClass(getBaseContext(), PizzaMenu.class);
+                    }
+                    if (position == 3) {
+                        intent.setClass(getBaseContext(), StartersMenu.class);
+                    }
+                    if (position == 4) {
+                        intent.setClass(getBaseContext(), SaladMenu.class);
+                    }
+                    if (position == 5) {
+                        intent.setClass(getBaseContext(), SoupMenu.class);
+                    }
+                    if (position == 6) {
+                        intent.setClass(getBaseContext(), AlfornoMenu.class);
+                    }
+                    if (position == 7) {
+                        intent.setClass(getBaseContext(), PastaMenu.class);
+                    }
+                    if (position == 8) {
+                        intent.setClass(getBaseContext(), MainCourseMenu.class);
+                    }
+                    if (position == 9) {
+                        intent.setClass(getBaseContext(), DrinksMenu.class);
+                    }
+                    if (position == 10) {
+                        intent.setClass(getBaseContext(), SoupMenu.class);
+                    }
+
+                    startActivity(intent);
+                    overridePendingTransition(R.animator.right_in, R.animator.left_out);
+                }
             }
 
         });
+
+
     }
 
     @Override

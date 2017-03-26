@@ -2,7 +2,6 @@ package com.michal_stasinski.distrada.Menu;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +26,11 @@ public class CustomListViewAdapter extends BaseAdapter {
     private Context mContext;
     private int color;
     private boolean sortOption;
-
-    public CustomListViewAdapter(Context context, ArrayList<MenuItemProduct> mListArray, int color, Boolean sort) {
-        Log.i("TAG", "CustomListViewAdapter____________________________________st");
+    private String[] txtArr = {"D", "D", "D", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N"};
+    private Boolean specialSign;
+    public CustomListViewAdapter(Context context, ArrayList<MenuItemProduct> mListArray, int color, Boolean sort  ,Boolean specialSign) {
         sortOption = sort;
-
+        this.specialSign = specialSign;
         Collections.sort(mListArray, new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {
@@ -94,8 +93,8 @@ public class CustomListViewAdapter extends BaseAdapter {
             viewHolder.colorShape = (TextView) view.findViewById(R.id.positionInList);
             view.setTag(viewHolder);
 
-        }else{
-            viewHolder = (ViewHolderItem)  view.getTag();
+        } else {
+            viewHolder = (ViewHolderItem) view.getTag();
         }
 
         /*
@@ -115,10 +114,13 @@ public class CustomListViewAdapter extends BaseAdapter {
 
         viewHolder.title.setText(arr.get(position).getNameProduct().toUpperCase());
         viewHolder.colorShape.setText(arr.get(position).getRank());
-        ((GradientDrawable)  viewHolder.colorShape.getBackground()).setColor(mContext.getResources().getColor(this.color));
+        if (this.specialSign) {
+            viewHolder.colorShape.setText(txtArr[position]);
+        }
+
+        ((GradientDrawable) viewHolder.colorShape.getBackground()).setColor(mContext.getResources().getColor(this.color));
         viewHolder.textDesc.setText(arr.get(position).getDesc().toUpperCase());
         viewHolder.textPrice.setText(arr.get(position).getPrice().toString().toUpperCase() + " ZŁ");
-
 
 
         return view;
