@@ -104,7 +104,7 @@ public class BaseMenu extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i("TAG", "START");
+
         choiceActivity = false;
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
         mToolBar.setBackgroundResource(colorToolBar[currentActivity]);
@@ -173,6 +173,22 @@ public class BaseMenu extends AppCompatActivity {
                             if (position == 4) {
                                 intent.setClass(getBaseContext(), SaladMenu.class);
                             }
+                            if (position == 5) {
+                                intent.setClass(getBaseContext(), SoupMenu.class);
+                            }
+                            if (position == 6) {
+                                intent.setClass(getBaseContext(), PastaMenu.class);
+                            }
+                            if (position == 7) {
+                                intent.setClass(getBaseContext(), SoupMenu.class);
+                            }
+                            if (position == 9) {
+                                intent.setClass(getBaseContext(), SoupMenu.class);
+                            }
+                            if (position == 10) {
+                                intent.setClass(getBaseContext(), SoupMenu.class);
+                            }
+
                             startActivity(intent);
                             overridePendingTransition(R.animator.right_in, R.animator.left_out);
                         }

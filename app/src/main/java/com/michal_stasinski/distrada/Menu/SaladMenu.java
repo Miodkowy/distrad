@@ -3,6 +3,7 @@ package com.michal_stasinski.distrada.Menu;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +24,7 @@ public class SaladMenu extends BaseMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_salad_menu);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("insalates");
         currentActivity = 4;
@@ -30,6 +32,8 @@ public class SaladMenu extends BaseMenu {
         sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.salad_view);
+        TextView addonText = (TextView) findViewById(R.id.addonText);
+        addonText.setText("Sałatki komponowane na bazie sałaty lodowej\ni różnego rodzaju sałat włoskich(rucola insalatina,roszponka lub inne) podawane z sosem vinegrette lub jogurtowo - czosnkowym.");
 
        // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
 

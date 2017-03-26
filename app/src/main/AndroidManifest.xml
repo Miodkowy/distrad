@@ -63,9 +63,12 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.RestaurantManager" />
         <activity android:name=".Activity.NotificationActivity" />
-        <activity android:name=".Menu.BaseMenu" />git
+        <activity android:name=".Menu.BaseMenu" />
+        git
         <activity android:name=".Menu.StartersMenu" />
-        <activity android:name=".Menu.SaladMenu"></activity>
+        <activity android:name=".Menu.SaladMenu" />
+        <activity android:name=".Menu.SoupMenu" />
+        <activity android:name=".Menu.PastaMenu"></activity>
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.michal_stasinski.distrada.Menu.SaladMenu">
+    tools:context="com.michal_stasinski.distrada.Menu.PastaMenu">
 
 
     <RelativeLayout
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/customshape"
-             
+
                 android:textAlignment="textEnd"
                 android:textColor="@color/colorWhite"
                 android:textSize="16sp" />

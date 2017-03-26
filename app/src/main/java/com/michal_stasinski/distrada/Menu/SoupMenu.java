@@ -14,7 +14,7 @@ import com.michal_stasinski.distrada.R;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class PizzaMenu extends BaseMenu {
+public class SoupMenu extends BaseMenu {
     private DatabaseReference myRef;
     private ArrayList<MenuItemProduct> menuItem;
     private int colorActivity;
@@ -22,22 +22,16 @@ public class PizzaMenu extends BaseMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pizza_menu);
 
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("pizzas");
-        currentActivity = 2;
+        myRef = database.getReference("zuppas");
+        currentActivity = 5;
         colorActivity = currentActivity;
         sortByInt = true;
-       RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
+        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.pizza_view);
 
+        //mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
 
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -74,5 +68,7 @@ public class PizzaMenu extends BaseMenu {
 
             }
         });
+
     }
+
 }
