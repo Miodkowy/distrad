@@ -36,6 +36,7 @@ public class BaseMenu extends AppCompatActivity {
     private int color;
     private Boolean choiceActivity;
     public int currentActivity = 2;
+    public int choicetActivity =2;
 
     private Boolean loadActivity;
 
@@ -120,21 +121,63 @@ public class BaseMenu extends AppCompatActivity {
         content = (LinearLayout) findViewById(R.id.content_frame);
         imgBackground = (ImageView) findViewById(R.id.pizza_element_back);
         imgBackground.setAlpha(0.f);
-        mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
+        //mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
         TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
         toolBarTitle.setText((largeTextArr[currentActivity]).toString());
+
+
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close) {
             @Override
             public void onDrawerSlide(View view, float slideOffset) {
                 imgBackground.setAlpha(slideOffset);
-                mListViewMenu.setAlpha(1 - slideOffset);
+                // mListViewMenu.setAlpha(1 - slideOffset);
+                content.setAlpha(1 - slideOffset);
                 imageDrawer.setAlpha(slideOffset);
                 // mtoolBarLayout.setAlpha(1 - slideOffset);
             }
 
-            @Override
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
+
+                if (currentActivity != choicetActivity) {
+                    mDrawerLayout.setEnabled(false);
+                    Intent intent = new Intent();
+                    if (choicetActivity == 1) {
+                        intent.setClass(getBaseContext(), ContactMenu.class);
+                    }
+                    if (choicetActivity == 2) {
+                        intent.setClass(getBaseContext(), PizzaMenu.class);
+                    }
+                    if (choicetActivity == 3) {
+                        intent.setClass(getBaseContext(), StartersMenu.class);
+                    }
+                    if (choicetActivity == 4) {
+                        intent.setClass(getBaseContext(), SaladMenu.class);
+                    }
+                    if (choicetActivity == 5) {
+                        intent.setClass(getBaseContext(), SoupMenu.class);
+                    }
+                    if (choicetActivity == 6) {
+                        intent.setClass(getBaseContext(), AlfornoMenu.class);
+                    }
+                    if (choicetActivity == 7) {
+                        intent.setClass(getBaseContext(), PastaMenu.class);
+                    }
+                    if (choicetActivity == 8) {
+                        intent.setClass(getBaseContext(), MainCourseMenu.class);
+                    }
+                    if (choicetActivity == 9) {
+                        intent.setClass(getBaseContext(), DrinksMenu.class);
+                    }
+                    if (choicetActivity == 10) {
+                        intent.setClass(getBaseContext(), SoupMenu.class);
+                    }
+
+                    startActivity(intent);
+                    overridePendingTransition(R.animator.right_in, R.animator.left_out);
+                }
+
+
             }
         };
 
@@ -155,59 +198,15 @@ public class BaseMenu extends AppCompatActivity {
         mListViewDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, final int position, long arg) {
-
-                mToggle = new ActionBarDrawerToggle(BaseMenu.this, mDrawerLayout, R.string.open, R.string.close) {
-
-                    public void onDrawerClosed(View view) {
-                        super.onDrawerClosed(view);
-
-                    }
-
-
-                    public void onDrawerOpened(View drawerView) {
-                        super.onDrawerOpened(drawerView);
-
-                    }
-
-                };
-                mDrawerLayout.closeDrawer(GravityCompat.START, true);
-                if (currentActivity != position) {
-                        Log.i("TAG", "on END              " + position);
-                        Intent intent = new Intent();
-                        BounceListView v = (BounceListView) findViewById(R.id.left_drawer);
-                        v.setEnabled(false);
-
-                    if (position == 2) {
-                        intent.setClass(getBaseContext(), PizzaMenu.class);
-                    }
-                    if (position == 3) {
-                        intent.setClass(getBaseContext(), StartersMenu.class);
-                    }
-                    if (position == 4) {
-                        intent.setClass(getBaseContext(), SaladMenu.class);
-                    }
-                    if (position == 5) {
-                        intent.setClass(getBaseContext(), SoupMenu.class);
-                    }
-                    if (position == 6) {
-                        intent.setClass(getBaseContext(), AlfornoMenu.class);
-                    }
-                    if (position == 7) {
-                        intent.setClass(getBaseContext(), PastaMenu.class);
-                    }
-                    if (position == 8) {
-                        intent.setClass(getBaseContext(), MainCourseMenu.class);
-                    }
-                    if (position == 9) {
-                        intent.setClass(getBaseContext(), DrinksMenu.class);
-                    }
-                    if (position == 10) {
-                        intent.setClass(getBaseContext(), SoupMenu.class);
-                    }
-
-                    startActivity(intent);
-                    overridePendingTransition(R.animator.right_in, R.animator.left_out);
+                choicetActivity = position;
+                if (currentActivity != choicetActivity) {
+                    Log.i("TTT","GGGGGGGGGGGGGGGGGGGGGGGGG");
+                    BounceListView v = (BounceListView) findViewById(R.id.left_drawer);
+                    v.setEnabled(false);
+                    mDrawerLayout.setEnabled(false);
                 }
+                mDrawerLayout.closeDrawer(GravityCompat.START, true);
+
             }
 
         });

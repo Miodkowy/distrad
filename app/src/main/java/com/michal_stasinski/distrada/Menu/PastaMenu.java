@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michal_stasinski.distrada.R;
+import com.michal_stasinski.distrada.Utils.BounceListView;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -26,6 +27,8 @@ public class PastaMenu extends BaseMenu {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pasta_menu);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
         myRef = database.getReference("pasta");
         currentActivity = 7;
         colorActivity = currentActivity;
@@ -34,7 +37,7 @@ public class PastaMenu extends BaseMenu {
         background.setBackgroundResource(R.mipmap.pasta_view);
         TextView addonText = (TextView) findViewById(R.id.addonText);
         addonText.setText("Makarony podajemy z parmezanem.");
-
+        mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
         // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
 
 

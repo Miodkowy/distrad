@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michal_stasinski.distrada.R;
+import com.michal_stasinski.distrada.Utils.BounceListView;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class SoupMenu extends BaseMenu {
         background.setBackgroundResource(R.mipmap.zupa_view);
 
         //mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
-
+        mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

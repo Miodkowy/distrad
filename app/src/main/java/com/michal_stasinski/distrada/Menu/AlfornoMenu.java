@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michal_stasinski.distrada.R;
+import com.michal_stasinski.distrada.Utils.BounceListView;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -29,10 +30,11 @@ public class AlfornoMenu extends BaseMenu {
         currentActivity = 6;
         colorActivity = currentActivity;
         sortByInt = true;
+        
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.alforno_view);
 
-
+        mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

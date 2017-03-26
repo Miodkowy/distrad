@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.michal_stasinski.distrada.R;
+import com.michal_stasinski.distrada.Utils.BounceListView;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class SaladMenu extends BaseMenu {
         background.setBackgroundResource(R.mipmap.salad_view);
         TextView addonText = (TextView) findViewById(R.id.addonText);
         addonText.setText("Sałatki komponowane na bazie sałaty lodowej\ni różnego rodzaju sałat włoskich(rucola insalatina,roszponka lub inne) podawane z sosem vinegrette lub jogurtowo - czosnkowym.");
-
+        mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
        // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
 
 
