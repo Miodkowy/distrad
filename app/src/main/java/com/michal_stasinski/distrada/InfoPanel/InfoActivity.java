@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.michal_stasinski.distrada.R;
+import com.michal_stasinski.distrada.RestaurantManager.PasswordActivity;
 import com.michal_stasinski.distrada.RestaurantManager.RestaurantManager;
 
 public class InfoActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class InfoActivity extends AppCompatActivity {
             //On click function
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(InfoActivity.this, RestaurantManager.class);
+                intent.setClass(InfoActivity.this, PasswordActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.animator.right_in,R.animator.left_out);
             }
