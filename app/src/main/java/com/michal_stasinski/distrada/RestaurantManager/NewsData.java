@@ -1,15 +1,15 @@
-package com.michal_stasinski.distrada.Blog.BlogPost;
+package com.michal_stasinski.distrada.RestaurantManager;
 
 /**
  * Created by win8 on 04.01.2017.
  */
 
-public class BlogData {
+public class NewsData {
     private String title ,news, imageUrl, date;
 
-    public BlogData(){}
+    public NewsData(){}
 
-    public BlogData(String title, String news, String imageUrl, String date) {
+    public NewsData(String title, String news, String imageUrl, String date) {
         this.title = title;
         this.news = news;
         this.date = date;

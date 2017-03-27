@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.Blog.BlogPost;
+package com.michal_stasinski.distrada.RestaurantManager;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.text.format.Time;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,9 +22,8 @@ import com.michal_stasinski.distrada.R;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
-public class PostActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity {
 
 
     private ImageButton mSecetedImage;

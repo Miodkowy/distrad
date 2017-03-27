@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.Activity;
+package com.michal_stasinski.distrada.RestaurantManager;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

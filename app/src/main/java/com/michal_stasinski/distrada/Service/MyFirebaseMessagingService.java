@@ -8,8 +8,8 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.michal_stasinski.distrada.Activity.MainActivity;
 import com.michal_stasinski.distrada.App.Config;
+import com.michal_stasinski.distrada.Menu.MenuActivity.BaseMenu;
 import com.michal_stasinski.distrada.Utils.NotificationUtils;
 
 import org.json.JSONException;
@@ -99,7 +99,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 notificationUtils.playNotificationSound();
             } else {
                 // app is in background, show the notification in notification tray
-                Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent resultIntent = new Intent(getApplicationContext(),BaseMenu.class);
                 resultIntent.putExtra("message", message);
 
                 // check for image attachment

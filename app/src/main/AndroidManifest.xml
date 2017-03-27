@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
@@ -56,13 +61,13 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
-        <activity android:name=".Blog.BlogPost.PostActivity" />
+        <activity android:name=".RestaurantManager.NewsActivity" />
         <activity
             android:name=".InfoPanel.InfoActivity"
             android:label="@string/title_activity_info"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.RestaurantManager" />
-        <activity android:name=".Activity.NotificationActivity" />
+        <activity android:name=".RestaurantManager.RestaurantManager" />
+        <activity android:name=".RestaurantManager.NotificationActivity" />
         <activity android:name=".Menu.MenuActivity.BaseMenu" />
         git
         <activity android:name=".Menu.MenuActivity.StartersMenu" />
@@ -74,7 +79,11 @@
         <activity android:name=".Menu.MenuActivity.DrinksMenu" />
         <activity android:name=".Menu.MenuActivity.ContactMenu" />
         <activity android:name=".Menu.News" />
-        <activity android:name=".Menu.MenuActivity.NewsMenu"></activity>
+        <activity android:name=".Menu.MenuActivity.NewsMenu" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity android:name=".RestaurantManager.PasswordActivity"></activity>
     </application>
 
 </manifest>

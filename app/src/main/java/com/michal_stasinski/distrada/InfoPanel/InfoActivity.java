@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.michal_stasinski.distrada.R;
-import com.michal_stasinski.distrada.Activity.RestaurantManager;
+import com.michal_stasinski.distrada.RestaurantManager.RestaurantManager;
 
 public class InfoActivity extends AppCompatActivity {
 

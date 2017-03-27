@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.michal_stasinski.distrada.Activity.NotificationActivity"
+    tools:context="com.michal_stasinski.distrada.RestaurantManager.NotificationActivity"
     android:weightSum="1">
 
     <TextView

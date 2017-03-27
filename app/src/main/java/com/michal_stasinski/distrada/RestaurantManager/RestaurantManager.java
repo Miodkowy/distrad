@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.Activity;
+package com.michal_stasinski.distrada.RestaurantManager;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.michal_stasinski.distrada.Blog.BlogPost.PostActivity;
 import com.michal_stasinski.distrada.R;
 
 public class RestaurantManager extends AppCompatActivity {
@@ -36,7 +35,7 @@ public class RestaurantManager extends AppCompatActivity {
             //On click function
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(RestaurantManager.this, PostActivity.class);
+                intent.setClass(RestaurantManager.this, NewsActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.animator.right_in,R.animator.left_out);
             }

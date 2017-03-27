@@ -112,7 +112,6 @@ public class BaseMenu extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
 
-                Log.e("TAG", "onReceive  maina________________________________________ ");
                 // checking for type intent filter
                 if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
 
@@ -137,6 +136,10 @@ public class BaseMenu extends AppCompatActivity {
         imageDrawer = (ImageView) findViewById(R.id.pizza_element_back);
         setSupportActionBar(mToolBar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        BounceListView v = (BounceListView) findViewById(R.id.left_drawer);
+        v.setEnabled(true);
+        mDrawerLayout.setEnabled(true);
         // mDrawerLayout.setDrawerShadow(R.drawable.custom_drawer_shape, Gravity.START);
         //mDrawerLayout.openDrawer(GravityCompat.START,true);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);
@@ -241,23 +244,23 @@ public class BaseMenu extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-       int id = item.getItemId();
-        Log.i("sdasdasd","ffffff"+id);
+        int id = item.getItemId();
+        Log.i("sdasdasd", "ffffff" + id);
         if (id == R.id.right_menu) {
             Intent intent = new Intent();
             intent.setClass(getBaseContext(), InfoActivity.class);
             startActivity(intent);
             overridePendingTransition(R.animator.right_in, R.animator.left_out);
             return true;
-        }else{
-            mDrawerLayout.openDrawer(GravityCompat.START,true);
+        } else {
+            mDrawerLayout.openDrawer(GravityCompat.START, true);
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main,menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 }

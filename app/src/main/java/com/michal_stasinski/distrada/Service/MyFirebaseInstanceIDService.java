@@ -31,8 +31,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     }
 
     private void sendRegistrationToServer(final String token) {
-        // sending gcm token to server
-
         Log.e(TAG, "__________________________________________________________sendRegistrationToServer(: " + token);
     }
 
