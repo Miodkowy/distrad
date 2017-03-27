@@ -1,39 +1,41 @@
-package com.michal_stasinski.distrada.Menu;
+package com.michal_stasinski.distrada.Menu.MenuActivity;
 
-        import android.os.Bundle;
-        import android.widget.LinearLayout;
-        import android.widget.RelativeLayout;
+import android.os.Bundle;
+import android.widget.RelativeLayout;
 
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-        import com.michal_stasinski.distrada.R;
-        import com.michal_stasinski.distrada.Utils.BounceListView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.michal_stasinski.distrada.Menu.Adapters.CustomListViewAdapter;
+import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
+import com.michal_stasinski.distrada.R;
+import com.michal_stasinski.distrada.Utils.BounceListView;
 
-        import java.util.ArrayList;
-        import java.util.Map;
+import java.util.ArrayList;
+import java.util.Map;
 
-public class StartersMenu extends BaseMenu {
+public class AlfornoMenu extends BaseMenu {
     private DatabaseReference myRef;
     private ArrayList<MenuItemProduct> menuItem;
     private int colorActivity;
     private boolean sortByInt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("starters");
-        currentActivity = 3;
-        choicetActivity = 3;
+        myRef = database.getReference("alfornos");
+        currentActivity = 6;
         colorActivity = currentActivity;
         sortByInt = true;
+        
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
-        background.setBackgroundResource(R.mipmap.starters_view);
-        mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
+        background.setBackgroundResource(R.mipmap.alforno_view);
 
+        mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -58,7 +60,7 @@ public class StartersMenu extends BaseMenu {
 
                 }
 
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
+                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt, false);
                 mListViewMenu.setAdapter(arrayAdapter);
                 mListViewMenu.setScrollingCacheEnabled(false);
             }

@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.Menu;
+package com.michal_stasinski.distrada.Menu.MenuActivity;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.michal_stasinski.distrada.Menu.Adapters.CustomListViewAdapter;
+import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 

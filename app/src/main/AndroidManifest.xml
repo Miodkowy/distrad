@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Menu.PizzaMenu"
+            android:name=".Menu.MenuActivity.PizzaMenu"
             android:label="Distrada"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -63,18 +63,18 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".Activity.RestaurantManager" />
         <activity android:name=".Activity.NotificationActivity" />
-        <activity android:name=".Menu.BaseMenu" />
+        <activity android:name=".Menu.MenuActivity.BaseMenu" />
         git
-        <activity android:name=".Menu.StartersMenu" />
-        <activity android:name=".Menu.SaladMenu" />
-        <activity android:name=".Menu.SoupMenu" />
-        <activity android:name=".Menu.PastaMenu" />
-        <activity android:name=".Menu.AlfornoMenu" />
-        <activity android:name=".Menu.MainCourseMenu" />
-        <activity android:name=".Menu.DrinksMenu" />
-        <activity android:name=".Menu.ContactMenu" />
+        <activity android:name=".Menu.MenuActivity.StartersMenu" />
+        <activity android:name=".Menu.MenuActivity.SaladMenu" />
+        <activity android:name=".Menu.MenuActivity.SoupMenu" />
+        <activity android:name=".Menu.MenuActivity.PastaMenu" />
+        <activity android:name=".Menu.MenuActivity.AlfornoMenu" />
+        <activity android:name=".Menu.MenuActivity.MainCourseMenu" />
+        <activity android:name=".Menu.MenuActivity.DrinksMenu" />
+        <activity android:name=".Menu.MenuActivity.ContactMenu" />
         <activity android:name=".Menu.News" />
-        <activity android:name=".Menu.NewsMenu"></activity>
+        <activity android:name=".Menu.MenuActivity.NewsMenu"></activity>
     </application>
 
 </manifest>

@@ -1,7 +1,6 @@
-package com.michal_stasinski.distrada.Menu;
+package com.michal_stasinski.distrada.Menu.Adapters;
 
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.michal_stasinski.distrada.Menu.Models.NewsItem;
 import com.michal_stasinski.distrada.R;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,40 +31,23 @@ public class CustomNewsListViewAdapter extends BaseAdapter {
     private int color;
     private boolean sortOption;
     private Boolean specialSign;
-    public CustomNewsListViewAdapter(Context context, ArrayList<NewsItem> mListArray, int color, Boolean sort) {
-        sortOption = sort;
+    public CustomNewsListViewAdapter(Context context, ArrayList<NewsItem> mListArray, int color) {
         this.specialSign = specialSign;
         Collections.sort(mListArray, Collections.reverseOrder(new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {
 
-                String s1 = (((NewsItem) o2).getRank());
-                String s2 = (((NewsItem) o2).getRank());
 
-                if (sortOption) {
-                    int id1 = Integer.parseInt(((NewsItem) o1).getRank());
-                    int id2 = Integer.parseInt(((NewsItem) o2).getRank());
-
-                    if (id1 > id2) {
-                        return 1;
-                    }
-                    if (id1 < id2) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-
-                } else {
+                    String s1 = (((NewsItem) o1).getRank());
+                    String s2 = (((NewsItem) o2).getRank());
                     return s1.compareToIgnoreCase(s2);
-                }
-                //  return s1.compareToIgnoreCase(s2);
-                //return Integer.valueOf(id1).compareTo(Integer.valueOf(id2));
+
+
             }
         }));
 
 
         this.arr = mListArray;
-        Log.i("xxxx","_______________________________ddd____"+  this.arr);
         this.mContext = context;
         this.color = color;
     }

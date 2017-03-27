@@ -30,7 +30,7 @@
             app:layout_marginRightPercent="5%"
             app:layout_marginTopPercent="5%" />
 
-    <com.michal_stasinski.distrada.Menu.CustomTextView
+    <com.michal_stasinski.distrada.Utils.CustomTextView
         android:id="@+id/textContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

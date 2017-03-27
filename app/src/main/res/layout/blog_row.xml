@@ -26,7 +26,7 @@
             android:padding="10dp"
             android:src="@mipmap/add_btn" />
 
-        <com.michal_stasinski.distrada.Menu.CustomTextView
+        <com.michal_stasinski.distrada.Utils.CustomTextView
             android:id="@+id/dataText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             android:textColor="@color/cardview_light_background"
             android:textSize="12dp" />
 
-        <com.michal_stasinski.distrada.Menu.CustomTextView
+        <com.michal_stasinski.distrada.Utils.CustomTextView
             android:id="@+id/blog_post_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             android:textColor="@color/cardview_light_background"
             android:textSize="18dp" />
 
-        <com.michal_stasinski.distrada.Menu.CustomTextView
+        <com.michal_stasinski.distrada.Utils.CustomTextView
             android:id="@+id/blog_post_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

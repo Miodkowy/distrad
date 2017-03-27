@@ -1,7 +1,6 @@
-package com.michal_stasinski.distrada.Menu;
+package com.michal_stasinski.distrada.Menu.MenuActivity;
 
 import android.os.Bundle;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -10,13 +9,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.michal_stasinski.distrada.Menu.Adapters.CustomListViewAdapter;
+import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class MainCourseMenu extends BaseMenu {
+public class SaladMenu extends BaseMenu {
     private DatabaseReference myRef;
     private ArrayList<MenuItemProduct> menuItem;
     private int colorActivity;
@@ -25,20 +26,20 @@ public class MainCourseMenu extends BaseMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pasta_menu);
+        setContentView(R.layout.activity_salad_menu);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("secondis");
-        currentActivity = 8;
-        choicetActivity = 8;
+        myRef = database.getReference("insalates");
+        currentActivity = 4;
+        choicetActivity = 4;
         colorActivity = currentActivity;
-        sortByInt = false;
+        sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
-        background.setBackgroundResource(R.mipmap.drugie_view);
+        background.setBackgroundResource(R.mipmap.salad_view);
         TextView addonText = (TextView) findViewById(R.id.addonText);
-        addonText.setText("Dania podajemy z dodatkami według\n Państwa upodobań:\n-frytki, ryż ziemniaki z wody lub opiekane\n-warzywa blanszowane(brokuły, kalafior,\nmarchew) lub sałatka mieszana.");
-
-        // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
+        addonText.setText("Sałatki komponowane na bazie sałaty lodowej\ni różnego rodzaju sałat włoskich(rucola insalatina,roszponka lub inne) podawane z sosem vinegrette lub jogurtowo - czosnkowym.");
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
+       // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
+
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -64,7 +65,7 @@ public class MainCourseMenu extends BaseMenu {
 
                 }
 
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt, false);
+                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
                 mListViewMenu.setAdapter(arrayAdapter);
                 mListViewMenu.setScrollingCacheEnabled(false);
             }

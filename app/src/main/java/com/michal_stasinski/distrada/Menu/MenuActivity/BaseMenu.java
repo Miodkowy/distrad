@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.Menu;
+package com.michal_stasinski.distrada.Menu.MenuActivity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.michal_stasinski.distrada.App.Config;
-import com.michal_stasinski.distrada.CustomDrawerAdapter;
+import com.michal_stasinski.distrada.Menu.Adapters.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.InfoPanel.InfoActivity;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;

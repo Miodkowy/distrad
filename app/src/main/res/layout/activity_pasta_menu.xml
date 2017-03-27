@@ -4,7 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.michal_stasinski.distrada.Menu.PastaMenu">
+    tools:context="com.michal_stasinski.distrada.Menu.MenuActivity.PastaMenu">
 
 
     <RelativeLayout
@@ -35,7 +35,7 @@
 
             android:orientation="vertical">
 
-            <com.michal_stasinski.distrada.Menu.CustomTextView
+            <com.michal_stasinski.distrada.Utils.CustomTextView
                 android:id="@+id/addonText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

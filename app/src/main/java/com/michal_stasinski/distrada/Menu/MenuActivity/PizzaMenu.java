@@ -1,22 +1,22 @@
-package com.michal_stasinski.distrada.Menu;
+package com.michal_stasinski.distrada.Menu.MenuActivity;
 
 import android.os.Bundle;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.michal_stasinski.distrada.Menu.Adapters.CustomListViewAdapter;
+import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class SaladMenu extends BaseMenu {
+public class PizzaMenu extends BaseMenu {
     private DatabaseReference myRef;
     private ArrayList<MenuItemProduct> menuItem;
     private int colorActivity;
@@ -25,19 +25,23 @@ public class SaladMenu extends BaseMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_salad_menu);
+        setContentView(R.layout.activity_pizza_menu);
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("insalates");
-        currentActivity = 4;
-        choicetActivity = 4;
+        myRef = database.getReference("pizzas");
+        currentActivity = 2;
+        choicetActivity = 2;
         colorActivity = currentActivity;
         sortByInt = true;
-        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
-        background.setBackgroundResource(R.mipmap.salad_view);
-        TextView addonText = (TextView) findViewById(R.id.addonText);
-        addonText.setText("Sałatki komponowane na bazie sałaty lodowej\ni różnego rodzaju sałat włoskich(rucola insalatina,roszponka lub inne) podawane z sosem vinegrette lub jogurtowo - czosnkowym.");
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
-       // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
+        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
+        background.setBackgroundResource(R.mipmap.pizza_view);
 
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -64,7 +68,7 @@ public class SaladMenu extends BaseMenu {
 
                 }
 
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
+                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt, false);
                 mListViewMenu.setAdapter(arrayAdapter);
                 mListViewMenu.setScrollingCacheEnabled(false);
             }
@@ -74,7 +78,5 @@ public class SaladMenu extends BaseMenu {
 
             }
         });
-
     }
-
 }

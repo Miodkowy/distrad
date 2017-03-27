@@ -1,46 +1,39 @@
-package com.michal_stasinski.distrada.Menu;
+package com.michal_stasinski.distrada.Menu.MenuActivity;
 
-import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+        import android.os.Bundle;
+        import android.widget.RelativeLayout;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.michal_stasinski.distrada.R;
-import com.michal_stasinski.distrada.Utils.BounceListView;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.DatabaseReference;
+        import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
+        import com.michal_stasinski.distrada.Menu.Adapters.CustomListViewAdapter;
+        import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
+        import com.michal_stasinski.distrada.R;
+        import com.michal_stasinski.distrada.Utils.BounceListView;
 
-import java.util.ArrayList;
-import java.util.Map;
+        import java.util.ArrayList;
+        import java.util.Map;
 
-public class PastaMenu extends BaseMenu {
+public class StartersMenu extends BaseMenu {
     private DatabaseReference myRef;
     private ArrayList<MenuItemProduct> menuItem;
     private int colorActivity;
     private boolean sortByInt;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pasta_menu);
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-
-        myRef = database.getReference("pasta");
-        currentActivity = 7;
-        choicetActivity = 7;
+        myRef = database.getReference("starters");
+        currentActivity = 3;
+        choicetActivity = 3;
         colorActivity = currentActivity;
-        sortByInt = false;
+        sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
-        background.setBackgroundResource(R.mipmap.pasta_view);
-        TextView addonText = (TextView) findViewById(R.id.addonText);
-        addonText.setText("Makarony podajemy z parmezanem.");
+        background.setBackgroundResource(R.mipmap.starters_view);
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
-        // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
-
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

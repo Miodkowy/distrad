@@ -23,12 +23,12 @@ import android.widget.TextView;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.michal_stasinski.distrada.Blog.BlogFragment;
 import com.michal_stasinski.distrada.Contact.ContactFragment;
-import com.michal_stasinski.distrada.CustomDrawerAdapter;
+import com.michal_stasinski.distrada.Menu.Adapters.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.InfoPanel.InfoActivity;
-import com.michal_stasinski.distrada.Menu.PizzaMenu;
+import com.michal_stasinski.distrada.Menu.MenuActivity.PizzaMenu;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.App.Config;
-import com.michal_stasinski.distrada.Menu.MenuFragment;
+import com.michal_stasinski.distrada.Menu.MenuActivity.MenuFragment;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 
 public class MainActivity extends AppCompatActivity {

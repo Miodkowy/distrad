@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.Menu;
+package com.michal_stasinski.distrada.Utils;
 
 import android.content.Context;
 import android.graphics.Typeface;

@@ -1,4 +1,4 @@
-package com.michal_stasinski.distrada.Menu;
+package com.michal_stasinski.distrada.Menu.Adapters;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
 import com.michal_stasinski.distrada.R;
 
 import java.util.ArrayList;
@@ -28,15 +29,15 @@ public class CustomListViewAdapter extends BaseAdapter {
     private boolean sortOption;
     private String[] txtArr = {"D", "D", "D", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N"};
     private Boolean specialSign;
-    public CustomListViewAdapter(Context context, ArrayList<MenuItemProduct> mListArray, int color, Boolean sort  ,Boolean specialSign) {
+
+    public CustomListViewAdapter(Context context, ArrayList<MenuItemProduct> mListArray, int color, Boolean sort, Boolean specialSign) {
         sortOption = sort;
         this.specialSign = specialSign;
         Collections.sort(mListArray, new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {
 
-                String s1 = (((MenuItemProduct) o2).getRank());
-                String s2 = (((MenuItemProduct) o2).getRank());
+
                 if (sortOption) {
                     int id1 = Integer.parseInt(((MenuItemProduct) o1).getRank());
                     int id2 = Integer.parseInt(((MenuItemProduct) o2).getRank());
@@ -51,10 +52,10 @@ public class CustomListViewAdapter extends BaseAdapter {
                     }
 
                 } else {
+                    String s1 = (((MenuItemProduct) o1).getRank());
+                    String s2 = (((MenuItemProduct) o2).getRank());
                     return s1.compareToIgnoreCase(s2);
                 }
-                //  return s1.compareToIgnoreCase(s2);
-                //return Integer.valueOf(id1).compareTo(Integer.valueOf(id2));
             }
         });
 
@@ -97,20 +98,6 @@ public class CustomListViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolderItem) view.getTag();
         }
 
-        /*
-
-        TextView title = (TextView) view.findViewById(R.id.titleItem);
-        TextView textDesc = (TextView) view.findViewById(R.id.txtDesc);
-        TextView textPrice = (TextView) view.findViewById(R.id.txtPrice);
-        TextView colorShape = (TextView) view.findViewById(R.id.positionInList);
-
-        colorShape.setText(arr.get(position).getRank());
-
-        ((GradientDrawable) colorShape.getBackground()).setColor(mContext.getResources().getColor(this.color));
-        title.setText(arr.get(position).getNameProduct().toUpperCase());
-        textDesc.setText(arr.get(position).getDesc().toUpperCase());
-        textPrice.setText(arr.get(position).getPrice().toString().toUpperCase() + " ZŁ");
-        */
 
         viewHolder.title.setText(arr.get(position).getNameProduct().toUpperCase());
         viewHolder.colorShape.setText(arr.get(position).getRank());
