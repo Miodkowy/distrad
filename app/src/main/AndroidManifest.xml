@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Menu.MenuActivity.PizzaMenu"
+            android:name=".Menu.MenuActivity.NewsMenu"
             android:label="Distrada"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -78,11 +78,8 @@
         <activity android:name=".Menu.MenuActivity.MainCourseMenu" />
         <activity android:name=".Menu.MenuActivity.DrinksMenu" />
         <activity android:name=".Menu.MenuActivity.ContactMenu" />
-        <activity android:name=".Menu.News" />
-        <activity android:name=".Menu.MenuActivity.NewsMenu" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
+        <activity android:name=".Menu.MenuActivity.PizzaMenu" />
+
         <activity android:name=".RestaurantManager.PasswordActivity"></activity>
     </application>
 

@@ -8,10 +8,9 @@
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/main_frame_pizza"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/actionbar_frame"
@@ -33,7 +32,8 @@
             android:layout_alignParentStart="true"
             android:layout_below="@id/actionbar_frame"
 
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <com.michal_stasinski.distrada.Utils.CustomTextView
                 android:layout_width="match_parent"
@@ -45,22 +45,32 @@ ser Mozzarella i sos pomidorowy"
                 android:textColor="@color/colorWhite"
                 android:textSize="16sp" />
 
+
             <com.michal_stasinski.distrada.Utils.BounceListView
                 android:id="@+id/mListView_BaseMenu"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="450dp"
+                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:layout_centerVertical="true"
-                android:layout_marginBottom="50dp"
                 android:animationCache="false"
                 android:divider="@android:color/darker_gray"
                 android:dividerHeight="0.05sp"
-                android:scrollingCache="false" />
+                android:scrollingCache="false"
+               />
 
+            <Button
+                android:id="@+id/addon_button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/color_PIZZA"
+                android:text="Dodatki"
+                />
 
         </LinearLayout>
+
+
+
         <ImageView
             android:id="@+id/pizza_element_back"
             android:layout_width="match_parent"
@@ -102,8 +112,10 @@ ser Mozzarella i sos pomidorowy"
             android:choiceMode="singleChoice"
             android:divider="@drawable/custom_divaider"
             android:dividerHeight="1dp"
-            android:scrollbarSize="16dp"></com.michal_stasinski.distrada.Utils.BounceListView>
-    </RelativeLayout>
+            android:scrollbarSize="16dp">
 
+        </com.michal_stasinski.distrada.Utils.BounceListView>
+
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

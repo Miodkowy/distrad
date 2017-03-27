@@ -6,19 +6,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.michal_stasinski.distrada.RestaurantManager.RestaurantManager">
-
+    <TextView
+        android:id="@+id/text_device_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="DOSTĘPNE OPCJE"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        />
     <Button
         android:id="@+id/create_notification"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
         android:text="Wyślij powiadomienie" />
 
     <Button
         android:id="@+id/create_post"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:text="Utwórz post" />
-
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Wróć" />
 
 </LinearLayout>

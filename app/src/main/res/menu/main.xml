@@ -3,13 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/right_menu"
+        android:title="Add"
+        android:icon="@mipmap/ic_more_vert_white_48dp"
+        app:showAsAction="always" />
 
-    <item
-        android:id="@+id/right_menu"
-        android:orderInCategory="100"
-        android:title="Setting"
-        android:icon="@android:drawable/ic_menu_info_details"
-        app:showAsAction="ifRoom"
-        />
 
 </menu>
