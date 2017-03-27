@@ -38,7 +38,7 @@
             <com.michal_stasinski.distrada.Menu.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/customshape"
+                android:background="@drawable/customshape_black"
                 android:text="W skład każdej pizzy(32 cm) wchodzą:\n
 ser Mozzarella i sos pomidorowy"
                 android:textAlignment="textEnd"

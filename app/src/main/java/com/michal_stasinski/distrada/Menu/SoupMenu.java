@@ -27,6 +27,7 @@ public class SoupMenu extends BaseMenu {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("zuppas");
         currentActivity = 5;
+        choicetActivity = 5;
         colorActivity = currentActivity;
         sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);

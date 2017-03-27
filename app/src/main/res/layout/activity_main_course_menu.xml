@@ -39,7 +39,7 @@
                 android:id="@+id/addonText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/customshape"
+                android:background="@drawable/customshape_black"
 
                 android:textAlignment="textEnd"
                 android:textColor="@color/colorWhite"

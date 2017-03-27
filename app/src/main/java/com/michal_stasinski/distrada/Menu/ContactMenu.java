@@ -54,6 +54,7 @@ public class ContactMenu extends BaseMenu implements OnMapReadyCallback {
         setContentView(R.layout.activity_contact_menu);
 
         currentActivity = 1;
+        choicetActivity = 1;
         colorActivity = currentActivity;
         sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
@@ -74,7 +75,7 @@ public class ContactMenu extends BaseMenu implements OnMapReadyCallback {
         button_call.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:501049315"));
+                callIntent.setData(Uri.parse("tel:48586603395"));
 
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;

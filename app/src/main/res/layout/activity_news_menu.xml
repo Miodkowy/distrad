@@ -32,18 +32,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/actionbar_frame"
-
             android:orientation="vertical">
-
-            <com.michal_stasinski.distrada.Menu.CustomTextView
-                android:id="@+id/addonText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/customshape_black"
-             
-                android:textAlignment="textEnd"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp" />
 
             <com.michal_stasinski.distrada.Utils.BounceListView
                 android:id="@+id/mListView_BaseMenu"
@@ -55,8 +44,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="50dp"
                 android:animationCache="false"
-                android:divider="@android:color/darker_gray"
-                android:dividerHeight="0.05sp"
+
                 android:scrollingCache="false" />
 
 

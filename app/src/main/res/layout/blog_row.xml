@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
+            android:padding="10dp"
             android:src="@mipmap/add_btn" />
 
         <com.michal_stasinski.distrada.Menu.CustomTextView
@@ -35,8 +36,9 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:text="03.02.2017"
+
             android:textColor="@color/cardview_light_background"
-            android:textSize="22sp" />
+            android:textSize="12dp" />
 
         <com.michal_stasinski.distrada.Menu.CustomTextView
             android:id="@+id/blog_post_title"
@@ -45,8 +47,9 @@
             android:layout_below="@id/dataText"
             android:layout_marginTop="10dp"
             android:text="Tytuł"
+            android:padding="10dp"
             android:textColor="@color/cardview_light_background"
-            android:textSize="22sp" />
+            android:textSize="18dp" />
 
         <com.michal_stasinski.distrada.Menu.CustomTextView
             android:id="@+id/blog_post_desc"
@@ -54,16 +57,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/blog_post_title"
             android:layout_marginTop="10dp"
-            android:padding="5dp"
+            android:padding="10dp"
             android:text="Opis"
             android:textColor="@color/cardview_light_background"
-            android:textSize="20sp" />
+            android:textSize="16dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/blog_post_desc"
-            android:layout_marginTop="15dp"
             android:background="@drawable/custom_news_shape" />
 
     </RelativeLayout>

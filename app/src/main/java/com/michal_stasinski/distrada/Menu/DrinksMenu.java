@@ -28,6 +28,7 @@ public class DrinksMenu extends BaseMenu {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("drinks");
         currentActivity = 9;
+        choicetActivity = 9;
         colorActivity = currentActivity;
         sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);

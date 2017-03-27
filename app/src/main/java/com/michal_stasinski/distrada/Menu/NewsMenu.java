@@ -1,6 +1,7 @@
 package com.michal_stasinski.distrada.Menu;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,55 +17,56 @@ import com.michal_stasinski.distrada.Utils.BounceListView;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class SaladMenu extends BaseMenu {
+public class NewsMenu extends BaseMenu {
     private DatabaseReference myRef;
-    private ArrayList<MenuItemProduct> menuItem;
+    private ArrayList<NewsItem> menuItem;
     private int colorActivity;
     private boolean sortByInt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_salad_menu);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("insalates");
-        currentActivity = 4;
-        choicetActivity = 4;
-        colorActivity = currentActivity;
-        sortByInt = true;
-        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
-        background.setBackgroundResource(R.mipmap.salad_view);
-        TextView addonText = (TextView) findViewById(R.id.addonText);
-        addonText.setText("Sałatki komponowane na bazie sałaty lodowej\ni różnego rodzaju sałat włoskich(rucola insalatina,roszponka lub inne) podawane z sosem vinegrette lub jogurtowo - czosnkowym.");
-        mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
-       // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
+        setContentView(R.layout.activity_news_menu);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("blogs");
+        currentActivity = 0;
+        choicetActivity = 0;
+        colorActivity = currentActivity;
+        sortByInt = false;
+
+        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
+        background.setBackgroundResource(R.mipmap.piec_view);
+
+        mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                menuItem = new ArrayList<MenuItemProduct>();
+                menuItem = new ArrayList<NewsItem>();
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
 
                     DataSnapshot dataitem = item;
                     Map<String, Object> map = (Map<String, Object>) dataitem.getValue();
-                    String name = (String) map.get("name");
-                    String rank = (String) map.get("rank").toString();
-                    String desc = (String) map.get("desc");
-                    Number price = (Number) map.get("price");
+                    String date = (String) map.get("date");
+                    String news = (String) map.get("news").toString();
+                    String title = (String) map.get("title");
+                    String rank = (String) map.get("rank");
+                    String url = (String) map.get("imageUrl");
 
-                    MenuItemProduct menuItemProduct = new MenuItemProduct();
+                    NewsItem newsItem = new NewsItem();
 
-                    menuItemProduct.setNameProduct(name);
-                    menuItemProduct.setRank(rank);
-                    menuItemProduct.setDesc(desc);
-                    menuItemProduct.setDesc(desc);
-                    menuItemProduct.setPrice(price);
-                    menuItem.add(menuItemProduct);
+                    newsItem.setDate(date);
+                    newsItem.setNews(news);
+                    newsItem.setTitle(title);
+                    newsItem.setRank(rank);
+                    newsItem.setUrl(url);
 
+                    menuItem.add(newsItem);
+                    Log.i("xxxx","_______________________________ddd____"+ rank);
                 }
 
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
+               CustomNewsListViewAdapter arrayAdapter = new CustomNewsListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt);
                 mListViewMenu.setAdapter(arrayAdapter);
                 mListViewMenu.setScrollingCacheEnabled(false);
             }

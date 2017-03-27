@@ -31,6 +31,7 @@ public class PastaMenu extends BaseMenu {
 
         myRef = database.getReference("pasta");
         currentActivity = 7;
+        choicetActivity = 7;
         colorActivity = currentActivity;
         sortByInt = false;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);

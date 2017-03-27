@@ -29,6 +29,7 @@ public class MainCourseMenu extends BaseMenu {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("secondis");
         currentActivity = 8;
+        choicetActivity = 8;
         colorActivity = currentActivity;
         sortByInt = false;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);

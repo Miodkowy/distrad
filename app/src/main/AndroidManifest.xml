@@ -72,7 +72,9 @@
         <activity android:name=".Menu.AlfornoMenu" />
         <activity android:name=".Menu.MainCourseMenu" />
         <activity android:name=".Menu.DrinksMenu" />
-        <activity android:name=".Menu.ContactMenu"></activity>
+        <activity android:name=".Menu.ContactMenu" />
+        <activity android:name=".Menu.News" />
+        <activity android:name=".Menu.NewsMenu"></activity>
     </application>
 
 </manifest>

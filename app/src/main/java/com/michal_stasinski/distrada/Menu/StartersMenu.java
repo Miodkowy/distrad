@@ -27,6 +27,7 @@ public class StartersMenu extends BaseMenu {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("starters");
         currentActivity = 3;
+        choicetActivity = 3;
         colorActivity = currentActivity;
         sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);

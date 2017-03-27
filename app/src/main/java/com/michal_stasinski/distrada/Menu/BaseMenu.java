@@ -1,5 +1,7 @@
 package com.michal_stasinski.distrada.Menu;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,7 +20,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.michal_stasinski.distrada.App.Config;
 import com.michal_stasinski.distrada.CustomDrawerAdapter;
+import com.michal_stasinski.distrada.InfoPanel.InfoActivity;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 
@@ -31,12 +37,13 @@ public class BaseMenu extends AppCompatActivity {
     public ActionBarDrawerToggle mToggle;
     public Toolbar mToolBar;
 
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
     private ImageView imgBackground;
     private LinearLayout content;
     private int color;
     private Boolean choiceActivity;
     public int currentActivity = 2;
-    public int choicetActivity =2;
+    public int choicetActivity = 2;
 
     private Boolean loadActivity;
 
@@ -50,8 +57,7 @@ public class BaseMenu extends AppCompatActivity {
             "MAKARONY ZAPIEKANE",
             "MAKARONY",
             "DRUGIE DANIA",
-            "NAPOJE i DESERY",
-            "POWIADOMIENIA"
+            "NAPOJE i DESERY"
     };
 
     public String[] smallTextArr = {
@@ -78,7 +84,6 @@ public class BaseMenu extends AppCompatActivity {
             R.color.color_MAKARONY,
             R.color.color_DRUGIE_DANIE,
             R.color.color_DESERY,
-            R.color.color_DESERY
     };
 
     public Integer[] imgid = {
@@ -91,8 +96,8 @@ public class BaseMenu extends AppCompatActivity {
             R.mipmap.alforno_icon,
             R.mipmap.pasta_icon,
             R.mipmap.drugie_danie_icon,
-            R.mipmap.drink_icon,
             R.mipmap.drink_icon
+
 
     };
 
@@ -101,12 +106,29 @@ public class BaseMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_menu);
 
+        FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
 
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                Log.e("TAG", "onReceive  maina________________________________________ ");
+                // checking for type intent filter
+                if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
+
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+
+
+                }
+            }
+        };
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+
         loadActivity = false;
         choiceActivity = false;
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
@@ -141,7 +163,11 @@ public class BaseMenu extends AppCompatActivity {
 
                 if (currentActivity != choicetActivity) {
                     mDrawerLayout.setEnabled(false);
+
                     Intent intent = new Intent();
+                    if (choicetActivity == 0) {
+                        intent.setClass(getBaseContext(), NewsMenu.class);
+                    }
                     if (choicetActivity == 1) {
                         intent.setClass(getBaseContext(), ContactMenu.class);
                     }
@@ -169,9 +195,7 @@ public class BaseMenu extends AppCompatActivity {
                     if (choicetActivity == 9) {
                         intent.setClass(getBaseContext(), DrinksMenu.class);
                     }
-                    if (choicetActivity == 10) {
-                        intent.setClass(getBaseContext(), SoupMenu.class);
-                    }
+
 
                     startActivity(intent);
                     overridePendingTransition(R.animator.right_in, R.animator.left_out);
@@ -200,10 +224,10 @@ public class BaseMenu extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapter, View view, final int position, long arg) {
                 choicetActivity = position;
                 if (currentActivity != choicetActivity) {
-                    Log.i("TTT","GGGGGGGGGGGGGGGGGGGGGGGGG");
                     BounceListView v = (BounceListView) findViewById(R.id.left_drawer);
                     v.setEnabled(false);
                     mDrawerLayout.setEnabled(false);
+                    mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 }
                 mDrawerLayout.closeDrawer(GravityCompat.START, true);
 
@@ -216,10 +240,24 @@ public class BaseMenu extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)) {
+
+       int id = item.getItemId();
+        Log.i("sdasdasd","ffffff"+id);
+        if (id == R.id.right_menu) {
+            Intent intent = new Intent();
+            intent.setClass(getBaseContext(), InfoActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.animator.right_in, R.animator.left_out);
             return true;
+        }else{
+            mDrawerLayout.openDrawer(GravityCompat.START,true);
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+    }
 }

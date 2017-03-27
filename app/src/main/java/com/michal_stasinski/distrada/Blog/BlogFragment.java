@@ -98,7 +98,6 @@ public class BlogFragment extends Fragment {
             super(itemView);
 
             mView = itemView;
-            Log.d("start",itemView.toString());
 
         }
         public void setDate(String date){

@@ -20,6 +20,7 @@ public class PizzaMenu extends BaseMenu {
     private ArrayList<MenuItemProduct> menuItem;
     private int colorActivity;
     private boolean sortByInt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +35,12 @@ public class PizzaMenu extends BaseMenu {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("pizzas");
         currentActivity = 2;
+        choicetActivity = 2;
         colorActivity = currentActivity;
         sortByInt = true;
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
-       RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
+        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.pizza_view);
-
 
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -66,7 +67,7 @@ public class PizzaMenu extends BaseMenu {
 
                 }
 
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
+                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt, false);
                 mListViewMenu.setAdapter(arrayAdapter);
                 mListViewMenu.setScrollingCacheEnabled(false);
             }
