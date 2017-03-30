@@ -4,7 +4,7 @@
     android:shape="rectangle" >
 
     <size
-    android:height="1dp" />
+    android:height="0.05dp" />
     <solid
         android:color="@color/color_AKTUALNOSCI" />
 

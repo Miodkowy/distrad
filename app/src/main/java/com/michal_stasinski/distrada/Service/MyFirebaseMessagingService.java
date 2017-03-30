@@ -15,6 +15,8 @@ import com.michal_stasinski.distrada.Utils.NotificationUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
+
 /**
  * Created by Ravi Tamada on 08/08/16.
  * www.androidhive.InfoActivity
@@ -28,7 +30,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        //PRzyjście wiadomości
+        ShortcutBadger.applyCount(getApplicationContext(), 1); //for 1.1.4+
         Log.e(TAG, "From: " + remoteMessage.getFrom());
         if (remoteMessage == null)
             return;
@@ -63,7 +65,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
             notificationUtils.playNotificationSound();
         }else{
-            // If the app is in background, firebase itself handles the notification
+            ShortcutBadger.applyCount(getApplicationContext(), 1);
         }
     }
 

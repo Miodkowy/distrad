@@ -49,7 +49,7 @@ public class NewsMenu extends BaseMenu {
                     DataSnapshot dataitem = item;
                     Map<String, Object> map = (Map<String, Object>) dataitem.getValue();
                     String date = (String) map.get("date");
-                    String news = (String) map.get("news").toString();
+                    String news = (String) map.get("news");
                     String title = (String) map.get("title");
                     String rank = (String) map.get("rank");
                     String url = (String) map.get("imageUrl");

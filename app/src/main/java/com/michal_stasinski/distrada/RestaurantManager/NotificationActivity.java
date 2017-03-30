@@ -14,11 +14,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.michal_stasinski.distrada.Menu.MenuActivity.BaseMenu;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.App.Config;
 import com.michal_stasinski.distrada.Utils.NotificationUtils;
@@ -29,6 +31,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -37,7 +40,7 @@ import okhttp3.Response;
 
 import static com.google.android.gms.internal.zzs.TAG;
 
-public class NotificationActivity extends AppCompatActivity {
+public class NotificationActivity extends BaseMenu {
     private TextView txtRegId , txtMessage;
     private EditText eTitle , eMessage;
     private OkHttpClient mClient;
@@ -54,6 +57,8 @@ public class NotificationActivity extends AppCompatActivity {
         displayFirebaseRegId();
         Log.i(TAG, "NotificationActivity  -  onCreate");
         // checking for type intent filter
+        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
+        background.setBackgroundResource(R.mipmap.piec_view);
 
         Button  not = (Button) findViewById(R.id.send_notification);
          eTitle = (EditText) findViewById(R.id.editText_title);
@@ -67,13 +72,14 @@ public class NotificationActivity extends AppCompatActivity {
                 JSONArray jsonArray = new JSONArray();
                 jsonArray.put(refreshedToken);
 
-                sendMessage(jsonArray, eTitle.getText().toString(),  eMessage.getText().toString(), "Http:\\google.com", "My Name is Vishal");
+                sendMessage(jsonArray, eTitle.getText().toString(),  eMessage.getText().toString(), "Wiadomość");
             }
         });
+
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-
+                ShortcutBadger.applyCount(getApplicationContext(), 1);
                 if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
                     // gcm successfully registered
                     // now subscribe to `global` topic to receive app wide notifications
@@ -81,7 +87,7 @@ public class NotificationActivity extends AppCompatActivity {
                     displayFirebaseRegId();
 
                 } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
-                    // new push notification is received
+
                     String message = intent.getStringExtra("message");
                     Toast.makeText(NotificationActivity.this, "Push notification: " + message, Toast.LENGTH_LONG).show();
                     txtMessage.setText(message);
@@ -89,7 +95,12 @@ public class NotificationActivity extends AppCompatActivity {
             }
         };
     }
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
+        toolBarTitle.setText("POWIADOMIENIA");
+    }
     private void displayFirebaseRegId() {
 
         SharedPreferences pref = getSharedPreferences(Config.SHARED_PREF, 0);
@@ -126,18 +137,22 @@ public class NotificationActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    public void sendMessage(final JSONArray recipients, final String title, final String body, final String icon, final String message) {
+    public void sendMessage(final JSONArray recipients, final String title, final String body, final String message) {
 
         new AsyncTask<String, String, String>() {
             @Override
             protected String doInBackground(String... params) {
+
+                String badge = ("1");
+                String sound = ("default");
                 try {
                     JSONObject root = new JSONObject();
                     JSONObject notification = new JSONObject();
                     notification.put("body", body);
                     notification.put("title", title);
                     notification.put("icon",R.mipmap.app_icon);
-
+                   // notification.put("sound",sound);
+                    notification.put("badge" , badge);
                     JSONObject data = new JSONObject();
                     data.put("message", message);
                     root.put("notification", notification);
@@ -162,7 +177,7 @@ public class NotificationActivity extends AppCompatActivity {
                     Toast.makeText(NotificationActivity.this, "Message Success: " + success + "Message Failed: " + failure, Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(NotificationActivity.this, "Message Failed, Unknown error occurred.", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(NotificationActivity.this, "Wiadomośc nie została wsyłana, Unknown error occurred.", Toast.LENGTH_LONG).show();
                 }
             }
         }.execute();
@@ -178,7 +193,8 @@ public class NotificationActivity extends AppCompatActivity {
         Request request = new Request.Builder()
                 .url("https://fcm.googleapis.com/fcm/send")
                 .post(body)
-                .addHeader("Authorization", "key=AAAAYRSopWU:APA91bFCG1dR9l_JsJtN_ZQp2QA8Bnn2xqws4-lOwNrIW96yck2E9lz8psPT97IxHKdVcqBwB0tus_3bAqipDF35CcXuMn730mcCefIwxNdXMKTeNDny3B-jRt9aqb0-V7vEWdr6l-Bf")
+                .addHeader("Authorization", "key=AIzaSyDYOkZ1lZLeLvOcproToZioVGHwQ5qgQjw")
+                //.addHeader("Authorization", "key=AAAAYRSopWU:APA91bFCG1dR9l_JsJtN_ZQp2QA8Bnn2xqws4-lOwNrIW96yck2E9lz8psPT97IxHKdVcqBwB0tus_3bAqipDF35CcXuMn730mcCefIwxNdXMKTeNDny3B-jRt9aqb0-V7vEWdr6l-Bf")
                 .build();
         Response response = mClient.newCall(request).execute();
         return response.body().string();

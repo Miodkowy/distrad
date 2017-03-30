@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -17,13 +19,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.michal_stasinski.distrada.Menu.MenuActivity.BaseMenu;
 import com.michal_stasinski.distrada.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class NewsActivity extends AppCompatActivity {
+public class NewsActivity extends BaseMenu{
 
 
     private ImageButton mSecetedImage;
@@ -46,7 +49,8 @@ public class NewsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.blog_post);
-
+        currentActivity = 0;
+        choicetActivity = 0;
         mStorage = FirebaseStorage.getInstance().getReference();
         mPostTitle = (EditText) findViewById(R.id.postTitle);
         mPostDesc = (EditText) findViewById(R.id.postDesc);
@@ -58,6 +62,8 @@ public class NewsActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("blogs");
 
+        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
+        background.setBackgroundResource(R.mipmap.piec_view);
 
 
         mSecetedImage.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +71,6 @@ public class NewsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
-
                 startActivityForResult(galleryIntent,GALLERY_REQUEST);
             }
         });
@@ -101,13 +106,16 @@ public class NewsActivity extends AppCompatActivity {
                     Uri downLoadUri = taskSnapshot.getDownloadUrl();
 
                     DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+                    DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
                     String date = df.format(Calendar.getInstance().getTime());
+                    String date1 = df1.format(Calendar.getInstance().getTime());
+
 
                     DatabaseReference newPost = mDatabase.push();
-                    newPost.child("title").setValue(titleVal);
-                    newPost.child("news").setValue(descVal);
-                    newPost.child("date").setValue(date);
-
+                    newPost.child("title").setValue(titleVal.toString());
+                    newPost.child("news").setValue(descVal.toString());
+                    newPost.child("date").setValue(date.toString());
+                    newPost.child("rank").setValue(date1.toString());
                     // dodanie urla obrazka ...zamienic na stringa!!
 
                     newPost.child("imageUrl").setValue(downLoadUri.toString());
@@ -116,6 +124,14 @@ public class NewsActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
+        toolBarTitle.setText("WYŚLIJ WIADOMOŚĆ");
     }
 
     @Override

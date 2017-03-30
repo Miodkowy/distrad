@@ -27,6 +27,8 @@ import com.michal_stasinski.distrada.InfoPanel.InfoActivity;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 
+import me.leolin.shortcutbadger.ShortcutBadger;
+
 public class BaseMenu extends AppCompatActivity {
 
     public BounceListView mListViewDrawer;
@@ -44,7 +46,7 @@ public class BaseMenu extends AppCompatActivity {
     private Boolean choiceActivity;
     public int currentActivity = 2;
     public int choicetActivity = 2;
-
+    public int badgeCount = 0;
     private Boolean loadActivity;
 
     public String[] largeTextArr = {
@@ -106,13 +108,17 @@ public class BaseMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_menu);
 
+        badgeCount = 0;
+        ShortcutBadger.applyCount(getApplicationContext(), badgeCount); //for 1.1.4+
+
         FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
 
-                // checking for type intent filter
+                badgeCount += 1;
+                ShortcutBadger.applyCount(getApplicationContext(), badgeCount);
                 if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
 
                     FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);

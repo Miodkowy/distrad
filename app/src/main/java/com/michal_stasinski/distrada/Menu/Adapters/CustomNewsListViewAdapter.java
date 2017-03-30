@@ -31,6 +31,7 @@ public class CustomNewsListViewAdapter extends BaseAdapter {
     private int color;
     private boolean sortOption;
     private Boolean specialSign;
+
     public CustomNewsListViewAdapter(Context context, ArrayList<NewsItem> mListArray, int color) {
         this.specialSign = specialSign;
         Collections.sort(mListArray, Collections.reverseOrder(new Comparator() {
@@ -38,9 +39,13 @@ public class CustomNewsListViewAdapter extends BaseAdapter {
             public int compare(Object o1, Object o2) {
 
 
-                    String s1 = (((NewsItem) o1).getRank());
-                    String s2 = (((NewsItem) o2).getRank());
+                String s1 = (((NewsItem) o1).getRank());
+                String s2 = (((NewsItem) o2).getRank());
+                if(s1!=null&& s2!=null) {
                     return s1.compareToIgnoreCase(s2);
+                }else{
+                    return 0;
+                }
 
 
             }
@@ -89,7 +94,7 @@ public class CustomNewsListViewAdapter extends BaseAdapter {
         viewHolder.date.setText(arr.get(position).getDate());
         viewHolder.news.setText(arr.get(position).getNews());
         ImageView post_image = (ImageView) view.findViewById(R.id.blog_post_image);
-        Picasso.with( this.mContext).load(arr.get(position).getUrl()).into(post_image);
+        Picasso.with(this.mContext).load(arr.get(position).getUrl()).into(post_image);
         return view;
     }
 

@@ -13,6 +13,8 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
+    <!-- Requires this permission to check the network state       -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
@@ -26,7 +28,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -42,7 +43,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCsiNiCN7cFN3ARj3QHbkMbAAzowhdgmh0" />
@@ -66,10 +66,10 @@
             android:name=".InfoPanel.InfoActivity"
             android:label="@string/title_activity_info"
             android:theme="@style/AppTheme" />
+
         <activity android:name=".RestaurantManager.RestaurantManager" />
         <activity android:name=".RestaurantManager.NotificationActivity" />
         <activity android:name=".Menu.MenuActivity.BaseMenu" />
-        git
         <activity android:name=".Menu.MenuActivity.StartersMenu" />
         <activity android:name=".Menu.MenuActivity.SaladMenu" />
         <activity android:name=".Menu.MenuActivity.SoupMenu" />
@@ -81,6 +81,8 @@
         <activity android:name=".Menu.MenuActivity.PizzaMenu" />
 
         <activity android:name=".RestaurantManager.PasswordActivity"></activity>
+
+
     </application>
 
 </manifest>

@@ -6,11 +6,22 @@ package com.michal_stasinski.distrada.Menu.Models;
 
 public class NewsItem {
     private String date;
-    private String news;
     private String title;
     private String url;
     private String rank;
+    private String news;
+    private String imageUrl;
 
+    public NewsItem(){}
+
+    public  NewsItem(String title, String news, String imageUrl, String date, String rank) {
+        this.title = title;
+        this.news = news;
+        this.date = date;
+        this.rank = rank;
+        this.imageUrl = imageUrl;
+
+    }
     public String getDate() {
         return date;
     }
