@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/customshape">
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/map"
+                app:layout_heightPercent="40%"
+                app:layout_marginLeftPercent="2%"
+                app:layout_marginRightPercent="2%"
+                app:layout_marginTopPercent="2%"
+                android:layout_width="match_parent"
+
+                />
+
+            <com.michal_stasinski.distrada.Utils.CustomTextView
+                android:id="@+id/textContact"
+                tools:textColor="@color/cardview_light_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/map"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Pizzeria Trattoria 'Di Strada'\nul. Morska 42, Gdynia\ntel 48 58 660 33 95\nPoniedziałek - Niedziela 12.00 - 22.00"
+                android:textAlignment="center"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="14dp" />
+
+
+            <RelativeLayout
+                app:layout_marginLeftPercent="2%"
+                app:layout_marginRightPercent="2%"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textContact"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="30dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/route_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+
+
+                        android:background="@drawable/custom_button"
+                        android:src="@mipmap/route_icon"
+                        android:text="Button" />
+
+                    <com.michal_stasinski.distrada.Utils.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TRASA" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/call_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/custom_button"
+                        android:src="@mipmap/call_icon"
+                        android:text="Button" />
+
+                    <com.michal_stasinski.distrada.Utils.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ZADZWON" />
+                </LinearLayout>
+            </RelativeLayout>
+
+        </android.support.percent.PercentRelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -27,6 +27,7 @@ public class Drinks extends BaseMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("drinks");
         currentActivity = 9;

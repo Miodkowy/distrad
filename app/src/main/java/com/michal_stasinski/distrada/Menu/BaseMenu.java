@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -124,6 +125,10 @@ public class BaseMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_basemenu);
+
+        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        stub.setLayoutResource(R.layout.left_bounce_list_view);
+        View inflated = stub.inflate();
 
         badgeCount = 0;
         ShortcutBadger.applyCount(getApplicationContext(), badgeCount); //for 1.1.4+

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -52,8 +53,14 @@ public class NotificationCreator extends BaseMenu {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.menu_basemenu);
+        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        stub.setLayoutResource(R.layout.right_notification_creator);
+        View inflated = stub.inflate();
+
         FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
-        setContentView(R.layout.right_activity_notification);
+
         displayFirebaseRegId();
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.piec_view);

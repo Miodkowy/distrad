@@ -1,6 +1,8 @@
 package com.michal_stasinski.distrada.Menu.LeftMenu;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewStub;
 import android.widget.RelativeLayout;
 
 import com.google.firebase.database.DataSnapshot;
@@ -26,10 +28,16 @@ public class Pizza extends BaseMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.left_menu_pizza);
+        //setContentView(R.layout.left_menu_pizza);
+        setContentView(R.layout.menu_basemenu);
+
         currentActivity = 2;
         choicetActivity = 2;
         colorActivity = currentActivity;
+
+        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        stub.setLayoutResource(R.layout.left_pizza);
+        View inflated = stub.inflate();
 
     }
 

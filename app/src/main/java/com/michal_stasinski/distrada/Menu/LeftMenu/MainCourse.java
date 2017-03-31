@@ -1,6 +1,8 @@
 package com.michal_stasinski.distrada.Menu.LeftMenu;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewStub;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,7 +29,14 @@ public class MainCourse extends BaseMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.left_menu_pasta);
+
+        setContentView(R.layout.menu_basemenu);
+
+        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        stub.setLayoutResource(R.layout.left_header_and_bounce_list_view);
+        View inflated = stub.inflate();
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("secondis");
         currentActivity = 8;

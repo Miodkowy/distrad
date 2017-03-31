@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
@@ -40,11 +41,17 @@ public class Contact extends BaseMenu implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.left_menu_contact);
+        setContentView(R.layout.menu_basemenu);
+        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        stub.setLayoutResource(R.layout.left_contact);
+        View inflated = stub.inflate();
 
         currentActivity = 1;
         choicetActivity = 1;
         colorActivity = currentActivity;
+
+
+
         sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.contact_view);

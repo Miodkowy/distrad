@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -25,7 +26,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class NewsCreator extends BaseMenu{
+public class NewsCreator extends BaseMenu {
 
 
     private ImageButton mSecetedImage;
@@ -47,7 +48,13 @@ public class NewsCreator extends BaseMenu{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.right_blog_post);
+
+        setContentView(R.layout.menu_basemenu);
+
+        ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+        stub.setLayoutResource(R.layout.right_news_creator);
+        View inflated = stub.inflate();
+
         currentActivity = 0;
         choicetActivity = 0;
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -70,7 +77,7 @@ public class NewsCreator extends BaseMenu{
             public void onClick(View v) {
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent,GALLERY_REQUEST);
+                startActivityForResult(galleryIntent, GALLERY_REQUEST);
             }
         });
 
@@ -86,12 +93,12 @@ public class NewsCreator extends BaseMenu{
 
 
         // pobrać text zamienic na stringa i usnunać białe znaki trim()
-        final String titleVal= mPostTitle.getText().toString().trim();
-        final String descVal= mPostDesc.getText().toString().trim();
+        final String titleVal = mPostTitle.getText().toString().trim();
+        final String descVal = mPostDesc.getText().toString().trim();
 
 
         // jeśli title val nie jest pusty i descVal nie jest pusty i image nie jest nul to
-        if(!TextUtils.isEmpty(titleVal) && !TextUtils.isEmpty(descVal) && mSecetedImage !=null ){
+        if (!TextUtils.isEmpty(titleVal) && !TextUtils.isEmpty(descVal) && mSecetedImage != null) {
 
             mProgress.setMessage("Wysyłam post");
             mProgress.show();
@@ -137,10 +144,10 @@ public class NewsCreator extends BaseMenu{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == GALLERY_REQUEST && resultCode==RESULT_OK){
-            mImageUri  = data.getData();
+        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
+            mImageUri = data.getData();
 
-            mSecetedImage.setImageURI( mImageUri);
+            mSecetedImage.setImageURI(mImageUri);
         }
     }
 
