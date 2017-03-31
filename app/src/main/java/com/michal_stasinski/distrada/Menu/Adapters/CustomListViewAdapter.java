@@ -106,7 +106,7 @@ public class CustomListViewAdapter extends BaseAdapter {
         }
 
         ((GradientDrawable) viewHolder.colorShape.getBackground()).setColor(mContext.getResources().getColor(this.color));
-        viewHolder.textDesc.setText(arr.get(position).getDesc().toUpperCase());
+        viewHolder.textDesc.setText(arr.get(position).getDesc().toLowerCase());
         viewHolder.textPrice.setText(arr.get(position).getPrice().toString().toUpperCase() + " ZŁ");
 
 
