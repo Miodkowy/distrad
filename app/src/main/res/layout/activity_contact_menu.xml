@@ -33,90 +33,96 @@
             android:layout_below="@id/actionbar_frame"
             android:orientation="vertical">
 
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/customshape">
 
-                <com.google.android.gms.maps.MapView
-                    android:id="@+id/map"
+                <android.support.percent.PercentRelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="260dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content">
 
-                    />
+                    <com.google.android.gms.maps.MapView
+                        android:id="@+id/map"
+                        android:layout_width="match_parent"
+                        app:layout_heightPercent="40%"
+                        app:layout_marginLeftPercent="2%"
+                        app:layout_marginRightPercent="2%"
+                        app:layout_marginTopPercent="2%"
 
-                <com.michal_stasinski.distrada.Utils.CustomTextView
-                    android:id="@+id/textContact"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/map"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="70dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Pizzeria Trattoria 'Di Strada'\nul. Morska 42, Gdynia\ntel 48 58 660 33 95\nPoniedziałek - Niedziela 12.00 - 22.00"
-                    android:textAlignment="center"
-                    android:textColor="@color/cardview_light_background"
-                    android:textSize="14dp"
-                    tools:textColor="@color/cardview_light_background" />
+                        />
 
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/textContact"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <com.michal_stasinski.distrada.Utils.CustomTextView
+                        android:id="@+id/textContact"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="30dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_below="@id/map"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Pizzeria Trattoria 'Di Strada'\nul. Morska 42, Gdynia\ntel 48 58 660 33 95\nPoniedziałek - Niedziela 12.00 - 22.00"
+                        android:textAlignment="center"
+                        android:textColor="@color/cardview_light_background"
+                        android:textSize="14dp"
+                        tools:textColor="@color/cardview_light_background" />
 
-                        <ImageButton
-                            android:id="@+id/route_button"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textContact"
+                        app:layout_marginLeftPercent="2%"
+                        app:layout_marginRightPercent="2%"
+                        android:layout_marginTop="20dp">
 
-                            android:background="@drawable/custom_button"
-                            android:src="@mipmap/route_icon"
-                            android:text="Button" />
-
-                        <com.michal_stasinski.distrada.Utils.CustomTextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TRASA" />
-                    </LinearLayout>
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="30dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="30dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                            <ImageButton
+                                android:id="@+id/route_button"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
 
-                        <ImageButton
-                            android:id="@+id/call_button"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/custom_button"
-                            android:src="@mipmap/call_icon"
-                            android:text="Button" />
 
-                        <com.michal_stasinski.distrada.Utils.CustomTextView
+                                android:background="@drawable/custom_button"
+                                android:src="@mipmap/route_icon"
+                                android:text="Button" />
+
+                            <com.michal_stasinski.distrada.Utils.CustomTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TRASA" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ZADZWON" />
-                    </LinearLayout>
-                </RelativeLayout>
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="30dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/call_button"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/custom_button"
+                                android:src="@mipmap/call_icon"
+                                android:text="Button" />
+
+                            <com.michal_stasinski.distrada.Utils.CustomTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ZADZWON" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </android.support.percent.PercentRelativeLayout>
             </RelativeLayout>
         </LinearLayout>
 
@@ -135,37 +141,46 @@
             app:srcCompat="@mipmap/pizza_view" />
     </RelativeLayout>
 
+    <!--pierwszy drawer -->
     <RelativeLayout
         style="@style/NavDrawer"
         android:layout_height="match_parent"
+        android:layout_width="wrap_content"
         android:layout_gravity="start"
         android:background="#cc000000">
 
-        <!--draver header-->
-
-        <ImageView
-            android:id="@+id/etHeader"
+        <android.support.percent.PercentRelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
-            android:layout_marginTop="36dp"
-            android:layout_weight="0.58"
-            app:srcCompat="@mipmap/logo_distrada" />
+            android:layout_height="match_parent">
+            <!--draver header-->
 
-        <com.michal_stasinski.distrada.Utils.BounceListView
+            <ImageView
+                android:id="@+id/etHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                app:layout_marginTopPercent="5%"
+                app:layout_marginLeftPercent="10%"
+                app:layout_marginRightPercent="10%"
+                app:layout_heightPercent="40%"
+                app:srcCompat="@mipmap/logo_distrada" />
 
-            android:id="@+id/left_drawer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/etHeader"
-            android:layout_gravity="start"
-            android:background="#00000000"
-            android:choiceMode="singleChoice"
-            android:divider="@drawable/custom_divaider"
-            android:dividerHeight="1dp"
-            android:scrollbarSize="16dp"></com.michal_stasinski.distrada.Utils.BounceListView>
+            <com.michal_stasinski.distrada.Utils.BounceListView
+
+                android:id="@+id/left_drawer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/etHeader"
+                android:layout_gravity="start"
+                android:background="#00000000"
+                android:choiceMode="singleChoice"
+                android:divider="@drawable/custom_divaider"
+                app:layout_heightPercent="45%"
+                android:dividerHeight="1dp"
+                android:scrollbarSize="16dp">
+
+            </com.michal_stasinski.distrada.Utils.BounceListView>
+        </android.support.percent.PercentRelativeLayout>
     </RelativeLayout>
 
     <!--drugi drawer -->
@@ -173,6 +188,7 @@
         android:id="@+id/drawer_left_side"
         style="@style/NavDrawer"
         android:layout_height="match_parent"
+        android:layout_width="wrap_content"
         android:layout_gravity="end"
         android:background="#cc000000">
 
@@ -185,9 +201,11 @@
                 android:id="@+id/etHeader1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_marginTopPercent="2%"
-                app:layout_marginLeftPercent="5%"
-                app:layout_marginRightPercent="5%"
+                app:layout_marginTopPercent="5%"
+                app:layout_marginLeftPercent="10%"
+                app:layout_marginRightPercent="10%"
+                app:layout_heightPercent="40%"
+
 
                 app:srcCompat="@mipmap/logo_distrada" />
 
@@ -198,9 +216,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/etHeader1"
                 android:layout_centerHorizontal="true"
-                app:layout_marginTopPercent="2%"
                 app:layout_marginLeftPercent="5%"
                 app:layout_marginRightPercent="5%"
+                app:layout_marginTopPercent="2%"
                 app:srcCompat="@mipmap/app_icon" />
 
             <Button
@@ -209,10 +227,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/icon_in_info"
                 android:layout_centerHorizontal="true"
-                app:layout_marginTopPercent="2%"
+                android:text="Wejście dla personelu"
                 app:layout_marginLeftPercent="5%"
                 app:layout_marginRightPercent="5%"
-                android:text="Wejście dla personelu" />
+                app:layout_marginTopPercent="2%" />
 
             <Button
                 android:id="@+id/postCreator"
@@ -220,10 +238,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/icon_in_info"
                 android:layout_centerHorizontal="true"
-                app:layout_marginTopPercent="2%"
+                android:text="Utwórz wiadomość"
                 app:layout_marginLeftPercent="5%"
                 app:layout_marginRightPercent="5%"
-                android:text="Utwórz wiadomość" />
+                app:layout_marginTopPercent="2%" />
 
             <Button
                 android:id="@+id/notificationCreator"
@@ -231,10 +249,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/postCreator"
                 android:layout_centerHorizontal="true"
-                app:layout_marginTopPercent="2%"
+                android:text="Utwórz powiadomienie"
                 app:layout_marginLeftPercent="5%"
                 app:layout_marginRightPercent="5%"
-                android:text="Utwórz powiadomienie" />
+                app:layout_marginTopPercent="2%" />
 
             <Button
                 android:id="@+id/logout"
@@ -242,10 +260,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/notificationCreator"
                 android:layout_centerHorizontal="true"
-                app:layout_marginTopPercent="2%"
+                android:text="Wyloguj"
                 app:layout_marginLeftPercent="5%"
                 app:layout_marginRightPercent="5%"
-                android:text="Wyloguj" />
+                app:layout_marginTopPercent="2%" />
         </android.support.percent.PercentRelativeLayout>
     </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>

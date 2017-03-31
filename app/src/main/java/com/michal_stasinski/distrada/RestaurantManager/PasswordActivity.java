@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.michal_stasinski.distrada.App.Config;
@@ -28,7 +29,8 @@ public class PasswordActivity extends BaseMenu {
         final EditText loginText = (EditText) findViewById(R.id.login_text);
         final EditText password = (EditText) findViewById(R.id.password_text);
         wrongText.setAlpha(0);
-
+        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
+        background.setBackgroundResource(R.mipmap.piec_view);
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             //On click function
