@@ -31,44 +31,52 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/actionbar_frame"
-
             android:orientation="vertical"
             android:weightSum="1">
 
-            <com.michal_stasinski.distrada.Utils.CustomTextView
+            <android.support.percent.PercentRelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/customshape_black"
-                android:text="W skład każdej pizzy(32 cm) wchodzą:\n
+                android:layout_height="match_parent">
+
+                <com.michal_stasinski.distrada.Utils.CustomTextView
+                    android:id="@+id/specialText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/customshape_black"
+                    android:text="W skład każdej pizzy(32 cm) wchodzą:\n
 ser Mozzarella i sos pomidorowy"
-                android:textAlignment="textEnd"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp" />
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp" />
 
 
-            <com.michal_stasinski.distrada.Utils.BounceListView
-                android:id="@+id/mListView_BaseMenu"
-                android:layout_width="match_parent"
-                android:layout_height="450dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:animationCache="false"
-                android:divider="@android:color/darker_gray"
-                android:dividerHeight="0.05sp"
-                android:scrollingCache="false"
-               />
+                <com.michal_stasinski.distrada.Utils.BounceListView
+                    android:id="@+id/mListView_BaseMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:animationCache="false"
+                    android:divider="@android:color/darker_gray"
+                    app:layout_heightPercent="60%"
+                    android:dividerHeight="0.05sp"
+                    android:layout_below="@id/specialText"
+                    android:scrollingCache="false" />
 
-            <Button
-                android:id="@+id/addon_button"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="@color/color_PIZZA"
-                android:text="Dodatki"
-                />
+                <Button
+                    android:id="@+id/addon_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@color/color_PIZZA"
+                    android:text="Dodatki"
+                    app:layout_marginTopPercent="5%"
+                    app:layout_marginLeftPercent="5%"
+                    app:layout_marginRightPercent="5%"
+                    android:layout_below="@id/mListView_BaseMenu"
+                    />
+            </android.support.percent.PercentRelativeLayout>
 
         </LinearLayout>
-
 
 
         <ImageView
@@ -125,62 +133,76 @@ ser Mozzarella i sos pomidorowy"
         android:layout_gravity="end"
         android:background="#cc000000">
 
-        <!--draver header-->
-
-        <ImageView
-            android:id="@+id/etHeader1"
+        <android.support.percent.PercentRelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="36dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginRight="36dp"
-            android:layout_marginTop="36dp"
-            android:layout_weight="0.58"
-            app:srcCompat="@mipmap/logo_distrada" />
+            android:layout_height="match_parent">
+            <!--draver header-->
+
+            <ImageView
+                android:id="@+id/etHeader1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_marginTopPercent="2%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginRightPercent="5%"
+
+                app:srcCompat="@mipmap/logo_distrada" />
 
 
-        <ImageView
-            android:id="@+id/icon_in_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/etHeader1"
-            app:srcCompat="@mipmap/app_icon" />
+            <ImageView
+                android:id="@+id/icon_in_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etHeader1"
+                android:layout_centerHorizontal="true"
+                app:layout_marginTopPercent="2%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginRightPercent="5%"
+                app:srcCompat="@mipmap/app_icon" />
 
-        <Button
-            android:id="@+id/open_manager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/icon_in_info"
-            android:text="Wejście dla personelu" />
-        <Button
-            android:id="@+id/postCreator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/icon_in_info"
-            android:text="Utwórz wiadomość" />
-        <Button
-            android:id="@+id/notificationCreator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/postCreator"
-            android:text="Utwórz powiadomienie" />
+            <Button
+                android:id="@+id/open_manager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/icon_in_info"
+                android:layout_centerHorizontal="true"
+                app:layout_marginTopPercent="2%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginRightPercent="5%"
+                android:text="Wejście dla personelu" />
 
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/notificationCreator"
-            android:text="Wyloguj" />
+            <Button
+                android:id="@+id/postCreator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/icon_in_info"
+                android:layout_centerHorizontal="true"
+                app:layout_marginTopPercent="2%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginRightPercent="5%"
+                android:text="Utwórz wiadomość" />
 
+            <Button
+                android:id="@+id/notificationCreator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/postCreator"
+                android:layout_centerHorizontal="true"
+                app:layout_marginTopPercent="2%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginRightPercent="5%"
+                android:text="Utwórz powiadomienie" />
+
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/notificationCreator"
+                android:layout_centerHorizontal="true"
+                app:layout_marginTopPercent="2%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginRightPercent="5%"
+                android:text="Wyloguj" />
+        </android.support.percent.PercentRelativeLayout>
     </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>
