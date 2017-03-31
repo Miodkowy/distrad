@@ -9,11 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.michal_stasinski.distrada.App.Config;
 import com.michal_stasinski.distrada.InfoPanel.InfoActivity;
+import com.michal_stasinski.distrada.Menu.MenuActivity.BaseMenu;
 import com.michal_stasinski.distrada.Menu.MenuActivity.NewsMenu;
 import com.michal_stasinski.distrada.R;
 
-public class PasswordActivity extends AppCompatActivity {
+public class PasswordActivity extends BaseMenu {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,8 @@ public class PasswordActivity extends AppCompatActivity {
 
                 if (loginText.getText().toString().equals("a") && password.getText().toString().equals("a")) {
                     Intent intent = new Intent();
-                    intent.setClass(PasswordActivity.this, RestaurantManager.class);
+                    Config.ISREGISTER = true;
+                    intent.setClass(PasswordActivity.this, NewsMenu.class);
                     startActivity(intent);
                     overridePendingTransition(R.animator.right_in, R.animator.left_out);
                 } else {

@@ -26,7 +26,9 @@ public class PizzaMenu extends BaseMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizza_menu);
-
+        currentActivity = 2;
+        choicetActivity = 2;
+        colorActivity = currentActivity;
 
     }
 
@@ -35,9 +37,7 @@ public class PizzaMenu extends BaseMenu {
         super.onStart();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("pizzas");
-        currentActivity = 2;
-        choicetActivity = 2;
-        colorActivity = currentActivity;
+
         sortByInt = true;
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);

@@ -6,23 +6,24 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.michal_stasinski.distrada.App.Config;
 import com.michal_stasinski.distrada.Menu.MenuActivity.BaseMenu;
 import com.michal_stasinski.distrada.R;
-import com.michal_stasinski.distrada.App.Config;
 import com.michal_stasinski.distrada.Utils.NotificationUtils;
 
 import org.json.JSONArray;
@@ -38,16 +39,15 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.google.android.gms.internal.zzs.TAG;
-
 public class NotificationActivity extends BaseMenu {
-    private TextView txtRegId , txtMessage;
-    private EditText eTitle , eMessage;
+    private TextView txtRegId, txtMessage;
+    private EditText eTitle, eMessage;
     private OkHttpClient mClient;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     public static final String FCM_MESSAGE_URL = "https://fcm.googleapis.com/fcm/send";
-
-
+    private TextView switchStatus;
+    private Switch mySwitch;
+    private Boolean messageWithSound =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,14 +55,12 @@ public class NotificationActivity extends BaseMenu {
         FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
         setContentView(R.layout.activity_notification);
         displayFirebaseRegId();
-        Log.i(TAG, "NotificationActivity  -  onCreate");
-        // checking for type intent filter
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.piec_view);
 
-        Button  not = (Button) findViewById(R.id.send_notification);
-         eTitle = (EditText) findViewById(R.id.editText_title);
-         eMessage = (EditText) findViewById(R.id.editText_message);
+        Button not = (Button) findViewById(R.id.send_notification);
+        eTitle = (EditText) findViewById(R.id.editText_title);
+        eMessage = (EditText) findViewById(R.id.editText_message);
 
         not.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +70,7 @@ public class NotificationActivity extends BaseMenu {
                 JSONArray jsonArray = new JSONArray();
                 jsonArray.put(refreshedToken);
 
-                sendMessage(jsonArray, eTitle.getText().toString(),  eMessage.getText().toString(), "Wiadomość");
+                sendMessage(jsonArray, eTitle.getText().toString(), eMessage.getText().toString(), "Wiadomość");
             }
         });
 
@@ -90,27 +88,59 @@ public class NotificationActivity extends BaseMenu {
 
                     String message = intent.getStringExtra("message");
                     Toast.makeText(NotificationActivity.this, "Push notification: " + message, Toast.LENGTH_LONG).show();
-                    txtMessage.setText(message);
+                    // txtMessage.setText(message);
                 }
             }
         };
+        switchStatus = (TextView) findViewById(R.id.switchStatus);
+        mySwitch = (Switch) findViewById(R.id.switch_button);
+
+        //set the switch to ON
+        mySwitch.setChecked(false);
+        //attach a listener to check for changes in state
+        mySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                messageWithSound = isChecked;
+                if(isChecked){
+                   // switchStatus.setText("Switch is currently ON");
+                }else{
+                    //switchStatus.setText("Switch is currently OFF");
+                }
+
+            }
+        });
+        switchStatus.setText("");
+        //check the current state before we display the screen
+        if(mySwitch.isChecked()){
+           // switchStatus.setText("Switch is currently ON");
+        }
+        else {
+            //switchStatus.setText("Switch is currently OFF");
+        }
+
+
     }
+
     @Override
     protected void onStart() {
         super.onStart();
         TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
         toolBarTitle.setText("POWIADOMIENIA");
     }
+
     private void displayFirebaseRegId() {
 
         SharedPreferences pref = getSharedPreferences(Config.SHARED_PREF, 0);
         String regId = pref.getString("regId", null);
         txtRegId = (TextView) findViewById(R.id.text_device_id);
-        txtMessage = (TextView) findViewById(R.id.text_reciver);
+        // txtMessage = (TextView) findViewById(R.id.editText_message);
         if (!TextUtils.isEmpty(regId)) {
-            txtRegId.setText("Firebase Reg Id: " + regId);
+            //txtRegId.setText("Firebase Reg Id: " + regId);
         } else {
-            txtRegId.setText("Firebase Reg Id is not received yet!");
+           // txtRegId.setText("Firebase Reg Id is not received yet!");
         }
     }
 
@@ -150,9 +180,11 @@ public class NotificationActivity extends BaseMenu {
                     JSONObject notification = new JSONObject();
                     notification.put("body", body);
                     notification.put("title", title);
-                    notification.put("icon",R.mipmap.app_icon);
-                   // notification.put("sound",sound);
-                    notification.put("badge" , badge);
+                    notification.put("icon", R.mipmap.app_icon);
+                    if(messageWithSound) {
+                         notification.put("sound",sound);
+                    }
+                    notification.put("badge", badge);
                     JSONObject data = new JSONObject();
                     data.put("message", message);
                     root.put("notification", notification);

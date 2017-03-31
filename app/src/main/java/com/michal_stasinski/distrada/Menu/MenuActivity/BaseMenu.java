@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -22,9 +23,13 @@ import android.widget.TextView;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.michal_stasinski.distrada.App.Config;
-import com.michal_stasinski.distrada.Menu.Adapters.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.InfoPanel.InfoActivity;
+import com.michal_stasinski.distrada.Menu.Adapters.CustomDrawerAdapter;
 import com.michal_stasinski.distrada.R;
+import com.michal_stasinski.distrada.RestaurantManager.NewsActivity;
+import com.michal_stasinski.distrada.RestaurantManager.NotificationActivity;
+import com.michal_stasinski.distrada.RestaurantManager.PasswordActivity;
+import com.michal_stasinski.distrada.RestaurantManager.RestaurantManager;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
@@ -35,7 +40,7 @@ public class BaseMenu extends AppCompatActivity {
     public BounceListView mListViewMenu;
     public RelativeLayout mtoolBarLayout;
     public DrawerLayout mDrawerLayout;
-    private ImageView imageDrawer;
+    private ImageView imageDrawer; //obrazek pod drawerem
     public ActionBarDrawerToggle mToggle;
     public Toolbar mToolBar;
 
@@ -44,10 +49,15 @@ public class BaseMenu extends AppCompatActivity {
     private LinearLayout content;
     private int color;
     private Boolean choiceActivity;
-    public int currentActivity = 2;
-    public int choicetActivity = 2;
+    public int currentActivity = 0;
+    public int choicetActivity = 0;
     public int badgeCount = 0;
     private Boolean loadActivity;
+
+    private Button gotoRestauratManager;
+    private Button notificationCreator;
+    private Button postCreator;
+    private Button logout;
 
     public String[] largeTextArr = {
             "AKTUALNOŚCI",
@@ -139,10 +149,55 @@ public class BaseMenu extends AppCompatActivity {
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
         mToolBar.setBackgroundResource(colorToolBar[currentActivity]);
 
+        gotoRestauratManager = (Button) findViewById(R.id.open_manager);
+        notificationCreator = (Button) findViewById(R.id.notificationCreator);
+        postCreator = (Button) findViewById(R.id.postCreator);
+        logout = (Button) findViewById(R.id.logout);
+        RegisterButtonVisible(Config.ISREGISTER);
+
+
+        notificationCreator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //On click function
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getBaseContext(), NotificationActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.animator.right_in, R.animator.left_out);
+            }
+        });
+
+        postCreator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //On click function
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getBaseContext(), NewsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.animator.right_in, R.animator.left_out);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //On click function
+            public void onClick(View view) {
+                Config.ISREGISTER = false;
+                RegisterButtonVisible(Config.ISREGISTER);
+                Intent intent = new Intent();
+                intent.setClass(getBaseContext(), NewsMenu.class);
+                startActivity(intent);
+                overridePendingTransition(R.animator.right_in, R.animator.left_out);
+            }
+        });
+
+
         imageDrawer = (ImageView) findViewById(R.id.pizza_element_back);
         setSupportActionBar(mToolBar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+
+
         BounceListView v = (BounceListView) findViewById(R.id.left_drawer);
         v.setEnabled(true);
         mDrawerLayout.setEnabled(true);
@@ -244,20 +299,27 @@ public class BaseMenu extends AppCompatActivity {
 
         });
 
+        Button openManager = (Button) findViewById(R.id.open_manager);
 
+
+        openManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //On click function
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getBaseContext(), PasswordActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.animator.right_in, R.animator.left_out);
+            }
+        });
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        Log.i("sdasdasd", "ffffff" + id);
         if (id == R.id.right_menu) {
-            Intent intent = new Intent();
-            intent.setClass(getBaseContext(), InfoActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.animator.right_in, R.animator.left_out);
-            return true;
+            mDrawerLayout.openDrawer(GravityCompat.END, true);
         } else {
             mDrawerLayout.openDrawer(GravityCompat.START, true);
         }
@@ -268,5 +330,19 @@ public class BaseMenu extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    private void RegisterButtonVisible(boolean isVisible) {
+        if (Config.ISREGISTER) {
+            gotoRestauratManager.setVisibility(View.INVISIBLE);
+            notificationCreator.setVisibility(View.VISIBLE);
+            postCreator.setVisibility(View.VISIBLE);
+            logout.setVisibility(View.VISIBLE);
+        } else {
+            gotoRestauratManager.setVisibility(View.VISIBLE);
+            notificationCreator.setVisibility(View.INVISIBLE);
+            postCreator.setVisibility(View.INVISIBLE);
+            logout.setVisibility(View.INVISIBLE);
+        }
     }
 }
