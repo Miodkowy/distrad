@@ -1,7 +1,6 @@
 package com.michal_stasinski.distrada.Menu.Adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import com.michal_stasinski.distrada.Menu.Models.NewsItem;
 import com.michal_stasinski.distrada.R;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -78,7 +76,7 @@ public class CustomNewsListViewAdapter extends BaseAdapter {
         ViewHolderItem viewHolder;
 
         if (convertView == null) {
-            view = View.inflate(mContext, R.layout.blog_row, null);
+            view = View.inflate(mContext, R.layout.left_menu_news_listview_row, null);
             viewHolder = new ViewHolderItem();
             viewHolder.date = (TextView) view.findViewById(R.id.dataText);
             viewHolder.news = (TextView) view.findViewById(R.id.blog_post_desc);

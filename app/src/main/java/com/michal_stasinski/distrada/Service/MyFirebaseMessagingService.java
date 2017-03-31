@@ -9,7 +9,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.michal_stasinski.distrada.App.Config;
-import com.michal_stasinski.distrada.Menu.MenuActivity.BaseMenu;
+import com.michal_stasinski.distrada.Menu.BaseMenu;
 import com.michal_stasinski.distrada.Utils.NotificationUtils;
 
 import org.json.JSONException;

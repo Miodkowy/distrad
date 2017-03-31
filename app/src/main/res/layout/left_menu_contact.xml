@@ -1,0 +1,174 @@
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.michal_stasinski.distrada.Menu.LeftMenu.Contact">
+
+
+    <RelativeLayout
+        android:id="@+id/main_frame_pizza"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/actionbar_frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                layout="@layout/action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/actionbar_frame"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customshape">
+
+                <android.support.percent.PercentRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.gms.maps.MapView
+                        android:id="@+id/map"
+                        android:layout_width="match_parent"
+                        app:layout_heightPercent="40%"
+                        app:layout_marginLeftPercent="2%"
+                        app:layout_marginRightPercent="2%"
+                        app:layout_marginTopPercent="2%"
+
+                        />
+
+                    <com.michal_stasinski.distrada.Utils.CustomTextView
+                        android:id="@+id/textContact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/map"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="Pizzeria Trattoria 'Di Strada'\nul. Morska 42, Gdynia\ntel 48 58 660 33 95\nPoniedziałek - Niedziela 12.00 - 22.00"
+                        android:textAlignment="center"
+                        android:textColor="@color/cardview_light_background"
+                        android:textSize="14dp"
+                        tools:textColor="@color/cardview_light_background" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textContact"
+                        android:layout_marginTop="20dp"
+                        app:layout_marginLeftPercent="2%"
+                        app:layout_marginRightPercent="2%">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="30dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/route_button"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+
+
+                                android:background="@drawable/custom_button"
+                                android:src="@mipmap/route_icon"
+                                android:text="Button" />
+
+                            <com.michal_stasinski.distrada.Utils.CustomTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="TRASA" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="30dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:id="@+id/call_button"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:background="@drawable/custom_button"
+                                android:src="@mipmap/call_icon"
+                                android:text="Button" />
+
+                            <com.michal_stasinski.distrada.Utils.CustomTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ZADZWON" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </android.support.percent.PercentRelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/pizza_element_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            app:srcCompat="@mipmap/pizza_view" />
+    </RelativeLayout>
+
+    <!--pierwszy drawer -->
+    <RelativeLayout
+        style="@style/NavDrawer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#cc000000">
+
+        <include
+            layout="@layout/custom_drawer_left_side"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <!--drugi drawer -->
+    <RelativeLayout
+        android:id="@+id/drawer_left_side"
+        style="@style/NavDrawer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="#cc000000">
+
+        <include
+            layout="@layout/custom_drawer_right_side"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

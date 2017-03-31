@@ -86,7 +86,7 @@ public class CustomListViewAdapter extends BaseAdapter {
         ViewHolderItem viewHolder;
 
         if (convertView == null) {
-            view = View.inflate(mContext, R.layout.menu_row, null);
+            view = View.inflate(mContext, R.layout.left_menu_listview_row, null);
             viewHolder = new ViewHolderItem();
             viewHolder.title = (TextView) view.findViewById(R.id.titleItem);
             viewHolder.textDesc = (TextView) view.findViewById(R.id.txtDesc);
