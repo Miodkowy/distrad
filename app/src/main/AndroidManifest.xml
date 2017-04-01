@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Menu.LeftMenu.News"
+            android:name=".App.Splash"
             android:label="Distrada"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -65,10 +65,7 @@
             android:resource="@color/colorAccent" />
 
         <activity android:name=".Menu.RightMenu.NewsCreator" />
-        <activity
-            android:name=".InfoPanel.InfoActivity"
-            android:label="@string/title_activity_info"
-            android:theme="@style/AppTheme" />
+
         <activity android:name=".Menu.RightMenu.NotificationCreator" />
         <activity android:name=".Menu.BaseMenu" />
         <activity android:name=".Menu.LeftMenu.Starters" />
@@ -81,7 +78,9 @@
         <activity android:name=".Menu.LeftMenu.Contact" />
         <activity android:name=".Menu.LeftMenu.Pizza" />
         <activity android:name=".Menu.RightMenu.PasswordActivity" />
-        <activity android:name=".Menu.LeftMenu.Additions"></activity>
+        <activity android:name=".Menu.LeftMenu.Additions" />
+        <activity android:name=".Menu.LeftMenu.News" />
+
     </application>
 
 </manifest>
