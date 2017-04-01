@@ -20,7 +20,7 @@ public class PasswordActivity extends BaseMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.menu_basemenu);
+        setContentView(R.layout.base_menu);
 
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.right_password);

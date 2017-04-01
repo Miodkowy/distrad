@@ -5,8 +5,13 @@
 
     <item android:id="@+id/right_menu"
         android:title="Add"
+        android:orderInCategory="100"
         android:icon="@mipmap/ic_more_vert_white_48dp"
         app:showAsAction="always" />
-
-
+    <item
+        android:id="@+id/share"
+        android:actionProviderClass="android.widget.ShareActionProvider"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="Share"
+        app:showAsAction="always" />
 </menu>

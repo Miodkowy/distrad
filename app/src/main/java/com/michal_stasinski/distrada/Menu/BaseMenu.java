@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,7 +52,6 @@ public class BaseMenu extends AppCompatActivity {
     private ImageView imageDrawer; //obrazek pod drawerem
     public ActionBarDrawerToggle mToggle;
     public Toolbar mToolBar;
-
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private ImageView imgBackground;
     private LinearLayout content;
@@ -124,7 +124,7 @@ public class BaseMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_basemenu);
+        setContentView(R.layout.base_menu);
 
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.left_bounce_list_view);
@@ -332,17 +332,33 @@ public class BaseMenu extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.right_menu) {
             mDrawerLayout.openDrawer(GravityCompat.END, true);
-        } else {
-            mDrawerLayout.openDrawer(GravityCompat.START, true);
+            return true;
         }
+        if (id ==  R.id.share) {
+
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            String shareBodyText = "Check it out. Your message goes here";
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject here");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
+            startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
+            return true;
+        }
+        else {
+            mDrawerLayout.openDrawer(GravityCompat.START, true);
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
+
 
     private void RegisterButtonVisible(boolean isVisible) {
         if (Config.ISREGISTER) {
@@ -357,4 +373,5 @@ public class BaseMenu extends AppCompatActivity {
             logout.setVisibility(View.INVISIBLE);
         }
     }
+
 }

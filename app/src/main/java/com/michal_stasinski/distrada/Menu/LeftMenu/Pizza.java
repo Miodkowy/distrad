@@ -1,8 +1,10 @@
 package com.michal_stasinski.distrada.Menu.LeftMenu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.google.firebase.database.DataSnapshot;
@@ -28,8 +30,8 @@ public class Pizza extends BaseMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.left_menu_pizza);
-        setContentView(R.layout.menu_basemenu);
+
+        setContentView(R.layout.base_menu);
 
         currentActivity = 2;
         choicetActivity = 2;
@@ -52,6 +54,16 @@ public class Pizza extends BaseMenu {
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.pizza_view);
 
+        Button addon_button = (Button) findViewById(R.id.addon_button);
+        addon_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent intent = new Intent();
+                intent.setClass(getBaseContext(), Additions.class);
+                startActivity(intent);
+                overridePendingTransition(R.animator.right_in, R.animator.left_out);
+            }
+        });
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

@@ -1,8 +1,10 @@
 package com.michal_stasinski.distrada.Menu.LeftMenu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,7 +22,7 @@ import com.michal_stasinski.distrada.Utils.BounceListView;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Pasta extends BaseMenu {
+public class Additions extends BaseMenu {
     private DatabaseReference myRef;
     private ArrayList<MenuItemProduct> menuItem;
     private int colorActivity;
@@ -29,26 +31,45 @@ public class Pasta extends BaseMenu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.base_menu);
 
+        currentActivity = 2;
+        choicetActivity = 2;
+        colorActivity = currentActivity;
+
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
-        stub.setLayoutResource(R.layout.left_header_and_bounce_list_view);
+        stub.setLayoutResource(R.layout.left_dodatki);
         View inflated = stub.inflate();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+        TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
+        toolBarTitle.setText("DODATKI");
 
-        myRef = database.getReference("pasta");
-        currentActivity = 7;
-        choicetActivity = 7;
-        colorActivity = currentActivity;
-        sortByInt = false;
-        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
-        background.setBackgroundResource(R.mipmap.pasta_view);
-        TextView addonText = (TextView) findViewById(R.id.addonText);
-        addonText.setText("Makarony podajemy z parmezanem.");
+        Button addon_button = (Button) findViewById(R.id.addon_button);
+        addon_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent intent = new Intent();
+                intent.setClass(getBaseContext(), Pizza.class);
+                startActivity(intent);
+                overridePendingTransition(R.animator.left_in, R.animator.right_out);
+            }
+        });
+
+
+        myRef = database.getReference("additions");
+
+        sortByInt = true;
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
-        // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
+        RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
+        background.setBackgroundResource(R.mipmap.pizza_view);
 
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -75,7 +96,7 @@ public class Pasta extends BaseMenu {
 
                 }
 
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
+                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt, false);
                 mListViewMenu.setAdapter(arrayAdapter);
                 mListViewMenu.setScrollingCacheEnabled(false);
             }
@@ -85,7 +106,5 @@ public class Pasta extends BaseMenu {
 
             }
         });
-
     }
-
 }

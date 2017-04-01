@@ -9,8 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/customshape_black"
-        android:text="W skład każdej pizzy(32 cm) wchodzą:\n
-ser Mozzarella i sos pomidorowy"
+        android:text="Ceny za kązdy dodatek"
         android:textAlignment="textEnd"
         android:textColor="@color/colorWhite"
         android:textSize="16sp" />
@@ -35,11 +34,10 @@ ser Mozzarella i sos pomidorowy"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/mListView_BaseMenu"
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:backgroundTint="@color/color_PIZZA"
-        android:text="Dodatki" />
+        android:text="Pizza" />
 
 </LinearLayout>

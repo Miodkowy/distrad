@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
@@ -54,7 +55,7 @@ public class NotificationCreator extends BaseMenu {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.menu_basemenu);
+        setContentView(R.layout.base_menu);
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.right_notification_creator);
         View inflated = stub.inflate();
@@ -76,8 +77,14 @@ public class NotificationCreator extends BaseMenu {
 
                 JSONArray jsonArray = new JSONArray();
                 jsonArray.put(refreshedToken);
+                if(TextUtils.isEmpty(eTitle.getText()) || TextUtils.isEmpty(eMessage.getText())) {
 
-                sendMessage(jsonArray, eTitle.getText().toString(), eMessage.getText().toString(), "Wiadomość");
+                    Log.i("TAG","lipa"+eTitle.getText());
+
+                }else{
+                    Log.i("TAG","Poszła wiadomosc"+eTitle.getText());
+                    sendMessage(jsonArray, eTitle.getText().toString(), eMessage.getText().toString(), "Wiadomość");
+                }
             }
         });
 
