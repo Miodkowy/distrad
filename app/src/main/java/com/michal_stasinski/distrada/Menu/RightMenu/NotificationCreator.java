@@ -2,12 +2,14 @@ package com.michal_stasinski.distrada.Menu.RightMenu;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -73,17 +75,55 @@ public class NotificationCreator extends BaseMenu {
         not.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String refreshedToken = FirebaseInstanceId.getInstance().getToken();//add your user refresh tokens who are logged in with firebase.
 
-                JSONArray jsonArray = new JSONArray();
-                jsonArray.put(refreshedToken);
+
+
+
                 if(TextUtils.isEmpty(eTitle.getText()) || TextUtils.isEmpty(eMessage.getText())) {
 
-                    Log.i("TAG","lipa"+eTitle.getText());
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NotificationCreator.this);
+                    alertDialogBuilder.setTitle("UWAGA");
+                    alertDialogBuilder
+                            .setMessage("Nie wypełniłeś wszystkich wymaganych pół")
+                            .setCancelable(false)
+                            .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+
+                                }
+                            });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
 
                 }else{
-                    Log.i("TAG","Poszła wiadomosc"+eTitle.getText());
-                    sendMessage(jsonArray, eTitle.getText().toString(), eMessage.getText().toString(), "Wiadomość");
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NotificationCreator.this);
+                    alertDialogBuilder.setTitle("UWAGA");
+                    alertDialogBuilder
+                            .setMessage("Na pewno chcesz wysłać wiadomość?")
+                            .setCancelable(false)
+                            .setPositiveButton("TAK",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    String refreshedToken = FirebaseInstanceId.getInstance().getToken();//add your user refresh tokens who are logged in with firebase.
+                                    JSONArray jsonArray = new JSONArray();
+                                    jsonArray.put(refreshedToken);
+                                    sendMessage(jsonArray, eTitle.getText().toString(), eMessage.getText().toString(), "Wiadomość");
+                                    eTitle.setText("");
+                                    eMessage.setText("");
+                                }
+                            })
+                            .setNegativeButton("NIE",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, just close
+                                    // the dialog box and do nothing
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
                 }
             }
         });

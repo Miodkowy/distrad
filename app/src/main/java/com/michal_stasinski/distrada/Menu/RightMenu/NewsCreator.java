@@ -1,10 +1,13 @@
 package com.michal_stasinski.distrada.Menu.RightMenu;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
@@ -16,11 +19,14 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.michal_stasinski.distrada.Menu.BaseMenu;
 import com.michal_stasinski.distrada.R;
+
+import org.json.JSONArray;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -96,39 +102,74 @@ public class NewsCreator extends BaseMenu {
         final String titleVal = mPostTitle.getText().toString().trim();
         final String descVal = mPostDesc.getText().toString().trim();
 
-
+        Log.i("TAG", "GGGGG______________________" + mImageUri);
         // jeśli title val nie jest pusty i descVal nie jest pusty i image nie jest nul to
-        if (!TextUtils.isEmpty(titleVal) && !TextUtils.isEmpty(descVal) && mSecetedImage != null) {
+        if (!TextUtils.isEmpty(titleVal) && !TextUtils.isEmpty(descVal) && mImageUri != null) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NewsCreator.this);
+            alertDialogBuilder.setTitle("UWAGA");
+            alertDialogBuilder
+                    .setMessage("Na pewno chcesz wysłać wiadomość?")
+                    .setCancelable(false)
+                    .setPositiveButton("TAK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            mProgress.setMessage("Wysyłam post");
+                            mProgress.show();
 
-            mProgress.setMessage("Wysyłam post");
-            mProgress.show();
+                            //StorageReference filepath = mStorage.child("Blog_image").child(mImageUri.getLastPathSegment());
+                            StorageReference filepath = mStorage.child("images").child(mImageUri.getLastPathSegment());
+                            filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-            //StorageReference filepath = mStorage.child("Blog_image").child(mImageUri.getLastPathSegment());
-            StorageReference filepath = mStorage.child("images").child(mImageUri.getLastPathSegment());
-            filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    Uri downLoadUri = taskSnapshot.getDownloadUrl();
 
-                    Uri downLoadUri = taskSnapshot.getDownloadUrl();
-
-                    DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
-                    DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
-                    String date = df.format(Calendar.getInstance().getTime());
-                    String date1 = df1.format(Calendar.getInstance().getTime());
+                                    DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+                                    DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
+                                    String date = df.format(Calendar.getInstance().getTime());
+                                    String date1 = df1.format(Calendar.getInstance().getTime());
 
 
-                    DatabaseReference newPost = mDatabase.push();
-                    newPost.child("title").setValue(titleVal.toString());
-                    newPost.child("news").setValue(descVal.toString());
-                    newPost.child("date").setValue(date.toString());
-                    newPost.child("rank").setValue(date1.toString());
-                    // dodanie urla obrazka ...zamienic na stringa!!
+                                    DatabaseReference newPost = mDatabase.push();
+                                    newPost.child("title").setValue(titleVal.toString());
+                                    newPost.child("news").setValue(descVal.toString());
+                                    newPost.child("date").setValue(date.toString());
+                                    newPost.child("rank").setValue(date1.toString());
+                                    // dodanie urla obrazka ...zamienic na stringa!!
 
-                    newPost.child("imageUrl").setValue(downLoadUri.toString());
+                                    newPost.child("imageUrl").setValue(downLoadUri.toString());
 
-                    mProgress.dismiss();
-                }
-            });
+                                    mProgress.dismiss();
+                                }
+                            });
+
+                        }
+                    })
+                    .setNegativeButton("NIE", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // if this button is clicked, just close
+                            // the dialog box and do nothing
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
+        } else {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NewsCreator.this);
+            alertDialogBuilder.setTitle("UWAGA");
+            alertDialogBuilder
+                    .setMessage("Nie wypełniłeś wszystkich wymaganych pół lub nie dodałeś zdjęcia")
+                    .setCancelable(false)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // if this button is clicked, close
+                            // current activity
+
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
         }
     }
 
