@@ -3,6 +3,7 @@ package com.michal_stasinski.distrada.Menu;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -125,7 +126,7 @@ public class BaseMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_menu);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.left_bounce_list_view);
         View inflated = stub.inflate();
@@ -144,7 +145,6 @@ public class BaseMenu extends AppCompatActivity {
                 if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
 
                     FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
-
 
                 }
             }
@@ -274,7 +274,8 @@ public class BaseMenu extends AppCompatActivity {
 
 
                     startActivity(intent);
-                    overridePendingTransition(R.animator.right_in, R.animator.left_out);
+                    //overridePendingTransition(R.animator.right_in, R.animator.left_out);
+                    overridePendingTransition(R.anim.flip_inn, R.anim.flip_out);
                 }
 
 
@@ -322,6 +323,7 @@ public class BaseMenu extends AppCompatActivity {
                 intent.setClass(getBaseContext(), PasswordActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.animator.right_in, R.animator.left_out);
+
             }
         });
     }

@@ -90,7 +90,7 @@
                     <com.michal_stasinski.distrada.Utils.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ZADZWON" />
+                        android:text="ZADZWOŃ" />
                 </LinearLayout>
             </RelativeLayout>
 
