@@ -12,6 +12,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
 
         app:srcCompat="@mipmap/logo_distrada" />
 
@@ -36,7 +37,11 @@
         android:text="Wejście dla personelu"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorWhite"
+        android:background="@color/cardview_dark_background"
+
+        />
 
     <Button
         android:id="@+id/postCreator"
@@ -47,7 +52,10 @@
         android:text="Utwórz wiadomość"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorWhite"
+        android:background="@color/cardview_dark_background"
+        />
 
     <Button
         android:id="@+id/notificationCreator"
@@ -58,7 +66,10 @@
         android:text="Utwórz powiadomienie"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorWhite"
+        android:background="@color/cardview_dark_background"
+        />
 
     <Button
         android:id="@+id/logout"
@@ -69,5 +80,8 @@
         android:text="Wyloguj"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorWhite"
+        android:background="@color/cardview_dark_background"
+        />
 </RelativeLayout>
