@@ -6,26 +6,11 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.michal_stasinski.distrada.Menu.Adapters.CustomListViewAdapter;
 import com.michal_stasinski.distrada.Menu.BaseMenu;
-import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 public class Pizza extends BaseMenu {
-    private DatabaseReference myRef;
-    private ArrayList<MenuItemProduct> menuItem;
-    private int colorActivity;
-    private boolean sortByInt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +20,8 @@ public class Pizza extends BaseMenu {
         currentActivity = 2;
         choicetActivity = 2;
         colorActivity = currentActivity;
-
+        specialSign = false;
+        sortByInt = true;
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.left_pizza);
         View inflated = stub.inflate();
@@ -45,9 +31,6 @@ public class Pizza extends BaseMenu {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-        sortByInt = true;
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.pizza_view);
@@ -55,47 +38,12 @@ public class Pizza extends BaseMenu {
         Button addon_button = (Button) findViewById(R.id.addon_button);
         addon_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 Intent intent = new Intent();
                 intent.setClass(getBaseContext(), Additions.class);
                 startActivity(intent);
                 overridePendingTransition(R.animator.right_in, R.animator.left_out);
             }
         });
-        myRef = database.getReference("pizzas");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                menuItem = new ArrayList<MenuItemProduct>();
-                for (DataSnapshot item : dataSnapshot.getChildren()) {
-
-                    DataSnapshot dataitem = item;
-                    Map<String, Object> map = (Map<String, Object>) dataitem.getValue();
-                    String name = (String) map.get("name");
-                    String rank = (String) map.get("rank").toString();
-                    String desc = (String) map.get("desc");
-                    Number price = (Number) map.get("price");
-
-                    MenuItemProduct menuItemProduct = new MenuItemProduct();
-
-                    menuItemProduct.setNameProduct(name);
-                    menuItemProduct.setRank(rank);
-                    menuItemProduct.setDesc(desc);
-                    menuItemProduct.setDesc(desc);
-                    menuItemProduct.setPrice(price);
-                    menuItem.add(menuItemProduct);
-
-                }
-
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt, false);
-                mListViewMenu.setAdapter(arrayAdapter);
-                mListViewMenu.setScrollingCacheEnabled(false);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        loadFireBaseData("pizzas",true);
     }
 }

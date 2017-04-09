@@ -22,9 +22,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.michal_stasinski.distrada.App.Config;
 import com.michal_stasinski.distrada.Menu.Adapters.CustomDrawerAdapter;
+import com.michal_stasinski.distrada.Menu.Adapters.CustomListViewAdapter;
 import com.michal_stasinski.distrada.Menu.LeftMenu.Alforno;
 import com.michal_stasinski.distrada.Menu.LeftMenu.Contact;
 import com.michal_stasinski.distrada.Menu.LeftMenu.Drinks;
@@ -35,25 +41,32 @@ import com.michal_stasinski.distrada.Menu.LeftMenu.Pizza;
 import com.michal_stasinski.distrada.Menu.LeftMenu.Salad;
 import com.michal_stasinski.distrada.Menu.LeftMenu.Soup;
 import com.michal_stasinski.distrada.Menu.LeftMenu.Starters;
-import com.michal_stasinski.distrada.R;
+import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
 import com.michal_stasinski.distrada.Menu.RightMenu.NewsCreator;
 import com.michal_stasinski.distrada.Menu.RightMenu.NotificationCreator;
 import com.michal_stasinski.distrada.Menu.RightMenu.PasswordActivity;
+import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class BaseMenu extends AppCompatActivity {
 
-    public BounceListView mListViewDrawer;
-    public BounceListView mListViewMenu;
-    public RelativeLayout mtoolBarLayout;
-    public DrawerLayout mDrawerLayout;
-    public ActionBarDrawerToggle mToggle;
-    public Toolbar mToolBar;
-    public int currentActivity = 0;
-    public int choicetActivity = 0;
-    public int badgeCount = 0;
+    protected BounceListView mListViewDrawer;
+    protected BounceListView mListViewMenu;
+    protected RelativeLayout mtoolBarLayout;
+    protected DrawerLayout mDrawerLayout;
+    protected ActionBarDrawerToggle mToggle;
+    protected Toolbar mToolBar;
+    protected int currentActivity = 0;
+    protected int choicetActivity = 0;
+    protected int badgeCount = 0;
+    protected int colorActivity = 1;
+    protected boolean sortByInt;
+    protected boolean specialSign = false;
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private ImageView imgBackground;
@@ -66,6 +79,9 @@ public class BaseMenu extends AppCompatActivity {
     private Button notificationCreator;
     private Button postCreator;
     private Button logout;
+    private DatabaseReference myRef;
+    private ArrayList<MenuItemProduct> menuItem;
+
 
     public String[] largeTextArr = {
             "AKTUALNOŚCI",
@@ -117,8 +133,6 @@ public class BaseMenu extends AppCompatActivity {
             R.mipmap.pasta_icon,
             R.mipmap.drugie_danie_icon,
             R.mipmap.drink_icon
-
-
     };
 
     @Override
@@ -132,9 +146,7 @@ public class BaseMenu extends AppCompatActivity {
 
         badgeCount = 0;
         ShortcutBadger.applyCount(getApplicationContext(), badgeCount);
-
         FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
-
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -154,7 +166,6 @@ public class BaseMenu extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-
         loadActivity = false;
         choiceActivity = false;
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
@@ -165,8 +176,6 @@ public class BaseMenu extends AppCompatActivity {
         postCreator = (Button) findViewById(R.id.postCreator);
         logout = (Button) findViewById(R.id.logout);
         RegisterButtonVisible(Config.ISREGISTER);
-
-
         notificationCreator.setOnClickListener(new View.OnClickListener() {
             @Override
             //On click function
@@ -201,7 +210,6 @@ public class BaseMenu extends AppCompatActivity {
                 overridePendingTransition(R.animator.right_in, R.animator.left_out);
             }
         });
-
 
         imageDrawer = (ImageView) findViewById(R.id.pizza_element_back);
         setSupportActionBar(mToolBar);
@@ -238,7 +246,6 @@ public class BaseMenu extends AppCompatActivity {
 
                 if (currentActivity != choicetActivity) {
                     mDrawerLayout.setEnabled(false);
-
                     Intent intent = new Intent();
                     if (choicetActivity == 0) {
                         intent.setClass(getBaseContext(), News.class);
@@ -270,14 +277,10 @@ public class BaseMenu extends AppCompatActivity {
                     if (choicetActivity == 9) {
                         intent.setClass(getBaseContext(), Drinks.class);
                     }
-
-
                     startActivity(intent);
                     //overridePendingTransition(R.animator.right_in, R.animator.left_out);
                     overridePendingTransition(R.anim.flip_inn, R.anim.flip_out);
                 }
-
-
             }
         };
 
@@ -292,9 +295,8 @@ public class BaseMenu extends AppCompatActivity {
         mListViewDrawer.setScrollingCacheEnabled(false);
 
         CustomDrawerAdapter adapter = new CustomDrawerAdapter(this, largeTextArr, smallTextArr, imgid);
+
         mListViewDrawer.setAdapter(adapter);
-
-
         mListViewDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, final int position, long arg) {
@@ -306,14 +308,9 @@ public class BaseMenu extends AppCompatActivity {
                     mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 }
                 mDrawerLayout.closeDrawer(GravityCompat.START, true);
-
             }
-
         });
-
         Button openManager = (Button) findViewById(R.id.open_manager);
-
-
         openManager.setOnClickListener(new View.OnClickListener() {
             @Override
             //On click function
@@ -335,21 +332,17 @@ public class BaseMenu extends AppCompatActivity {
             mDrawerLayout.openDrawer(GravityCompat.END, true);
             return true;
         }
-        if (id ==  R.id.share) {
-
+        if (id == R.id.share) {
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             String shareBodyText = "Check it out. Your message goes here";
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject here");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject here");
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
             startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
             return true;
-        }
-        else {
+        } else {
             mDrawerLayout.openDrawer(GravityCompat.START, true);
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -371,6 +364,45 @@ public class BaseMenu extends AppCompatActivity {
             notificationCreator.setVisibility(View.INVISIBLE);
             postCreator.setVisibility(View.INVISIBLE);
             logout.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void loadFireBaseData(String databaseReference, Boolean loadData) {
+        if (loadData == true) {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            myRef = database.getReference(databaseReference);
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    menuItem = new ArrayList<MenuItemProduct>();
+                    for (DataSnapshot item : dataSnapshot.getChildren()) {
+
+                        DataSnapshot dataitem = item;
+                        Map<String, Object> map = (Map<String, Object>) dataitem.getValue();
+                        String name = (String) map.get("name");
+                        String rank = (String) map.get("rank").toString();
+                        String desc = (String) map.get("desc");
+                        Number price = (Number) map.get("price");
+
+                        MenuItemProduct menuItemProduct = new MenuItemProduct();
+
+                        menuItemProduct.setNameProduct(name);
+                        menuItemProduct.setRank(rank);
+                        menuItemProduct.setDesc(desc);
+                        menuItemProduct.setDesc(desc);
+                        menuItemProduct.setPrice(price);
+                        menuItem.add(menuItemProduct);
+
+                    }
+                    CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt, specialSign);
+                    mListViewMenu.setAdapter(arrayAdapter);
+                    mListViewMenu.setScrollingCacheEnabled(false);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
         }
     }
 

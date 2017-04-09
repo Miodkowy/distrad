@@ -6,25 +6,11 @@ import android.view.ViewStub;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.michal_stasinski.distrada.Menu.Adapters.CustomListViewAdapter;
 import com.michal_stasinski.distrada.Menu.BaseMenu;
-import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 public class Pasta extends BaseMenu {
-    private DatabaseReference myRef;
-    private ArrayList<MenuItemProduct> menuItem;
-    private int colorActivity;
-    private boolean sortByInt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,57 +21,22 @@ public class Pasta extends BaseMenu {
         stub.setLayoutResource(R.layout.left_header_and_bounce_list_view);
         View inflated = stub.inflate();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-
-        myRef = database.getReference("pasta");
         currentActivity = 7;
         choicetActivity = 7;
         colorActivity = currentActivity;
         sortByInt = false;
+        specialSign = false;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.pasta_view);
         TextView addonText = (TextView) findViewById(R.id.addonText);
         addonText.setText("Makarony podajemy z parmezanem.");
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
         // mToolBar.setBackgroundResource(colorToolBar[colorActivity]);
-
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                menuItem = new ArrayList<MenuItemProduct>();
-                for (DataSnapshot item : dataSnapshot.getChildren()) {
-
-                    DataSnapshot dataitem = item;
-                    Map<String, Object> map = (Map<String, Object>) dataitem.getValue();
-                    String name = (String) map.get("name");
-                    String rank = (String) map.get("rank").toString();
-                    String desc = (String) map.get("desc");
-                    Number price = (Number) map.get("price");
-
-                    MenuItemProduct menuItemProduct = new MenuItemProduct();
-
-                    menuItemProduct.setNameProduct(name);
-                    menuItemProduct.setRank(rank);
-                    menuItemProduct.setDesc(desc);
-                    menuItemProduct.setDesc(desc);
-                    menuItemProduct.setPrice(price);
-                    menuItem.add(menuItemProduct);
-
-                }
-
-                CustomListViewAdapter arrayAdapter = new CustomListViewAdapter(getApplicationContext(), menuItem, colorToolBar[colorActivity], sortByInt,false);
-                mListViewMenu.setAdapter(arrayAdapter);
-                mListViewMenu.setScrollingCacheEnabled(false);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadFireBaseData("pasta",true);
+    }
 }

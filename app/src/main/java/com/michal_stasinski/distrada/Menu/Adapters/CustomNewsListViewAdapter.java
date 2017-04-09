@@ -31,7 +31,6 @@ public class CustomNewsListViewAdapter extends BaseAdapter {
     private Boolean specialSign;
 
     public CustomNewsListViewAdapter(Context context, ArrayList<NewsItem> mListArray, int color) {
-        this.specialSign = specialSign;
         Collections.sort(mListArray, Collections.reverseOrder(new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {
@@ -39,9 +38,9 @@ public class CustomNewsListViewAdapter extends BaseAdapter {
 
                 String s1 = (((NewsItem) o1).getRank());
                 String s2 = (((NewsItem) o2).getRank());
-                if(s1!=null&& s2!=null) {
+                if (s1 != null && s2 != null) {
                     return s1.compareToIgnoreCase(s2);
-                }else{
+                } else {
                     return 0;
                 }
 

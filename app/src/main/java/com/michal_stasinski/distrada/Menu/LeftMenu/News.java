@@ -34,9 +34,6 @@ public class News extends BaseMenu {
         stub.setLayoutResource(R.layout.left_news);
         View inflated = stub.inflate();
 
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("blogs");
         currentActivity = 0;
         choicetActivity = 0;
         colorActivity = currentActivity;
@@ -47,6 +44,8 @@ public class News extends BaseMenu {
 
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("blogs");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

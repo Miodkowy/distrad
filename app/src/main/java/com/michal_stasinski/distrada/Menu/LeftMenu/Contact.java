@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -19,23 +18,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.DatabaseReference;
 import com.michal_stasinski.distrada.Menu.BaseMenu;
-import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
 import com.michal_stasinski.distrada.R;
 
-
-import java.util.ArrayList;
-
 public class Contact extends BaseMenu implements OnMapReadyCallback {
-    private DatabaseReference myRef;
-    private ArrayList<MenuItemProduct> menuItem;
-    private int colorActivity;
-    private boolean sortByInt;
-
     GoogleMap mGoogleMap;
     MapView mMapView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +36,6 @@ public class Contact extends BaseMenu implements OnMapReadyCallback {
         currentActivity = 1;
         choicetActivity = 1;
         colorActivity = currentActivity;
-
-
-
         sortByInt = true;
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.contact_view);
@@ -75,32 +60,30 @@ public class Contact extends BaseMenu implements OnMapReadyCallback {
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
-                startActivity( callIntent);
+                startActivity(callIntent);
 
             }
         });
+
         mMapView = (MapView) findViewById(R.id.map);
         if (mMapView != null) {
             mMapView.onCreate(null);
             mMapView.onResume();
             mMapView.getMapAsync(this);
         }
-
-
     }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(mMapView.getContext());
         mGoogleMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(54.5258318,18.5149058)).title("Di Strada").snippet("zapraszamy na pyszną pizzę"));
-        CameraPosition Liberty = CameraPosition.builder().target(new LatLng(54.5258318,18.5149058)).zoom(14).bearing(0).tilt(45).build();
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(54.5258318, 18.5149058)).title("Di Strada").snippet("zapraszamy na pyszną pizzę"));
+        CameraPosition Liberty = CameraPosition.builder().target(new LatLng(54.5258318, 18.5149058)).zoom(14).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
 
-
     }
+
 }
 
 
