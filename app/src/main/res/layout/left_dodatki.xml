@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/customshape_black"
-        android:text="Ceny za kązdy dodatek"
+        android:text="Ceny za każdy dodatek"
         android:textAlignment="textEnd"
         android:textColor="@color/colorWhite"
         android:textSize="16sp" />
@@ -19,24 +19,23 @@
         android:id="@+id/mListView_BaseMenu"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_alignParentLeft="true"
         android:layout_below="@id/specialText"
         android:layout_centerVertical="true"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
         android:animationCache="false"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.05sp"
-        android:layout_marginBottom="10dp"
         android:scrollingCache="false" />
 
     <Button
         android:id="@+id/addon_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@id/mListView_BaseMenu"
-        android:layout_marginBottom="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_gravity="right"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="0dp"
         android:backgroundTint="@color/color_PIZZA"
         android:text="Pizza" />
 

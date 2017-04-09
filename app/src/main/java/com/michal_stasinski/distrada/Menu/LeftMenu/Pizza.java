@@ -32,7 +32,6 @@ public class Pizza extends BaseMenu {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.base_menu);
-
         currentActivity = 2;
         choicetActivity = 2;
         colorActivity = currentActivity;
@@ -47,7 +46,6 @@ public class Pizza extends BaseMenu {
     protected void onStart() {
         super.onStart();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("pizzas");
 
         sortByInt = true;
         mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
@@ -64,7 +62,7 @@ public class Pizza extends BaseMenu {
                 overridePendingTransition(R.animator.right_in, R.animator.left_out);
             }
         });
-
+        myRef = database.getReference("pizzas");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

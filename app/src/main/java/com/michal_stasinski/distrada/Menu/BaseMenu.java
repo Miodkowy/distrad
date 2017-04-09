@@ -11,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,19 +49,19 @@ public class BaseMenu extends AppCompatActivity {
     public BounceListView mListViewMenu;
     public RelativeLayout mtoolBarLayout;
     public DrawerLayout mDrawerLayout;
-    private ImageView imageDrawer; //obrazek pod drawerem
     public ActionBarDrawerToggle mToggle;
     public Toolbar mToolBar;
+    public int currentActivity = 0;
+    public int choicetActivity = 0;
+    public int badgeCount = 0;
+
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private ImageView imgBackground;
     private LinearLayout content;
     private int color;
+    private ImageView imageDrawer; //obrazek pod drawerem
     private Boolean choiceActivity;
-    public int currentActivity = 0;
-    public int choicetActivity = 0;
-    public int badgeCount = 0;
     private Boolean loadActivity;
-
     private Button gotoRestauratManager;
     private Button notificationCreator;
     private Button postCreator;
@@ -132,7 +131,7 @@ public class BaseMenu extends AppCompatActivity {
         View inflated = stub.inflate();
 
         badgeCount = 0;
-        ShortcutBadger.applyCount(getApplicationContext(), badgeCount); //for 1.1.4+
+        ShortcutBadger.applyCount(getApplicationContext(), badgeCount);
 
         FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
 
@@ -357,7 +356,6 @@ public class BaseMenu extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-
         return true;
     }
 
