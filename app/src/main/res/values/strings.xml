@@ -1,33 +1,6 @@
 <resources>
-    <string name="app_name">DISTRADA</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_info">info</string>
 
-    <string name="AKTUALNOŚCI">AKTUALNOŚCI</string>
-    <string name="KONTAKT">KONTAKT</string>
-    <string name="PIZZA">DISTRADA</string>
-    <string name="STARTERY">DISTRADA</string>
-    <string name="SAŁATKI">DISTRADA</string>
-    <string name="ZUPY">DISTRADA</string>
-    <string name="MAKARONY">DISTRADA</string>
-    <string name="MAKARONY_ZAPIEKANE">DISTRADA</string>
-    <string name="DRUGIE_DANIA">DISTRADA</string>
-    <string name="NAPOJE_i_DESERY">DISTRADA</string>
-    <string name="POWIADOMIENIA">DISTRADA</string>
-    <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
 </resources>

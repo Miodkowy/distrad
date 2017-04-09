@@ -54,32 +54,33 @@
 
     <!--pierwszy drawer -->
     <RelativeLayout
-        style="@style/NavDrawer"
-        android:layout_width="wrap_content"
+
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        style="@style/NavDrawer"
         android:layout_gravity="start"
         android:background="#cc000000">
 
         <include
             layout="@layout/custom_drawer_left_side"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 
     <!--drugi drawer -->
     <RelativeLayout
         android:id="@+id/drawer_left_side"
-        style="@style/NavDrawer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        style="@style/NavDrawer"
         android:layout_gravity="end"
         android:background="#cc000000">
 
         <include
             layout="@layout/custom_drawer_right_side"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 

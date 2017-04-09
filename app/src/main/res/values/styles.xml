@@ -15,32 +15,16 @@
         <item name="color">@color/colorWhite</item>
     </style>
 
+    <!-- szerokośc draver -->
     <style name="NavDrawer">
-        <item name="android:layout_width">300dp</item>
-        <item name="android:layout_marginRight">0dp</item>
-    </style>
-
-    <style name="ToolBar">
-        <item name="actionMenuTextColor">@color/color_MAKARONY</item>
-        <item name="android:actionMenuTextColor">@color/color_MAKARONY</item>
+        <item name="android:layout_marginRight">10dp</item>
     </style>
 
     <style name="GalaxyZooThemeToolbarDarkOverflow" parent="Theme.AppCompat.NoActionBar">
-        <!-- android:textColorPrimary is the  color of the title text
-             in the Toolbar, in the Theme.AppCompat theme:  -->
         <item name="android:textColorPrimary">@color/color_PIZZA</item>
         <item name="android:actionMenuTextColor">@color/colorWhite</item>
-        <!-- android:textColorSecondary is the color of the menu
-             overflow icon (three vertical dots) -->
-        <item name="colorControlNormal">@color/colorWhite</item>
-        <item name="android:textColorSecondary">@color/colorWhite</item>
-        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="windowActionBarOverlay">true</item>
 
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
 

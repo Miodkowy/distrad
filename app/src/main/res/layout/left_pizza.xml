@@ -13,7 +13,7 @@
 ser Mozzarella i sos pomidorowy"
         android:textAlignment="textEnd"
         android:textColor="@color/colorWhite"
-        android:textSize="16sp" />
+        android:textSize="@dimen/menu_list_view_desc" />
 
 
     <com.michal_stasinski.distrada.Utils.BounceListView
