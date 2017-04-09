@@ -9,12 +9,8 @@
         android:id="@+id/etHeader1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-
-        app:srcCompat="@mipmap/logo_distrada" />
+        app:srcCompat="@mipmap/logo" />
 
 
     <ImageView
@@ -23,29 +19,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/etHeader1"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         app:srcCompat="@mipmap/app_icon" />
 
-    <Button
-        android:id="@+id/open_manager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/icon_in_info"
-        android:layout_centerHorizontal="true"
-        android:text="Wejście dla personelu"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/colorWhite"
-        android:background="@color/cardview_dark_background"
-
-        />
 
     <Button
         android:id="@+id/postCreator"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/icon_in_info"
         android:layout_centerHorizontal="true"
@@ -59,7 +39,7 @@
 
     <Button
         android:id="@+id/notificationCreator"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/postCreator"
         android:layout_centerHorizontal="true"
@@ -73,7 +53,7 @@
 
     <Button
         android:id="@+id/logout"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/notificationCreator"
         android:layout_centerHorizontal="true"
@@ -84,4 +64,26 @@
         android:textColor="@color/colorWhite"
         android:background="@color/cardview_dark_background"
         />
+
+    <Button
+        android:id="@+id/admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logout"
+        android:layout_centerHorizontal="true"
+        android:text="Administrator"
+        android:layout_marginTop="50dp"
+        android:textSize="10dp"
+        android:textColor="#848181"
+        android:background="@drawable/customshape_alpha"
+
+        />
+    <ImageButton
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/monimax"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/admin"
+        android:layout_marginBottom="30dp"/>
 </RelativeLayout>

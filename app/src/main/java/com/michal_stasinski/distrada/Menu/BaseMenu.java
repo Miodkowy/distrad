@@ -122,7 +122,7 @@ public class BaseMenu extends AppCompatActivity {
             R.color.color_DESERY,
     };
 
-    public Integer[] imgid = {
+   public Integer[] imgid = {
             R.mipmap.news_icon,
             R.mipmap.contact_icon,
             R.mipmap.pizza_icon,
@@ -171,7 +171,7 @@ public class BaseMenu extends AppCompatActivity {
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
         mToolBar.setBackgroundResource(colorToolBar[currentActivity]);
 
-        gotoRestauratManager = (Button) findViewById(R.id.open_manager);
+        gotoRestauratManager = (Button) findViewById(R.id.admin);
         notificationCreator = (Button) findViewById(R.id.notificationCreator);
         postCreator = (Button) findViewById(R.id.postCreator);
         logout = (Button) findViewById(R.id.logout);
@@ -310,7 +310,7 @@ public class BaseMenu extends AppCompatActivity {
                 mDrawerLayout.closeDrawer(GravityCompat.START, true);
             }
         });
-        Button openManager = (Button) findViewById(R.id.open_manager);
+        Button openManager = (Button) findViewById(R.id.admin);
         openManager.setOnClickListener(new View.OnClickListener() {
             @Override
             //On click function
@@ -354,13 +354,15 @@ public class BaseMenu extends AppCompatActivity {
 
 
     private void RegisterButtonVisible(boolean isVisible) {
+        gotoRestauratManager.setVisibility(View.INVISIBLE);
         if (Config.ISREGISTER) {
-            gotoRestauratManager.setVisibility(View.INVISIBLE);
             notificationCreator.setVisibility(View.VISIBLE);
             postCreator.setVisibility(View.VISIBLE);
             logout.setVisibility(View.VISIBLE);
         } else {
-            gotoRestauratManager.setVisibility(View.VISIBLE);
+            if(currentActivity == 9) {
+                gotoRestauratManager.setVisibility(View.VISIBLE);
+            }
             notificationCreator.setVisibility(View.INVISIBLE);
             postCreator.setVisibility(View.INVISIBLE);
             logout.setVisibility(View.INVISIBLE);
