@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -79,6 +81,8 @@ public class BaseMenu extends AppCompatActivity {
     private Button notificationCreator;
     private Button postCreator;
     private Button logout;
+    private ImageButton gotoUri;
+
     private DatabaseReference myRef;
     private ArrayList<MenuItemProduct> menuItem;
 
@@ -175,7 +179,17 @@ public class BaseMenu extends AppCompatActivity {
         notificationCreator = (Button) findViewById(R.id.notificationCreator);
         postCreator = (Button) findViewById(R.id.postCreator);
         logout = (Button) findViewById(R.id.logout);
+        gotoUri = (ImageButton) findViewById(R.id.urlButton);
         RegisterButtonVisible(Config.ISREGISTER);
+
+        gotoUri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //On click function
+            public void onClick(View view) {
+                openWebURL("http://monimaxprojekt.com");
+            }
+        });
+
         notificationCreator.setOnClickListener(new View.OnClickListener() {
             @Override
             //On click function
@@ -368,7 +382,11 @@ public class BaseMenu extends AppCompatActivity {
             logout.setVisibility(View.INVISIBLE);
         }
     }
+    public void openWebURL( String inURL ) {
+        Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse( inURL ) );
 
+        startActivity( browse );
+    }
     public void loadFireBaseData(String databaseReference, Boolean loadData) {
         if (loadData == true) {
             FirebaseDatabase database = FirebaseDatabase.getInstance();

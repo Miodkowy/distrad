@@ -6,7 +6,7 @@ import android.util.DisplayMetrics;
 import android.widget.ListView;
 
 public class BounceListView extends ListView {
-    private static final int MAX_Y_OVERSCROLL_DISTANCE = 200;
+    private static final int MAX_Y_OVERSCROLL_DISTANCE = 100;
 
     private Context mContext;
     private int mMaxYOverscrollDistance;
