@@ -8,11 +8,14 @@
         android:id="@+id/specialText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/map"
+        android:layout_gravity="end"
+
         android:background="@drawable/customshape_black"
         android:text="W skład każdej pizzy(32 cm) wchodzą:\n
 ser Mozzarella i sos pomidorowy"
+
         android:textAlignment="textEnd"
-        android:layout_gravity="left"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/menu_list_view_desc" />
 
