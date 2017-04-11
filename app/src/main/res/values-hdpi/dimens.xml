@@ -5,13 +5,30 @@
     <dimen name="menu_list_view_price">14sp</dimen>
     <dimen name="menu_list_view_desc">12sp</dimen>
     <dimen name="menu_list_view_shape_position">28dp</dimen>
+
     <!-- wlewy drawer: ikonka, tekst główny, opis -->
     <dimen name="left_drawer_icon">20dp</dimen>
-    <dimen name="left_drawer_top_text">14sp</dimen>
-    <dimen name="left_drawer_down_text">12sp</dimen>
+    <dimen name="left_drawer_top_text">12sp</dimen>
+    <dimen name="left_drawer_down_text">10sp</dimen>
     <dimen name="left_drawer_margin_left">60dp</dimen>
 
     <!-- actionbar header text -->
-    <dimen name="actionbar_header_text">16dp</dimen>
+    <dimen name="actionbar_header_text">14dp</dimen>
+
+    <!-- news -->
+    <dimen name="news_image_size">150dp</dimen>
+
+    <dimen name="news_layout_marginTop">10dp</dimen>
+    <dimen name="news_layout_marginLeft">10dp</dimen>
+    <dimen name="news_layout_marginRight">10dp</dimen>
+    <dimen name="news_layout_marginBottom">10dp</dimen>
+    <dimen name="news_data_text_size">10sp</dimen>
+    <dimen name="news_title_text_size">13sp</dimen>
+    <dimen name="news_message_text_size">11dp</dimen>
+    <!-- kontakt -->
+    <dimen name="contact_button_size">34dp</dimen>
+    <dimen name="contact_margin_left">40dp</dimen>
+    <dimen name="contact_margin_right">40dp</dimen>
+    <dimen name="contact_text_size">11sp</dimen>
 
 </resources>

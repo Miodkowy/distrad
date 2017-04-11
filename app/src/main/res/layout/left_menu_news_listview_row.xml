@@ -1,29 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.percent.PercentRelativeLayout
+<RelativeLayout
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-       <!-- android:background="#00000000"
-        android:layout_alignParentTop="true"
-           android:layout_alignParentLeft="true"
-           android:layout_alignParentStart="true"
-       -->
 
         <ImageView
             android:id="@+id/blog_post_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_heightPercent="60%"
-            app:layout_marginTopPercent="5%"
-            app:layout_marginLeftPercent="5%"
-            app:layout_marginRightPercent="5%"
+            android:layout_height="@dimen/news_image_size"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/news_layout_marginLeft"
+            android:layout_marginRight="@dimen/news_layout_marginRight"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-
             android:src="@mipmap/add_btn"
            />
 
@@ -34,13 +27,12 @@
             android:layout_alignParentRight="true"
             android:layout_alignRight="@id/blog_post_image"
             android:layout_below="@id/blog_post_image"
-            app:layout_marginTopPercent="2%"
-            app:layout_marginLeftPercent="5%"
-            app:layout_marginRightPercent="5%"
+            android:layout_marginTop="@dimen/news_layout_marginTop"
+            android:layout_marginLeft="@dimen/news_layout_marginLeft"
+            android:layout_marginRight="@dimen/news_layout_marginRight"
             android:text="03.02.2017"
-
             android:textColor="@color/cardview_light_background"
-            android:textSize="12dp" />
+            android:textSize="@dimen/news_data_text_size" />
 
         <com.michal_stasinski.distrada.Utils.CustomTextView
             android:id="@+id/blog_post_title"
@@ -48,34 +40,27 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/dataText"
             android:text="Tytuł"
-            app:layout_marginTopPercent="3%"
-            app:layout_marginLeftPercent="5%"
-            app:layout_marginRightPercent="5%"
+            android:layout_marginTop="@dimen/news_layout_marginTop"
+            android:layout_marginLeft="@dimen/news_layout_marginLeft"
+            android:layout_marginRight="@dimen/news_layout_marginRight"
             android:textColor="@color/cardview_light_background"
-            android:textSize="18dp" />
+            android:textSize="@dimen/news_title_text_size" />
 
         <com.michal_stasinski.distrada.Utils.CustomTextView
             android:id="@+id/blog_post_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/blog_post_title"
-            app:layout_marginTopPercent="3%"
-            app:layout_marginLeftPercent="5%"
-            app:layout_marginRightPercent="5%"
-            app:layout_marginBottomPercent="5%"
+            android:layout_marginTop="@dimen/news_layout_marginTop"
+            android:layout_marginLeft="@dimen/news_layout_marginLeft"
+            android:layout_marginRight="@dimen/news_layout_marginRight"
+            android:layout_marginBottom="@dimen/news_layout_marginBottom"
             android:text="Opis"
             android:textColor="@color/cardview_light_background"
-            android:textSize="16dp" />
-<!--
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:textSize="@dimen/news_message_text_size" />
 
-            android:background="@drawable/custom_news_shape" />
-            -->
 
-    </android.support.percent.PercentRelativeLayout>
+    </RelativeLayout>
 
 
 

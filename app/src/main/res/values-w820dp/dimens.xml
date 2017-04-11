@@ -5,11 +5,18 @@
     <dimen name="menu_list_view_title">18sp</dimen>
     <dimen name="menu_list_view_price">18sp</dimen>
     <dimen name="menu_list_view_desc">14sp</dimen>
-
+    <dimen name="menu_list_view_shape_position">38dp</dimen>
     <!-- wlewy drawer: ikonka, tekst główny, opis -->
 
     <dimen name="left_drawer_icon">30dp</dimen>
-    <dimen name="left_drawer_top_text">16sp</dimen>
-    <dimen name="left_drawer_down_text">12sp</dimen>
+    <dimen name="left_drawer_top_text">18sp</dimen>
+    <dimen name="left_drawer_down_text">14sp</dimen>
+    <dimen name="left_drawer_margin_left">80dp</dimen>
+
+    <!-- actionbar header text -->
+    <dimen name="actionbar_header_text">22dp</dimen>
+
+    <!-- news -->
+    <dimen name="news_image_size">500dp</dimen>
     
 </resources>

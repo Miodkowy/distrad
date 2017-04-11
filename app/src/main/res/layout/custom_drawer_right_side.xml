@@ -3,21 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <!--draver header-->
+    <!--draver header
 
     <ImageView
         android:id="@+id/etHeader1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:srcCompat="@mipmap/logo" />
+        app:srcCompat="@mipmap/logo" />-->
 
     <ImageView
         android:id="@+id/icon_in_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="50dp"
         app:srcCompat="@mipmap/app_icon" />
 
     <com.michal_stasinski.distrada.Utils.CustomTextView
@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:textColor="@color/colorWhite"
         android:text="'di Strada Gdynia' ver 1.0"
         android:textAlignment="center"
         android:textSize="@dimen/menu_list_view_title" />
@@ -78,12 +79,20 @@
         android:textColor="#848181"
         android:textSize="10dp" />
 
-    <ImageButton
-        android:id="@+id/urlButton"
-        android:layout_width="160dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="60dp"
-        android:background="@mipmap/monimax" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        >
+
+        <ImageButton
+            android:id="@+id/urlButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:background="@mipmap/moni" />
+
+    </RelativeLayout>
+
 </LinearLayout>

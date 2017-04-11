@@ -1,21 +1,38 @@
 <resources>
-    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
-         (such as screen margins) for screens with more than 820dp of available width. This
-         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
+    <!-- tablet -->
+
 
     <!-- wielkości w menu w listview: tytuł, cena, opis -->
 
     <dimen name="menu_list_view_title">22sp</dimen>
     <dimen name="menu_list_view_price">22sp</dimen>
     <dimen name="menu_list_view_desc">18sp</dimen>
-
+    <dimen name="menu_list_view_shape_position">42dp</dimen>
     <!-- wlewy drawer: ikonka, tekst główny, opis -->
 
-    <dimen name="left_drawer_icon">48dp</dimen>
-    <dimen name="left_drawer_top_text">22sp</dimen>
-    <dimen name="left_drawer_down_text">18sp</dimen>
+    <dimen name="left_drawer_icon">40dp</dimen>
+    <dimen name="left_drawer_top_text">20sp</dimen>
+    <dimen name="left_drawer_down_text">16sp</dimen>
     <dimen name="left_drawer_margin_left">120dp</dimen>
 
     <!-- actionbar header text -->
-    <dimen name="actionbar_header_text">26dp</dimen>
+    <dimen name="actionbar_header_text">24dp</dimen>
+
+    <!-- news -->
+    <dimen name="news_image_size">510dp</dimen>
+
+    <dimen name="news_layout_marginTop">20dp</dimen>
+    <dimen name="news_layout_marginLeft">20dp</dimen>
+    <dimen name="news_layout_marginRight">20dp</dimen>
+    <dimen name="news_layout_marginBottom">20dp</dimen>
+    <dimen name="news_data_text_size">12sp</dimen>
+    <dimen name="news_title_text_size">18sp</dimen>
+    <dimen name="news_message_text_size">16dp</dimen>
+
+    <!-- kontakt -->
+    <dimen name="contact_button_size">72dp</dimen>
+    <dimen name="contact_margin_left">140dp</dimen>
+    <dimen name="contact_margin_right">140dp</dimen>
+    <dimen name="contact_text_size">20dp</dimen>
+
 </resources>

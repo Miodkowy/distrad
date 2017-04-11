@@ -20,7 +20,7 @@
             android:divider="@drawable/custom_divaider"
             android:dividerHeight="1dp"
             android:scrollingCache="false"
-            app:layout_heightPercent="60%" />
+            app:layout_heightPercent="56%" />
 
     </android.support.percent.PercentRelativeLayout>
 

@@ -12,6 +12,7 @@
         android:text="W skład każdej pizzy(32 cm) wchodzą:\n
 ser Mozzarella i sos pomidorowy"
         android:textAlignment="textEnd"
+        android:layout_gravity="left"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/menu_list_view_desc" />
 
