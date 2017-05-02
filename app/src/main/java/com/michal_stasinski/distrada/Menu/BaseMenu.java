@@ -227,6 +227,7 @@ public class BaseMenu extends AppCompatActivity {
 
         imageDrawer = (ImageView) findViewById(R.id.pizza_element_back);
         setSupportActionBar(mToolBar);
+        //base_menu.xml
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 

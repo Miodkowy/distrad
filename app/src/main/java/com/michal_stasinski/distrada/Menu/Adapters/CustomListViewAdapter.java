@@ -2,6 +2,7 @@ package com.michal_stasinski.distrada.Menu.Adapters;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +85,7 @@ public class CustomListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
         ViewHolderItem viewHolder;
-
+        Log.i("info","position___   ___" + position);
         if (convertView == null) {
             view = View.inflate(mContext, R.layout.left_menu_listview_row, null);
             viewHolder = new ViewHolderItem();
