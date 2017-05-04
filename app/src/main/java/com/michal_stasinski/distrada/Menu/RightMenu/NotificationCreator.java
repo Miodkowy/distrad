@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
@@ -51,7 +50,8 @@ public class NotificationCreator extends BaseMenu {
     public static final String FCM_MESSAGE_URL = "https://fcm.googleapis.com/fcm/send";
     private TextView switchStatus;
     private Switch mySwitch;
-    private Boolean messageWithSound =false;
+    private Boolean messageWithSound = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -77,17 +77,15 @@ public class NotificationCreator extends BaseMenu {
             public void onClick(View v) {
 
 
-
-
-                if(TextUtils.isEmpty(eTitle.getText()) || TextUtils.isEmpty(eMessage.getText())) {
+                if (TextUtils.isEmpty(eTitle.getText()) || TextUtils.isEmpty(eMessage.getText())) {
 
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NotificationCreator.this);
                     alertDialogBuilder.setTitle("UWAGA");
                     alertDialogBuilder
                             .setMessage("Nie wypełniłeś wszystkich wymaganych pół")
                             .setCancelable(false)
-                            .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
                                     // if this button is clicked, close
                                     // current activity
 
@@ -97,14 +95,14 @@ public class NotificationCreator extends BaseMenu {
                     alertDialog.show();
 
 
-                }else{
+                } else {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NotificationCreator.this);
                     alertDialogBuilder.setTitle("UWAGA");
                     alertDialogBuilder
                             .setMessage("Na pewno chcesz wysłać wiadomość?")
                             .setCancelable(false)
-                            .setPositiveButton("TAK",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
+                            .setPositiveButton("TAK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
                                     String refreshedToken = FirebaseInstanceId.getInstance().getToken();//add your user refresh tokens who are logged in with firebase.
                                     JSONArray jsonArray = new JSONArray();
                                     jsonArray.put(refreshedToken);
@@ -113,8 +111,8 @@ public class NotificationCreator extends BaseMenu {
                                     eMessage.setText("");
                                 }
                             })
-                            .setNegativeButton("NIE",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
+                            .setNegativeButton("NIE", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
                                     // if this button is clicked, just close
                                     // the dialog box and do nothing
                                     dialog.cancel();
@@ -158,9 +156,9 @@ public class NotificationCreator extends BaseMenu {
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
                 messageWithSound = isChecked;
-                if(isChecked){
-                   // switchStatus.setText("Switch is currently ON");
-                }else{
+                if (isChecked) {
+                    // switchStatus.setText("Switch is currently ON");
+                } else {
                     //switchStatus.setText("Switch is currently OFF");
                 }
 
@@ -168,10 +166,9 @@ public class NotificationCreator extends BaseMenu {
         });
         switchStatus.setText("");
         //check the current state before we display the screen
-        if(mySwitch.isChecked()){
-           // switchStatus.setText("Switch is currently ON");
-        }
-        else {
+        if (mySwitch.isChecked()) {
+            // switchStatus.setText("Switch is currently ON");
+        } else {
             //switchStatus.setText("Switch is currently OFF");
         }
 
@@ -194,7 +191,7 @@ public class NotificationCreator extends BaseMenu {
         if (!TextUtils.isEmpty(regId)) {
             //txtRegId.setText("Firebase Reg Id: " + regId);
         } else {
-           // txtRegId.setText("Firebase Reg Id is not received yet!");
+            // txtRegId.setText("Firebase Reg Id is not received yet!");
         }
     }
 
@@ -235,8 +232,8 @@ public class NotificationCreator extends BaseMenu {
                     notification.put("body", body);
                     notification.put("title", title);
                     notification.put("icon", R.mipmap.app_icon);
-                    if(messageWithSound) {
-                         notification.put("sound",sound);
+                    if (messageWithSound) {
+                        notification.put("sound", sound);
                     }
                     notification.put("badge", badge);
                     JSONObject data = new JSONObject();
@@ -263,7 +260,7 @@ public class NotificationCreator extends BaseMenu {
                     Toast.makeText(NotificationCreator.this, "Message Success: " + success + "Message Failed: " + failure, Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    //Toast.makeText(NotificationCreator.this, "Wiadomośc nie została wsyłana, Unknown error occurred.", Toast.LENGTH_LONG).show();
+
                 }
             }
         }.execute();

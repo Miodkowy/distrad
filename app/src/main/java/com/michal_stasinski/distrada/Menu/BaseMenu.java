@@ -227,7 +227,6 @@ public class BaseMenu extends AppCompatActivity {
 
         imageDrawer = (ImageView) findViewById(R.id.pizza_element_back);
         setSupportActionBar(mToolBar);
-        //base_menu.xml
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
@@ -235,13 +234,10 @@ public class BaseMenu extends AppCompatActivity {
         BounceListView v = (BounceListView) findViewById(R.id.left_drawer);
         v.setEnabled(true);
         mDrawerLayout.setEnabled(true);
-        // mDrawerLayout.setDrawerShadow(R.drawable.custom_drawer_shape, Gravity.START);
-        //mDrawerLayout.openDrawer(GravityCompat.START,true);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);
         content = (LinearLayout) findViewById(R.id.content_frame);
         imgBackground = (ImageView) findViewById(R.id.pizza_element_back);
         imgBackground.setAlpha(0.f);
-        //mListViewMenu = (BounceListView) findViewById(R.id.mListView_BaseMenu);
         TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
         toolBarTitle.setText((largeTextArr[currentActivity]).toString());
 
@@ -250,10 +246,8 @@ public class BaseMenu extends AppCompatActivity {
             @Override
             public void onDrawerSlide(View view, float slideOffset) {
                 imgBackground.setAlpha(slideOffset);
-                // mListViewMenu.setAlpha(1 - slideOffset);
                 content.setAlpha(1 - slideOffset);
                 imageDrawer.setAlpha(slideOffset);
-                // mtoolBarLayout.setAlpha(1 - slideOffset);
             }
 
             public void onDrawerClosed(View view) {
@@ -293,7 +287,6 @@ public class BaseMenu extends AppCompatActivity {
                         intent.setClass(getBaseContext(), Drinks.class);
                     }
                     startActivity(intent);
-                    //overridePendingTransition(R.animator.right_in, R.animator.left_out);
                     overridePendingTransition(R.anim.flip_inn, R.anim.flip_out);
                 }
             }
@@ -328,7 +321,6 @@ public class BaseMenu extends AppCompatActivity {
         Button openManager = (Button) findViewById(R.id.admin);
         openManager.setOnClickListener(new View.OnClickListener() {
             @Override
-            //On click function
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(getBaseContext(), PasswordActivity.class);

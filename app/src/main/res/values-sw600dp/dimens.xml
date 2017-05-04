@@ -19,12 +19,12 @@
     <dimen name="actionbar_header_text">24dp</dimen>
 
     <!-- news -->
-    <dimen name="news_image_size">510dp</dimen>
+    <dimen name="news_image_size">520dp</dimen>
 
     <dimen name="news_layout_marginTop">20dp</dimen>
     <dimen name="news_layout_marginLeft">20dp</dimen>
     <dimen name="news_layout_marginRight">20dp</dimen>
-    <dimen name="news_layout_marginBottom">20dp</dimen>
+    <dimen name="news_layout_marginBottom">30dp</dimen>
     <dimen name="news_data_text_size">12sp</dimen>
     <dimen name="news_title_text_size">18sp</dimen>
     <dimen name="news_message_text_size">16dp</dimen>

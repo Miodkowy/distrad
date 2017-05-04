@@ -3,11 +3,13 @@ package com.michal_stasinski.distrada.Menu.RightMenu;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
@@ -16,39 +18,31 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.michal_stasinski.distrada.Menu.BaseMenu;
 import com.michal_stasinski.distrada.R;
 
-import org.json.JSONArray;
-
+import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class NewsCreator extends BaseMenu {
 
-
     private ImageButton mSecetedImage;
     private EditText mPostTitle;
     private EditText mPostDesc;
     private Button mSubmiteBtn;
     private Uri mImageUri;
-
-    //referencja do storgafe firebase
     private StorageReference mStorage;
-
-    //referencja do bazy w firebase
     private DatabaseReference mDatabase;
-
     private ProgressDialog mProgress;
-
     private static final int GALLERY_REQUEST = 1;
 
     @Override
@@ -67,16 +61,12 @@ public class NewsCreator extends BaseMenu {
         mPostTitle = (EditText) findViewById(R.id.postTitle);
         mPostDesc = (EditText) findViewById(R.id.postDesc);
         mSubmiteBtn = (Button) findViewById(R.id.submit_post_btn);
-
         mSecetedImage = (ImageButton) findViewById(R.id.imageSelect);
-
         mProgress = new ProgressDialog(this);
-
         mDatabase = FirebaseDatabase.getInstance().getReference().child("blogs");
 
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
         background.setBackgroundResource(R.mipmap.piec_view);
-
 
         mSecetedImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,13 +87,9 @@ public class NewsCreator extends BaseMenu {
 
     private void startPosting() {
 
-
-        // pobrać text zamienic na stringa i usnunać białe znaki trim()
         final String titleVal = mPostTitle.getText().toString().trim();
         final String descVal = mPostDesc.getText().toString().trim();
 
-        Log.i("TAG", "GGGGG______________________" + mImageUri);
-        // jeśli title val nie jest pusty i descVal nie jest pusty i image nie jest nul to
         if (!TextUtils.isEmpty(titleVal) && !TextUtils.isEmpty(descVal) && mImageUri != null) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(NewsCreator.this);
             alertDialogBuilder.setTitle("UWAGA");
@@ -114,13 +100,26 @@ public class NewsCreator extends BaseMenu {
                         public void onClick(DialogInterface dialog, int id) {
                             mProgress.setMessage("Wysyłam post");
                             mProgress.show();
-
-                            //StorageReference filepath = mStorage.child("Blog_image").child(mImageUri.getLastPathSegment());
                             StorageReference filepath = mStorage.child("images").child(mImageUri.getLastPathSegment());
-                            filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                            mSecetedImage.setDrawingCacheEnabled(true);
+                            mSecetedImage.buildDrawingCache();
+                            Bitmap bitmap =  ((BitmapDrawable)mSecetedImage.getDrawable()).getBitmap();
+
+                            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 10, byteArrayOutputStream);
+                            byte[] data = byteArrayOutputStream.toByteArray();
+
+                            UploadTask uploadTask = filepath.putBytes(data);
+                            uploadTask.addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    // Handle unsuccessful uploads
+                                }
+                            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
+                                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                                     Uri downLoadUri = taskSnapshot.getDownloadUrl();
 
                                     DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
@@ -134,14 +133,12 @@ public class NewsCreator extends BaseMenu {
                                     newPost.child("news").setValue(descVal.toString());
                                     newPost.child("date").setValue(date.toString());
                                     newPost.child("rank").setValue(date1.toString());
-                                    // dodanie urla obrazka ...zamienic na stringa!!
-
                                     newPost.child("imageUrl").setValue(downLoadUri.toString());
 
                                     mProgress.dismiss();
+
                                 }
                             });
-
                         }
                     })
                     .setNegativeButton("NIE", new DialogInterface.OnClickListener() {
@@ -163,9 +160,6 @@ public class NewsCreator extends BaseMenu {
                     .setCancelable(false)
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            // if this button is clicked, close
-                            // current activity
-
                         }
                     });
             AlertDialog alertDialog = alertDialogBuilder.create();
@@ -187,7 +181,6 @@ public class NewsCreator extends BaseMenu {
 
         if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
             mImageUri = data.getData();
-
             mSecetedImage.setImageURI(mImageUri);
         }
     }
