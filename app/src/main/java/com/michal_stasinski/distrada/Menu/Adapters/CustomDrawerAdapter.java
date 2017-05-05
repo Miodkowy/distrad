@@ -34,9 +34,9 @@ public class CustomDrawerAdapter extends ArrayAdapter<String> {
         View view = convertView;
         ViewHolderDrawer viewHolder;
 
-       if (convertView == null) {
+        if (convertView == null) {
 
-            view = View.inflate(context,R.layout.custom_drawer_row, null);
+            view = View.inflate(context, R.layout.custom_drawer_row, null);
             viewHolder = new ViewHolderDrawer();
             viewHolder.imageView = (ImageView) view.findViewById(R.id.icon);
             viewHolder.txtTitle = (CustomTextView) view.findViewById(R.id.txtTitleDrawer);
@@ -45,7 +45,6 @@ public class CustomDrawerAdapter extends ArrayAdapter<String> {
         } else {
             viewHolder = (ViewHolderDrawer) view.getTag();
         }
-       // largeTxtArr[position]
         viewHolder.txtTitle.setText(largeTxtArr[position]);
         viewHolder.imageView.setImageResource(imgid[position]);
         viewHolder.smallTxt.setText(smallTxtArr[position]);

@@ -85,7 +85,6 @@ public class CustomListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
         ViewHolderItem viewHolder;
-        Log.i("info","position___   ___" + position);
         if (convertView == null) {
             view = View.inflate(mContext, R.layout.left_menu_listview_row, null);
             viewHolder = new ViewHolderItem();
@@ -108,14 +107,12 @@ public class CustomListViewAdapter extends BaseAdapter {
 
         ((GradientDrawable) viewHolder.colorShape.getBackground()).setColor(mContext.getResources().getColor(this.color));
         viewHolder.textDesc.setText(arr.get(position).getDesc().toLowerCase());
-        viewHolder.textPrice.setText(arr.get(position).getPrice().toString().toUpperCase() + " ZŁ");
-
+        viewHolder.textPrice.setText(arr.get(position).getPrice().toString().toUpperCase() + " zł");
 
         return view;
     }
 
     static class ViewHolderItem {
-
         TextView title;
         TextView textDesc;
         TextView textPrice;

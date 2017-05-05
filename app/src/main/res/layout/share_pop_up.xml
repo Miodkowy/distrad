@@ -1,0 +1,107 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <Button
+        android:id="@+id/postCreator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_drawer_shape"
+        android:fontFamily="Arial"
+        android:text="Utwórz wiadomość"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/menu_list_view_title" />
+
+
+    <Button
+        android:id="@+id/notificationCreator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/custom_drawer_shape"
+        android:fontFamily="Arial"
+        android:text="Utwórz powiadomienie"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/menu_list_view_title" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/custom_drawer_shape"
+        android:fontFamily="Arial"
+        android:text="Wyloguj"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/menu_list_view_title" />
+
+    <ImageButton
+        android:id="@+id/icon_in_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:background="@mipmap/app_icon" />
+
+    <com.michal_stasinski.distrada.Utils.CustomTextView
+        android:id="@+id/version_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="140dp"
+        android:text="'di Strada Gdynia' ver 1.0"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/menu_list_view_desc" />
+
+
+    <Button
+        android:id="@+id/share_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/customshape_alpha"
+        android:text="Podziel się aplikacją"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/menu_list_view_desc" />
+    />
+
+    <Button
+        android:id="@+id/admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/customshape_alpha"
+        android:fontFamily="Arial"
+        android:text="Administrator"
+        android:textColor="#848181"
+        android:textSize="10dp" />
+
+
+    <ImageButton
+        android:id="@+id/urlButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:background="@mipmap/moni" />
+
+</RelativeLayout>
+

@@ -8,7 +8,6 @@ import com.michal_stasinski.distrada.Utils.BounceListView;
 
 public class Alforno extends BaseMenu {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

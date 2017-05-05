@@ -80,7 +80,9 @@
         <activity android:name=".Menu.RightMenu.PasswordActivity" />
         <activity android:name=".Menu.LeftMenu.Additions" />
         <activity android:name=".Menu.LeftMenu.News" />
-
+        <activity
+        android:name=".Menu.RightMenu.SharePopUp"
+        android:theme="@style/AppTheme.PopUpWindow" />
     </application>
 
 </manifest>

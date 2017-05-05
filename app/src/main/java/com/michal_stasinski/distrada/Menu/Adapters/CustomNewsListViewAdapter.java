@@ -96,7 +96,6 @@ public class CustomNewsListViewAdapter extends BaseAdapter {
     }
 
     static class ViewHolderItem {
-
         TextView date;
         TextView news;
         TextView title;

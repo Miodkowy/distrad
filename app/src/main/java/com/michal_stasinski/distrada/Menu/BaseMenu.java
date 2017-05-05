@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,8 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -44,9 +41,7 @@ import com.michal_stasinski.distrada.Menu.LeftMenu.Salad;
 import com.michal_stasinski.distrada.Menu.LeftMenu.Soup;
 import com.michal_stasinski.distrada.Menu.LeftMenu.Starters;
 import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
-import com.michal_stasinski.distrada.Menu.RightMenu.NewsCreator;
-import com.michal_stasinski.distrada.Menu.RightMenu.NotificationCreator;
-import com.michal_stasinski.distrada.Menu.RightMenu.PasswordActivity;
+import com.michal_stasinski.distrada.Menu.RightMenu.SharePopUp;
 import com.michal_stasinski.distrada.R;
 import com.michal_stasinski.distrada.Utils.BounceListView;
 
@@ -54,6 +49,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
+
+import static com.michal_stasinski.distrada.App.Config.ISADMINENABLED;
 
 public class BaseMenu extends AppCompatActivity {
 
@@ -69,20 +66,10 @@ public class BaseMenu extends AppCompatActivity {
     protected int colorActivity = 1;
     protected boolean sortByInt;
     protected boolean specialSign = false;
-
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private ImageView imgBackground;
     private LinearLayout content;
-    private int color;
-    private ImageView imageDrawer; //obrazek pod drawerem
-    private Boolean choiceActivity;
-    private Boolean loadActivity;
-    private Button gotoRestauratManager;
-    private Button notificationCreator;
-    private Button postCreator;
-    private Button logout;
-    private ImageButton gotoUri;
-
+    private ImageView imageDrawer;
     private DatabaseReference myRef;
     private ArrayList<MenuItemProduct> menuItem;
 
@@ -126,7 +113,7 @@ public class BaseMenu extends AppCompatActivity {
             R.color.color_DESERY,
     };
 
-   public Integer[] imgid = {
+    public Integer[] imgid = {
             R.mipmap.news_icon,
             R.mipmap.contact_icon,
             R.mipmap.pizza_icon,
@@ -143,12 +130,15 @@ public class BaseMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_menu);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
         stub.setLayoutResource(R.layout.left_bounce_list_view);
         View inflated = stub.inflate();
 
         badgeCount = 0;
+
         ShortcutBadger.applyCount(getApplicationContext(), badgeCount);
         FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
@@ -170,77 +160,25 @@ public class BaseMenu extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        loadActivity = false;
-        choiceActivity = false;
+
         mToolBar = (Toolbar) findViewById(R.id.nav_action);
         mToolBar.setBackgroundResource(colorToolBar[currentActivity]);
 
-        gotoRestauratManager = (Button) findViewById(R.id.admin);
-        notificationCreator = (Button) findViewById(R.id.notificationCreator);
-        postCreator = (Button) findViewById(R.id.postCreator);
-        logout = (Button) findViewById(R.id.logout);
-        gotoUri = (ImageButton) findViewById(R.id.urlButton);
-        RegisterButtonVisible(Config.ISREGISTER);
-
-        gotoUri.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //On click function
-            public void onClick(View view) {
-                openWebURL("http://monimaxprojekt.com");
-            }
-        });
-
-        notificationCreator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //On click function
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(getBaseContext(), NotificationCreator.class);
-                startActivity(intent);
-                overridePendingTransition(R.animator.right_in, R.animator.left_out);
-            }
-        });
-
-        postCreator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //On click function
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(getBaseContext(), NewsCreator.class);
-                startActivity(intent);
-                overridePendingTransition(R.animator.right_in, R.animator.left_out);
-            }
-        });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //On click function
-            public void onClick(View view) {
-                Config.ISREGISTER = false;
-                RegisterButtonVisible(Config.ISREGISTER);
-                Intent intent = new Intent();
-                intent.setClass(getBaseContext(), News.class);
-                startActivity(intent);
-                overridePendingTransition(R.animator.right_in, R.animator.left_out);
-            }
-        });
 
         imageDrawer = (ImageView) findViewById(R.id.pizza_element_back);
         setSupportActionBar(mToolBar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-
-
         BounceListView v = (BounceListView) findViewById(R.id.left_drawer);
         v.setEnabled(true);
         mDrawerLayout.setEnabled(true);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);
+
         content = (LinearLayout) findViewById(R.id.content_frame);
         imgBackground = (ImageView) findViewById(R.id.pizza_element_back);
         imgBackground.setAlpha(0.f);
         TextView toolBarTitle = (TextView) findViewById(R.id.toolBarTitle);
         toolBarTitle.setText((largeTextArr[currentActivity]).toString());
-
 
         mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close) {
             @Override
@@ -255,6 +193,7 @@ public class BaseMenu extends AppCompatActivity {
 
                 if (currentActivity != choicetActivity) {
                     mDrawerLayout.setEnabled(false);
+                    Config.ISADMINENABLED = false;
                     Intent intent = new Intent();
                     if (choicetActivity == 0) {
                         intent.setClass(getBaseContext(), News.class);
@@ -284,6 +223,7 @@ public class BaseMenu extends AppCompatActivity {
                         intent.setClass(getBaseContext(), MainCourse.class);
                     }
                     if (choicetActivity == 9) {
+                        Config.ISADMINENABLED = true;
                         intent.setClass(getBaseContext(), Drinks.class);
                     }
                     startActivity(intent);
@@ -293,9 +233,10 @@ public class BaseMenu extends AppCompatActivity {
         };
 
         mDrawerLayout.addDrawerListener(mToggle);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true); // show or hide the default home button
-        getSupportActionBar().setDisplayShowCustomEnabled(true); // enable overriding the default toolbar layout
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         mToggle.syncState();
@@ -318,17 +259,6 @@ public class BaseMenu extends AppCompatActivity {
                 mDrawerLayout.closeDrawer(GravityCompat.START, true);
             }
         });
-        Button openManager = (Button) findViewById(R.id.admin);
-        openManager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(getBaseContext(), PasswordActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.animator.right_in, R.animator.left_out);
-
-            }
-        });
     }
 
     @Override
@@ -336,14 +266,16 @@ public class BaseMenu extends AppCompatActivity {
 
         int id = item.getItemId();
         if (id == R.id.right_menu) {
-            mDrawerLayout.openDrawer(GravityCompat.END, true);
+            Intent intent = new Intent();
+            intent.setClass(getBaseContext(), SharePopUp.class);
+            startActivity(intent);
             return true;
         }
         if (id == R.id.share) {
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
-            String shareBodyText = "Check it out. Your message goes here";
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject here");
+            String shareBodyText = "Zapraszamy na pyszną pizzę";
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "DISTRADA");
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBodyText);
             startActivity(Intent.createChooser(sharingIntent, "Shearing Option"));
             return true;
@@ -359,27 +291,6 @@ public class BaseMenu extends AppCompatActivity {
         return true;
     }
 
-
-    private void RegisterButtonVisible(boolean isVisible) {
-        gotoRestauratManager.setVisibility(View.INVISIBLE);
-        if (Config.ISREGISTER) {
-            notificationCreator.setVisibility(View.VISIBLE);
-            postCreator.setVisibility(View.VISIBLE);
-            logout.setVisibility(View.VISIBLE);
-        } else {
-            if(currentActivity == 9) {
-                gotoRestauratManager.setVisibility(View.VISIBLE);
-            }
-            notificationCreator.setVisibility(View.INVISIBLE);
-            postCreator.setVisibility(View.INVISIBLE);
-            logout.setVisibility(View.INVISIBLE);
-        }
-    }
-    public void openWebURL( String inURL ) {
-        Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse( inURL ) );
-
-        startActivity( browse );
-    }
     public void loadFireBaseData(String databaseReference, Boolean loadData) {
         if (loadData == true) {
             FirebaseDatabase database = FirebaseDatabase.getInstance();

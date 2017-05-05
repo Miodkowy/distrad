@@ -2,7 +2,6 @@ package com.michal_stasinski.distrada.Menu.RightMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.Button;
@@ -18,11 +17,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.michal_stasinski.distrada.App.Config;
 import com.michal_stasinski.distrada.Menu.BaseMenu;
 import com.michal_stasinski.distrada.Menu.LeftMenu.News;
-import com.michal_stasinski.distrada.Menu.Models.MenuItemProduct;
 import com.michal_stasinski.distrada.R;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class PasswordActivity extends BaseMenu {
     private DatabaseReference mDatabase;
@@ -42,9 +39,11 @@ public class PasswordActivity extends BaseMenu {
 
         Button login_button = (Button) findViewById(R.id.login_button);
         Button back_button = (Button) findViewById(R.id.back_button);
+
         final TextView wrongText = (TextView) findViewById(R.id.wrong_login);
         final EditText loginText = (EditText) findViewById(R.id.login_text);
         final EditText password = (EditText) findViewById(R.id.password_text);
+
         wrongText.setAlpha(0);
         RelativeLayout background = (RelativeLayout) findViewById(R.id.main_frame_pizza);
 
@@ -52,7 +51,6 @@ public class PasswordActivity extends BaseMenu {
         background.setBackgroundResource(R.mipmap.piec_view);
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            //On click function
             public void onClick(View view) {
 
                 if (loginText.getText().toString().equals(top) && password.getText().toString().equals(bot)) {

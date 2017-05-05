@@ -68,7 +68,7 @@
 
     </RelativeLayout>
 
-    <!--drugi drawer -->
+    <!--drugi drawer
     <RelativeLayout
         android:id="@+id/drawer_left_side"
         android:layout_width="match_parent"
@@ -82,6 +82,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 </android.support.v4.widget.DrawerLayout>

@@ -23,6 +23,19 @@
     <style name="GalaxyZooThemeToolbarDarkOverflow" parent="Theme.AppCompat.NoActionBar">
         <item name="android:textColorPrimary">@color/color_PIZZA</item>
         <item name="android:actionMenuTextColor">@color/colorWhite</item>
+    </style>
+
+    <style name="AppTheme.PopUpWindow">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:colorForeground">#fff</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@drawable/popup_window_background</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
+    <style name="Animation">
+        <item name="android:windowEnterAnimation">@anim/from_left</item>
 
     </style>
 
